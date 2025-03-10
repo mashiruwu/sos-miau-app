@@ -1,0 +1,16 @@
+{
+    "name":"",
+    "surname":"",
+    "cpf":"",
+    "email":"",
+    "password":"",
+    "photo_url":"",
+    "address":"",
+    "apartment":"",
+    "birthday":"",
+    "phone":"",
+    "adoptions":[],
+    "has_protection_net": false,
+    "likes":[],
+    "dislikes":[]
+}

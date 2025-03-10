@@ -1,0 +1,12 @@
+{
+    "name":"",
+    "surname":"",
+    "cpf":"",
+    "email":"",
+    "password":"",
+    "photo_url":"",
+    "birthday":"",
+    "phone":"",
+    "cats_available":[],
+    "cats_adopted":[]
+}
