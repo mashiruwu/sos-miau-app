@@ -1,0 +1,17 @@
+{
+    "name": "carlos",
+    "gender":"F",
+    "breed":"",
+    "color":"",
+    "birthday":"",
+    "photo_url":"",
+    "weight":"",
+    "height":"",
+    "description":"",
+    "behavior":"",
+    "neutered":"",
+    "fiv":"",
+    "felv":"",
+    "adopted": false,
+    "adoption_date": null
+}
