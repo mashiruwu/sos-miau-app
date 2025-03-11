@@ -1,7 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Tiny5&display=swap");
 @import "tailwindcss";
 
 @theme {
     --font-tiny: "Tiny5", sans-serif;
+    --font-afacad: "Afacad", sans-serif;
     --color-primary: #153151;
+    --color-primary-hover: #1a3b6c;
 }
