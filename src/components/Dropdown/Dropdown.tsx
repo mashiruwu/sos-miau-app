@@ -5,7 +5,7 @@ export default function Dropdown() {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-sm font-semibold text-gray-900 shadow-xs ring-gray-300 ring-inset cursor-pointer hover:bg-primary-hover rounded-md">
+                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-sm font-semibold text-gray-900  cursor-pointer hover:bg-primary-hover rounded-md">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -35,6 +35,14 @@ export default function Dropdown() {
                     <MenuItem to="#">Resgate</MenuItem>
                     <MenuItem to="#">Gatos adotados</MenuItem>
                     <MenuItem to="#">Transparência</MenuItem>
+                    <div className="lg:hidden block">
+                        <MenuItem to="#">
+                            <b>Entrar</b>
+                        </MenuItem>
+                        <MenuItem to="#">
+                            <b>Cadastrar-se</b>
+                        </MenuItem>
+                    </div>
                 </div>
             </MenuItems>
         </Menu>

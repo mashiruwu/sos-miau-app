@@ -1,8 +1,13 @@
-import Header from "./components/Header/Header.tsx";
+import { BrowserRouter } from "react-router-dom";
 import "./i18n.ts";
+import { AppRoutes } from "./routes/AppRoutes.tsx";
 
 function App() {
-    return <Header></Header>;
+    return (
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    );
 }
 
 export default App;
