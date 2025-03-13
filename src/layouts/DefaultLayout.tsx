@@ -6,7 +6,7 @@ export const DefaultLayout = () => {
     return (
         <>
             <Header />
-            <main className="mt-16 px-25">
+            <main className="mt-16 lg:px-[20%] px-[10%]">
                 <Outlet />
             </main>
             <Footer />
