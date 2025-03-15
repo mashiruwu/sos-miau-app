@@ -1,7 +1,10 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import MenuItem from "../MenuItem/MenuItem";
+import { useTranslation } from "react-i18next";
 
 export default function Dropdown() {
+    const { t } = useTranslation();
+
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
@@ -26,21 +29,21 @@ export default function Dropdown() {
 
             <MenuItems
                 transition
-                className="absolute left-0 z-10 mt-2 w-42 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                className="absolute left-0 z-10 mt-2 w-42 origin-top-right rounded-md bg-white ring-1 ring-primary transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
             >
                 <div className="py-1">
-                    <MenuItem to="#">Sobre nós</MenuItem>
-                    <MenuItem to="#">Quero adotar</MenuItem>
-                    <MenuItem to="#">Quero ajudar</MenuItem>
-                    <MenuItem to="#">Resgate</MenuItem>
-                    <MenuItem to="#">Gatos adotados</MenuItem>
-                    <MenuItem to="#">Transparência</MenuItem>
+                    <MenuItem to="/about">{t("footer.about_us")}</MenuItem>
+                    <MenuItem to="#">{t("footer.want_adopt")}</MenuItem>
+                    <MenuItem to="#">{t("footer.help")}</MenuItem>
+                    <MenuItem to="#">{t("footer.rescue")}</MenuItem>
+                    <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
+                    <MenuItem to="#">{t("footer.transparency")}</MenuItem>
                     <div className="lg:hidden block">
                         <MenuItem to="#">
-                            <b>Entrar</b>
+                            <b>{t("login")}</b>
                         </MenuItem>
                         <MenuItem to="#">
-                            <b>Cadastrar-se</b>
+                            <b>{t("sign_up")}</b>
                         </MenuItem>
                     </div>
                 </div>
