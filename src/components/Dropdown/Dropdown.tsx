@@ -33,7 +33,7 @@ export default function Dropdown() {
             >
                 <div className="py-1">
                     <MenuItem to="/about">{t("footer.about_us")}</MenuItem>
-                    <MenuItem to="#">{t("footer.want_adopt")}</MenuItem>
+                    <MenuItem to="/adoption">{t("footer.want_adopt")}</MenuItem>
                     <MenuItem to="#">{t("footer.help")}</MenuItem>
                     <MenuItem to="#">{t("footer.rescue")}</MenuItem>
                     <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
