@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import Dropdown from "../Dropdown/Dropdown";
 import HeaderLink from "./HeaderLink/HeaderLink";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white">
             <Dropdown />
@@ -13,8 +16,8 @@ const Header = () => {
                 SOS Miau
             </Link>
             <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
-                <HeaderLink to="/login">Entrar</HeaderLink>
-                <HeaderLink to="/cadastrar">Cadastrar-se</HeaderLink>
+                <HeaderLink to="/login">{t("login")}</HeaderLink>
+                <HeaderLink to="/cadastrar">{t("sign_up")}</HeaderLink>
             </div>
         </div>
     );

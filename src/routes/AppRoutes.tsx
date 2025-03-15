@@ -3,6 +3,7 @@ import { FullPageLayout } from "../layouts/FullPageLayout";
 import Home from "../pages/Home";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import About from "../pages/About";
+import AdoptionPage from "../pages/Adoption";
 
 export const AppRoutes = () => {
     return (
@@ -11,6 +12,7 @@ export const AppRoutes = () => {
                 <Route element={<DefaultLayout />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/adoption" element={<AdoptionPage />} />
                 </Route>
             </Route>
         </Routes>
