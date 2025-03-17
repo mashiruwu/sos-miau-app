@@ -59,6 +59,14 @@ const resources = {
                     "If you want to meet our cats available for adoption, contact us!",
                 see_our_available_cats: "AVAILABLE CATS",
             },
+            landing_carousel: {
+                slide01_title: "About the NGO",
+                description01: "Get to know us",
+                slide02_title: "I want to help",
+                description02: "Learn how to help",
+                slide03_title: "Animal Adoption",
+                description03: "How about a furry friend to cheer up your days?",
+            },
         },
     },
     br: {
@@ -120,6 +128,14 @@ const resources = {
                     "Se você deseja conhecer nossos gatinhos disponíveis para adoção, entre em contato conosco!",
                 see_our_available_cats: "VER GATINHOS DISPONÍVEIS",
             },
+            landing_carousel: {
+                slide01_title: "Sobre a ONG",
+                description01: "Saiba mais sobre nós",
+                slide02_title: "Quero ajudar",
+                description02: "Saiba como Ajudar",
+                slide03_title: "Adoção de Animais",
+                description03: "Que tal um amigo peludinho para animar seus dias?",
+            }
         },
     },
 };
