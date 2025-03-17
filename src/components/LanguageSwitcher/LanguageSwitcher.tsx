@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import BrazilIcon from "../assets/brazil.svg";
-import UnitedStatesIcon from "../assets/unitedStates.svg";
+import BrazilIcon from "../../assets/brazil.svg";
+import UnitedStatesIcon from "../../assets/unitedStates.svg";
 
 function LanguageSwitcher() {
     const { t, i18n } = useTranslation();
