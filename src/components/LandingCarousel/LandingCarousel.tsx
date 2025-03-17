@@ -33,7 +33,7 @@ const maxSlides = 3;
 function LandingCarousel() {
   const { t } = useTranslation();
   return (
-    <div className="relative w-full p-4">
+    <div className="relative inset-x-0 top-0 left-0 w-screen">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{clickable: true}}
@@ -49,9 +49,9 @@ function LandingCarousel() {
             <img
               src={item.src}
               alt={`Gato ${index + 1}`}
-              className="w-full h-[500px] object-cover rounded-2xl"
+              className="w-screen h-[500px] object-cover"
             />
-            <div className="absolute inset-0 bg-black/70 rounded-2xl z-10"></div>
+            <div className="absolute inset-0 bg-black/80 z-10"></div>
             <div className="absolute bottom-10 left-10 text-white z-20">
               <p className="font-tiny text-[3vw]">{t(item.text1)}</p>
               <p className="font-afacad text-[1vw]">{t(item.text2)}</p>
@@ -60,7 +60,6 @@ function LandingCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-pagination !absolute bottom-4 flex justify-center space-x-2 bg-amber-50"></div>
     </div>
     
   );
