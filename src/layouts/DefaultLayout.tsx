@@ -8,7 +8,7 @@ export const DefaultLayout = () => {
     return (
         <>
             <Header />
-            <main className="mt-16 lg:px-[10%] px-[10%]">
+            <main className={isHome ? "" : "mt-16 lg:px-[10%] px-[10%]"}>
                 <Outlet />
             </main>
             <Footer />
