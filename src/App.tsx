@@ -1,15 +1,14 @@
+import { BrowserRouter } from "react-router-dom";
 import "./i18n.ts";
-//import Header from "./components/Header";
-import LandingCarousel from './components/LandingCarousel.tsx';
+
+import { AppRoutes } from "./routes/AppRoutes.tsx";
 
 function App() {
     return (
-        <>
-            <div>
-                <LandingCarousel />
-            </div>;
-        </>
-    )
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    );
 }
 
 export default App;
