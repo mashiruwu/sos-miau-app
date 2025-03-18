@@ -4,124 +4,86 @@ import QrCode from "../assets/qrcode.png";
 import PadrinhoMadrinhaImg from "../assets/padrinho_madrinha.png";
 import AdoteImg from "../assets/adoteImg.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const HelpPage = () => {
+    const { t } = useTranslation();
+
     const infoSlides = [
         {
             id: 1,
-            title: "Faça uma doação",
+            title: `${t("want_help.make_donation.title")}`,
             image: QrCode,
-            description: "What drives us forward",
-            alt: "Chave PIX em QR Code",
+            alt: `${t("want_help.make_donation.alt")}`,
             content: (
                 <>
+                    <p>{t("want_help.make_donation.content._1")}</p>
+                    <p>{t("want_help.make_donation.content._2")}</p>
+                    <p>{t("want_help.make_donation.content._3")}</p>
+                    <p>{t("want_help.make_donation.content._4")}</p>
+                    <p>{t("want_help.make_donation.donation_details.title")}</p>
+                    <p>{t("want_help.make_donation.donation_details.pix")}</p>
                     <p>
-                        Somos uma ONG independente, e cada doação é fundamental
-                        para manter nosso trabalho. Você pode contribuir de
-                        diferentes formas:
+                        {t(
+                            "want_help.make_donation.donation_details.bank_account"
+                        )}
                     </p>
                     <p>
-                        💰 Doação financeira: Ajuda nos custos diários com
-                        ração, medicamentos, castrações e atendimentos
-                        veterinários. Qualquer valor faz a diferença!
-                    </p>
-                    <p>
-                        📦 Doação de itens: Aceitamos ração, areia higiênica,
-                        medicamentos, cobertores, brinquedos e outros itens
-                        essenciais para nossos resgatados.
-                    </p>
-                    <p>
-                        🏥 Parcerias com clínicas veterinárias: Se você é
-                        veterinário ou tem uma clínica, pode oferecer consultas
-                        ou descontos para nossos resgatados!
-                    </p>
-                    <p>
-                        📌 Dados para doação:<br></br>🔹 PIX:
-                        [chave@example.com]<br></br>🔹 Conta bancária: [Banco,
-                        Agência, Conta] <br></br>Entre em contato para combinar
-                        doações de itens ou oferecer ajuda de outras formas!
+                        {t(
+                            "want_help.make_donation.donation_details.contact_us"
+                        )}
                     </p>
                 </>
             ),
         },
         {
             id: 2,
-            title: "Divulgue nosso trabalho",
+            title: `${t("want_help.share_our_work.title")}`,
             image: Divulgue,
-            description: "What we believe in",
             content: (
                 <>
-                    <p>📣 Divulgue Nosso Trabalho</p>
+                    <p>{t("want_help.share_our_work.content._1")}</p>
+                    <p>{t("want_help.share_our_work.content._2")}</p>
                     <p>
-                        Nem todo mundo pode adotar ou contribuir
-                        financeiramente, mas a divulgação também é uma maneira
-                        incrível de ajudar! Compartilhe nossos posts, convide
-                        amigos para conhecer a SOS Miau e ajude mais gatinhos a
-                        encontrarem um lar.
+                        {t("want_help.share_our_work.social_media.instagram")}
                     </p>
-                    <p>
-                        📲 Siga nossas redes sociais e compartilhe:
-                        <br />
-                        Instagram: @sosmiau
-                        <br />
-                        Facebook: SOS Miau Oficial
-                        <br />
-                        WhatsApp: [número para contato]
-                    </p>
+                    <p>{t("want_help.share_our_work.social_media.facebook")}</p>
+                    <p>{t("want_help.share_our_work.social_media.whatsapp")}</p>
                 </>
             ),
         },
         {
             id: 3,
-            title: "SEJA UM PADRINHO/MADRINHA",
-            description: "How we work",
+            title: `${t("want_help.become_sponsor.title")}`,
             image: PadrinhoMadrinhaImg,
             content: (
                 <>
-                    <p>
-                        Nem sempre podemos adotar, mas você pode mudar a vida de
-                        um gatinho ao se tornar um padrinho ou madrinha! Com uma
-                        contribuição mensal, você ajuda nos custos com
-                        alimentação, cuidados veterinários e bem-estar dos
-                        nossos resgatados.
-                    </p>
-                    <p>📦 Com seu apadrinhamento, garantimos:</p>
-                    <p>
-                        🩺 Consultas veterinárias e vacinas.
-                        <br />
-                        🍲 Alimentação de qualidade.
-                        <br />
-                        🏡 Manutenção do abrigo e itens de conforto para os
-                        gatinhos.
-                        <br />
-                        Ao se tornar um padrinho, você recebe atualizações sobre
-                        o gatinho apadrinhado e pode acompanhá-lo até que ele
-                        encontre um lar definitivo!
-                    </p>
+                    <p>{t("want_help.become_sponsor.content._1")}</p>
+                    <p>{t("want_help.become_sponsor.content._2")}</p>
+                    <p>{t("want_help.become_sponsor.content._3")}</p>
+                    <p>{t("want_help.become_sponsor.content._4")}</p>
+                    <p>{t("want_help.become_sponsor.content._5")}</p>
+                    <p>{t("want_help.become_sponsor.content._6")}</p>
                 </>
             ),
         },
         {
             id: 4,
-            title: "ADOTE UM GATINHO",
-            description: "Who we are",
+            title: `${t("want_help.adopt_cat.title")}`,
             image: AdoteImg,
             content: (
                 <>
+                    <p>{t("want_help.adopt_cat.content._1")}</p>
+                    <p>{t("want_help.adopt_cat.content._2")}</p>
+                    <p>{t("want_help.adopt_cat.content._3")}</p>
+                    <p>{t("want_help.adopt_cat.content._4")}</p>
                     <p>
-                        💙 O que você precisa para adotar?
-                        <br />✅ Ser maior de idade e apresentar documento com
-                        foto.
-                        <br />✅ Ter um ambiente seguro para o gatinho (janelas
-                        teladas são essenciais).
-                        <br />✅ Compromisso em oferecer amor, cuidados
-                        veterinários e alimentação adequada. Se você deseja
-                        conhecer nossos gatinhos disponíveis para adoção,{" "}
+                        {t("want_help.adopt_cat.content._5")}
                         <Link
                             to={"/"}
                             className="underline cursor-pointer text-primary shadow-2xl"
                         >
-                            clique aqui!
+                            {t("want_help.adopt_cat.content.link")}
                         </Link>
                     </p>
                 </>
@@ -134,7 +96,7 @@ const HelpPage = () => {
             <section className="mb-30 flex flex-col gap-10">
                 <img
                     src="https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg"
-                    className="w-full h-[400px] object-cover"
+                    className="w-full h-[500px] object-cover"
                 />
                 <InfoCarousel slides={infoSlides} />
             </section>

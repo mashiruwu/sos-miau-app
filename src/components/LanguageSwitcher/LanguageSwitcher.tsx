@@ -9,17 +9,13 @@ function LanguageSwitcher() {
     const currentLanguage = i18n.language;
 
     useEffect(() => {
-        const savedLang = localStorage.getItem("lang") || "en   ";
-        if (currentLanguage !== savedLang) {
-            i18n.changeLanguage(savedLang);
-        }
-    }, [i18n, currentLanguage]);
+        const savedLang = localStorage.getItem("lang") || "br";
+        i18n.changeLanguage(savedLang);
+    }, [i18n]);
 
     function handleChangeCurrentLanguage(lang: "br" | "en") {
-        if (currentLanguage !== lang) {
-            localStorage.setItem("lang", lang);
-            i18n.changeLanguage(lang);
-        }
+        i18n.changeLanguage(lang);
+        localStorage.setItem("lang", lang);
     }
 
     return (
