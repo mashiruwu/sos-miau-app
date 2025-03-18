@@ -12,7 +12,7 @@ const resources = {
                 follow_us: "FOLLOW US",
                 about_us: "About us",
                 want_adopt: "Adoption",
-                help: "Donate",
+                help: "Help us",
                 rescue: "Rescue",
                 adopted_cats: "Adopted cats",
                 transparency: "Transparency",
