@@ -219,23 +219,10 @@ export function Slider() {
                     </div>
                     :
                     <>
+                        
                         <div 
-                            className='NoRecomendations' 
-                            
-                            style={{
-                                transition:"0.5s ease",
-                                width: "50%",
-                                height: "100%",
-                                padding: "10px",
-                                backgroundColor: "#153151",
-                                borderRadius: "20px",
-                                textAlign: "center",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                color: "white",
-                                opacity: opacity,
-                            }}
+                            className='NoRecomendations'  
+                            style={{opacity: opacity}}                             
                         >
                             <p>No more recommendations</p>
                         </div>

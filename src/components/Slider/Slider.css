@@ -4,8 +4,6 @@
     margin: auto;
     margin-top: 30px;
 
-    width: 800px;
-    height: 600px;
         
     position: relative;
     display: flex;
@@ -58,6 +56,22 @@
     z-index: -1;
 }
 
+.NoRecomendations{
+
+    transition: 0.5s ease;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    background-color: #153151;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 1;
+}
+
 .option{
     width: 20%;
     height: 100%;
@@ -104,4 +118,73 @@
 }
 .option #like:active{
     background-color: #ad1145;
+}
+
+@media (aspect-ratio: 1/1) {
+    main{
+        padding: 0;
+        margin: 0;
+    }
+    .option{
+        display: none;
+    }
+    .chose{
+        width: 70vw;
+        height: 70vh;
+    }
+
+}
+
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 20/1) {
+
+    .chose{
+        width: 100vh;
+        height: 70vh;
+    }
+}
+
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) {
+    main{
+        padding: 0;
+        margin: 0;
+    }
+    .chose{
+        width: 75vh;
+        height: 60vh;
+    }
+}
+
+@media (min-aspect-ratio: 1/20) and (max-aspect-ratio: 4/5) {
+    
+    .option{
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    main{
+        padding: 0;
+        margin: 0;
+    }
+    .chose{
+        width: 85vw;
+        height: 110vw;
+        justify-content: center;
+        align-items: unset;
+        padding: 0;
+    }
+    .slide{
+        width: 100%;
+        margin: 0;
+    }
+    .additional-div{
+        width: 100%;
+    }
+    .additional-div2{
+        width: 100%;
+    }
+    .NoRecomendations{
+        width: 100%;
+    }
+    
 }
