@@ -1,4 +1,3 @@
-
 .chose{
     padding: 0;
     margin: 0;
@@ -11,7 +10,7 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .slide{
