@@ -44,11 +44,28 @@ export function Slider() {
             setIsDragging(true);
         }
     }
+    function touchStart(e: React.TouchEvent<HTMLDivElement>){
+        //e.preventDefault();
+
+        if (!inTransform) {
+            setStartX(e.touches[0].clientX);
+            deltaXRef.current = 0; // Reset deltaX
+            setIsDragging(true);
+        }
+    }
 
     function mouseMove(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
         if (!isDragging || inTransform) return;
 
         const deltaX = e.clientX - startX;
+        deltaXRef.current = deltaX; // Update deltaXRef
+        setTransformTranslate([deltaX, "px"]); // Update translate state
+        setTransformRotate(0.02 * deltaX); // Update rotate state
+    }
+    function touchMove(e: React.TouchEvent<HTMLDivElement>){
+        if (!isDragging || inTransform) return;
+
+        const deltaX = e.touches[0].clientX - startX;
         deltaXRef.current = deltaX; // Update deltaXRef
         setTransformTranslate([deltaX, "px"]); // Update translate state
         setTransformRotate(0.02 * deltaX); // Update rotate state
@@ -194,7 +211,11 @@ export function Slider() {
         <>
             <div className="chose" 
                 onMouseMove={(e) => mouseMove(e)}
-                onMouseUp={() => mouseUp()}>
+                onMouseUp={() => mouseUp()}
+                onTouchMove={(e) => touchMove(e)}
+                onTouchEnd={mouseUp}
+                >
+                
                     
                 <div className="option">
                     <button id="dislike" onClick={() => dislike()} disabled={lista.length - index === 0}>
@@ -213,7 +234,7 @@ export function Slider() {
                             opacity: `${opacity}`,
                             transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
                         }}
-                        onMouseDown={(e) => mouseDown(e)}
+                        onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
                     >
                         <Card cat={lista[index]}></Card>
                     </div>
