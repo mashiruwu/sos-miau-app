@@ -59,6 +59,15 @@ const resources = {
                     "If you want to meet our cats available for adoption, contact us!",
                 see_our_available_cats: "AVAILABLE CATS",
             },
+            signup: {
+                title: "Sign Up",
+                name: "Name",
+                email: "Email",
+                password: "Password",
+                confirm_password: "Confirm Password",
+                submit: "Register",
+                password_mismatch: "Passwords do not match!",
+            },
         },
     },
     br: {
@@ -119,6 +128,15 @@ const resources = {
                 requirements_content4:
                     "Se você deseja conhecer nossos gatinhos disponíveis para adoção, entre em contato conosco!",
                 see_our_available_cats: "VER GATINHOS DISPONÍVEIS",
+            },
+            signup: {
+                title: "Cadastro",
+                name: "Nome",
+                email: "Email",
+                password: "Senha",
+                confirm_password: "Confirmar Senha",
+                submit: "Cadastrar",
+                password_mismatch: "As senhas não coincidem!",
             },
         },
     },
