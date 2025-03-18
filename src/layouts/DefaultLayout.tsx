@@ -5,10 +5,13 @@ import Footer from "../components/Footer/Footer";
 export const DefaultLayout = () => {
     const location = useLocation();
     const isHome = location.pathname === "/";
+    const isHelp = location.pathname === "/help";
     return (
         <>
             <Header />
-            <main className={isHome ? "" : "mt-16 lg:px-[10%] px-[10%]"}>
+            <main
+                className={isHome || isHelp ? "" : "mt-16 lg:px-[20%] px-[10%]"}
+            >
                 <Outlet />
             </main>
             <Footer />
