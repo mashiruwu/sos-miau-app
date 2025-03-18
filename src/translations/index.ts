@@ -1,6 +1,7 @@
 const resources = {
     en: {
         translation: {
+            homepage: "Home",
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
@@ -65,12 +66,14 @@ const resources = {
                 slide02_title: "I want to help",
                 description02: "Learn how to help",
                 slide03_title: "Animal Adoption",
-                description03: "How about a furry friend to cheer up your days?",
+                description03:
+                    "How about a furry friend to cheer up your days?",
             },
         },
     },
     br: {
         translation: {
+            homepage: "Início",
             login: "Entrar",
             sign_up: "Cadastra-se",
             footer: {
@@ -134,8 +137,9 @@ const resources = {
                 slide02_title: "Quero ajudar",
                 description02: "Saiba como Ajudar",
                 slide03_title: "Adoção de Animais",
-                description03: "Que tal um amigo peludinho para animar seus dias?",
-            }
+                description03:
+                    "Que tal um amigo peludinho para animar seus dias?",
+            },
         },
     },
 };
