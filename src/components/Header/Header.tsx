@@ -11,7 +11,7 @@ const Header = () => {
             <Dropdown />
             <Link
                 to="/"
-                className="font-tiny lg:text-5xl text-2xl text-center lg:w-fit w-full"
+                className="font-tiny lg:text-5xl text-4xl text-center lg:w-fit w-full"
             >
                 SOS Miau
             </Link>
