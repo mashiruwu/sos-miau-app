@@ -1,8 +1,11 @@
 import './Slider.css';
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
+import lista from './mock/mock';
 
 export function Slider() {
+    const [index, setIndex] = useState(0);
+
     const slide =  useRef<HTMLDivElement>(null); // Use useRef for DOM reference
     const [isDragging, setIsDragging] = useState(false);
     const [inTransform, setInTransform] = useState(false);
@@ -96,6 +99,7 @@ export function Slider() {
 
     function nextSlide() {
         console.log('change picture');
+        setIndex(index + 1);
     }
 
     return (
@@ -109,6 +113,9 @@ export function Slider() {
                         <img src="./src/components/Slider/assets/X.png"></img>
                     </button>
                 </div>
+                
+                {
+                lista.length - index != 0 ? 
                 <div
                     className="slide"
                     id="slide"
@@ -119,12 +126,23 @@ export function Slider() {
                     }}
                     onMouseDown={(e) => mouseDown(e)}
                 >
-                    <Card></Card>
-                </div>
+                    <Card cat={lista[index]}></Card>
+                </div>:
+                    
+                <></>
+                }
+                {
+                lista.length - index > 1 ? 
                 <div className="additional-div">
-                    <Card></Card>
-                </div>
-                <div className="additional-div2"></div>
+                    <Card cat={lista[index+1]}></Card>
+                </div>:
+                <></>
+                }
+                {
+                lista.length - index > 2 ? 
+                <div className="additional-div2"></div>:
+                <></>
+                }
                 <div className="option">
                     <button id="like" onClick={() => like()}>
                         <img src="./src/components/Slider/assets/Hearth.png"></img>
