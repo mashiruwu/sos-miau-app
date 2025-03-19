@@ -4,7 +4,7 @@ export function TransparencyPage(){
         <>
             <h1 className="text-3xl text-center mb-10">TRANSPARÊNCIA</h1>
 
-            <div className="flex justify-between items-center xs:flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row mb-15">
+            <div className="flex justify-between items-center   -sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15">
                 <div className="w-60 h-60 bg-amber-300 rounded-full">
 
                 </div>
