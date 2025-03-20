@@ -4,14 +4,14 @@ import Footer from "../components/Footer/Footer";
 
 export const DefaultLayout = () => {
     const location = useLocation();
-    const isHome = location.pathname === "/";
-    const isHelp = location.pathname === "/help";
+
+    // Verifica se a rota atual é "/signup"
+    const isSignupPage = location.pathname === "/Signup";
+
     return (
         <>
             <Header />
-            <main
-                className={isHome || isHelp ? "" : "mt-16 lg:px-[20%] px-[10%]"}
-            >
+            <main className={isSignupPage ? "" : "mt-16 lg:px-[20%] px-[10%]"}>
                 <Outlet />
             </main>
             <Footer />
