@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Dropdown() {
     const { t } = useTranslation();
@@ -42,10 +43,10 @@ export default function Dropdown() {
                     <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
                     <MenuItem to="#">{t("footer.transparency")}</MenuItem>
                     <div className="lg:hidden block">
-                        <MenuItem to="#">
+                        <MenuItem to="/login">
                             <b>{t("login")}</b>
                         </MenuItem>
-                        <MenuItem to="#">
+                        <MenuItem to="/signup">
                             <b>{t("sign_up")}</b>
                         </MenuItem>
                     </div>

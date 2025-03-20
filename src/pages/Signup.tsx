@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SignupImage from "../assets/signup_image2.png";
+import InputField from "../components/InputField/InputField";
+import RadioButton from "../components/RadioButton/RadioButton";
+import Label from "../components/Label/Label";
+import SubmitButton from "../components/SubmitButton/SubmitButton";
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -45,87 +49,80 @@ const Signup = () => {
                     </p>
                     <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
                         <div className="sm:col-span-2 lg:col-span-1">
-                            <label className="text-[#153151]">{t("signup.name")}</label>
-                            <input
-                                type="text"
+                            <Label>{t("signup.name")}</Label>
+                            <InputField
+                                type="name"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div className="sm:col-span-2 lg:col-span-1">
-                            <label className="text-[#153151]">{t("signup.surname")}</label>
-                            <input
+                            <Label>{t("signup.surname")}</Label>
+                            <InputField
                                 type="text"
                                 name="surname"
                                 value={formData.surname}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
 
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.cpf")}</label>
-                            <input
+                            <Label>{t("signup.cpf")}</Label>
+                            <InputField
                                 type="text"
                                 name="cpf"
                                 value={formData.cpf}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.birthdate")}</label>
-                            <input
-                                name="birthdate"
-                                value={formData.birthdate}
+                            <Label>{t("signup.birthdate")}</Label>
+                            <InputField
+                                type="text"
+                                name="cpf"
+                                value={formData.cpf}
                                 onChange={handleChange}
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
 
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.address")}</label>
-                            <input
+                            <Label>{t("signup.address")}</Label>
+                            <InputField
                                 type="text"
                                 name="address"
                                 value={formData.address}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.complement")}</label>
-                            <input
+                            <Label>{t("signup.complement")}</Label>
+                            <InputField
                                 type="text"
                                 name="complement"
                                 value={formData.complement}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
 
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.phone")}</label>
-                            <input
+                            <Label>{t("signup.phone")}</Label>
+                            <InputField
                                 type="text"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("signup.email")}</label>
-                            <input
+                            <Label>{t("signup.email")}</Label>
+                            <InputField
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
 
@@ -133,56 +130,52 @@ const Signup = () => {
                             <span className="block text-[#153151] mb-2">
                                 {t("signup.has_protection_screen")}
                             </span>
-                            <label className="text-[#153151] mr-4">
-                                <input
+                            <Label>
+                                <RadioButton
                                     type="radio"
                                     name="hasProtectionScreen"
-                                    value="Sim"
-                                    checked={formData.hasProtectionScreen === "Sim"}
+                                    value={"Sim"}
+                                    checked={
+                                        formData.hasProtectionScreen === "Sim"
+                                    }
                                     onChange={handleChange}
-                                    className="mr-1"
                                 />
                                 {t("signup.yes")}
-                            </label>
-                            <label className="text-[#153151]">
-                                <input
+                            </Label>
+                            <Label>
+                                <RadioButton
                                     type="radio"
                                     name="hasProtectionScreen"
-                                    value="Não"
-                                    checked={formData.hasProtectionScreen === "Não"}
+                                    value={"Não"}
+                                    checked={
+                                        formData.hasProtectionScreen === "Não"
+                                    }
                                     onChange={handleChange}
-                                    className="mr-1"
                                 />
+
                                 {t("signup.no")}
-                            </label>
+                            </Label>
                         </div>
 
                         <div>
-                            <label className="text-[#153151]">{t("signup.password")}</label>
-                            <input
+                            <Label>{t("signup.password")}</Label>
+                            <InputField
                                 type="password"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div>
-                            <label className="text-[#153151]">{t("signup.confirm_password")}</label>
-                            <input
+                            <Label>{t("signup.confirm_password")}</Label>
+                            <InputField
                                 type="password"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
-
-                        <button
-                            type="submit"
-                            className="col-span-2 mt-6 w-full bg-[#153151] text-white py-2 rounded-lg hover:bg-[#0f2533] transition-colors duration-300">
-                            {t("signup.submit")}
-                        </button>
+                        <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
                 </form>
             </div>
