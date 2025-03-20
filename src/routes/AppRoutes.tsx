@@ -5,6 +5,7 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import About from "../pages/About";
 import AdoptionPage from "../pages/Adoption";
 import Signup from "../pages/Signup";
+import HelpPage from "../pages/Help";
 
 export const AppRoutes = () => {
     return (
@@ -15,6 +16,7 @@ export const AppRoutes = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
                     <Route path="/signup" element={<Signup />} /> {/* Nova rota */}
+                    <Route path="/help" element={<HelpPage />} />
                 </Route>
             </Route>
         </Routes>

@@ -7,11 +7,11 @@ const Header = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white">
+        <div className="header h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white">
             <Dropdown />
             <Link
                 to="/"
-                className="font-tiny lg:text-5xl text-2xl text-center lg:w-fit w-full"
+                className="font-tiny lg:text-5xl text-4xl text-center lg:w-fit w-full"
             >
                 SOS Miau
             </Link>
