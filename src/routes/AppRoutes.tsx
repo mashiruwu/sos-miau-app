@@ -11,16 +11,13 @@ export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<FullPageLayout />}>
-                {/* Rotas que usam o layout padrão */}
                 <Route element={<DefaultLayout />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
                     <Route path="/help" element={<HelpPage />} />
+                    <Route path="/signup" element={<Signup />} /> {/* Ajustado para usar DefaultLayout */}
                 </Route>
-
-                {/* Rota que não usa o layout padrão */}
-                <Route path="/signup" element={<Signup />} />
             </Route>
         </Routes>
     );
