@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import LoginImage from "../assets/signup_image2.png";
+import Label from "../components/Label/Label";
+import InputField from "../components/InputField/InputField";
+import SubmitButton from "../components/SubmitButton/SubmitButton";
 
 const Login = () => {
     const { t } = useTranslation();
@@ -32,30 +35,24 @@ const Login = () => {
                     </p>
                     <div className="grid sm:grid-cols-1 gap-4">
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("loginPage.email")}</label>
-                            <input
+                            <Label>{t("loginPage.email")}</Label>
+                            <InputField
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
                         <div className="col-span-2">
-                            <label className="text-[#153151]">{t("loginPage.password")}</label>
-                            <input
+                            <Label>{t("loginPage.password")}</Label>
+                            <InputField
                                 type="password"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                className="border-b-2 border-[#153151] w-full p-2"
                             />
                         </div>
-                        <button
-                            type="submit"
-                            className="col-span-2 mt-6 w-full bg-[#153151] text-white py-2 rounded-lg hover:bg-[#0f2533] transition-colors duration-300">
-                            {t("loginPage.submit")}
-                        </button>
+                        <SubmitButton>{t("loginPage.submit")}</SubmitButton>
                     </div>
                 </form>
             </div>

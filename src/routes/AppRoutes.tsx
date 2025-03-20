@@ -17,7 +17,7 @@ export const AppRoutes = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
                     <Route path="/help" element={<HelpPage />} />
-                    <Route path="/signup" element={<Signup />} /> 
+                    <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
                 </Route>
             </Route>
