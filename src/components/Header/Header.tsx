@@ -17,7 +17,7 @@ const Header = () => {
             </Link>
             <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
                 <HeaderLink to="/login">{t("login")}</HeaderLink>
-                <HeaderLink to="/cadastrar">{t("sign_up")}</HeaderLink>
+                <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
             </div>
         </div>
     );
