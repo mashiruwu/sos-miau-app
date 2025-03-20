@@ -80,6 +80,14 @@ const resources = {
                 password_mismatch: "Passwords do not match!",
                 image_alt: "Sign up image",
             },
+            loginPage: {
+                title: "Login",
+                description: "Access your account to adopt the miaus!",
+                email: "Email",
+                password: "Password",
+                submit: "Login",
+                image_alt: "Login image",
+            },
             landing_carousel: {
                 slide01_title: "About the NGO",
                 description01: "Get to know us",
@@ -224,6 +232,14 @@ const resources = {
                 submit: "Cadastrar-se",
                 password_mismatch: "As senhas não coincidem!",
                 image_alt: "Imagem de cadastro",
+            },
+            loginPage: {
+                title: "Entrar",
+                description: "Acesse sua conta para adotar os miaus!",
+                email: "Email",
+                password: "Senha",
+                submit: "Entrar",
+                image_alt: "Imagem de login",
             },
             landing_carousel: {
                 slide01_title: "Sobre a ONG",
