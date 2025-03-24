@@ -5,10 +5,15 @@ import Footer from "../components/Footer/Footer";
 export const DefaultLayout = () => {
     const location = useLocation();
     const isHome = location.pathname === "/";
+    const isHelp = location.pathname === "/help";
+    const isSignupPage = location.pathname === "/Signup";
+    const isLoginPage = location.pathname === "/login";
+
     return (
         <>
             <Header />
-            <main className={isHome ? "" : "mt-16 lg:px-[10%] px-[10%]"}>
+            {/* Remove as classes de margem/padding apenas para a página de Signup */}
+            <main className={isLoginPage ? "" : isSignupPage ? "" : isHome || isHelp ? "" : "mt-16 lg:px-[20%] px-[10%]"}>
                 <Outlet />
             </main>
             <Footer />

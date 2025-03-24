@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+input {
+    width: 100%; /* Largura total */
+    height: 40px; /* Altura fixa */
+    border-radius: 8px; /* Bordas arredondadas */
+    border: 1px solid #D1D5DB; /* Cor da borda */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra leve */
+    padding: 0px 34px; /* Espaçamento interno */
+    font-family: 'Tiny5', sans-serif; /* Fonte personalizada */
+    font-size: 15px; /* Tamanho da fonte */
+    
+}
+
+input:focus {
+    border-color: var(--color-primary); /* Cor da borda no foco */
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 0 2px rgba(21, 49, 81, 0.3); /* Anel de foco */
+}

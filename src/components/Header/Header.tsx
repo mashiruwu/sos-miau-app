@@ -11,13 +11,13 @@ const Header = () => {
             <Dropdown />
             <Link
                 to="/"
-                className="font-tiny lg:text-5xl text-2xl text-center lg:w-fit w-full"
+                className="font-tiny lg:text-5xl text-4xl text-center lg:w-fit w-full"
             >
                 SOS Miau
             </Link>
             <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
                 <HeaderLink to="/login">{t("login")}</HeaderLink>
-                <HeaderLink to="/cadastrar">{t("sign_up")}</HeaderLink>
+                <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
             </div>
         </div>
     );

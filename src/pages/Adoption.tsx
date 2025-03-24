@@ -21,17 +21,17 @@ const AdoptionPage = () => {
             <h1 className="font-tiny text-primary text-4xl text-center">
                 {t("adoption_page.requirements_title")}
             </h1>
-            <ul className="text-center my-5">
+            <ul className="text-center my-5 text-xl">
                 <li>{t("adoption_page.requirements_content1")}</li>
                 <li>{t("adoption_page.requirements_content2")}</li>
                 <li>{t("adoption_page.requirements_content3")}</li>
                 <li>{t("adoption_page.requirements_content4")}</li>
             </ul>
-            <Link to="/cats">
-                <h1 className="bg-primary text-white mx-auto w-fit my-10 p-3 text-2xl font-tiny rounded-md cursor-pointer hover:bg-primary-dark">
+            <h1 className="bg-primary text-white w-fit mx-auto my-10 p-4 text-2xl font-tiny rounded-md shadow-2xl cursor-pointer hover:bg-primary-hover">
+                <Link to={"/cats"}>
                     {t("adoption_page.see_our_available_cats")}
-                </h1>
-            </Link>
+                </Link>
+            </h1>
         </section>
     );
 };
