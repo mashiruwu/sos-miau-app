@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import About from "../pages/About";
 import AdoptionPage from "../pages/Adoption";
+import AvailableCats from "../pages/AvailableCats";
 
 export const AppRoutes = () => {
     return (
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
+                    <Route path="/cats" element={<AvailableCats />} />
                 </Route>
             </Route>
         </Routes>

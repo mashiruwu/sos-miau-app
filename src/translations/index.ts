@@ -67,6 +67,10 @@ const resources = {
                 slide03_title: "Animal Adoption",
                 description03: "How about a furry friend to cheer up your days?",
             },
+            cats_page: {
+                title: "AVAILABLE CATS",
+                interest: "I'm interested",
+            }
         },
     },
     br: {
@@ -135,6 +139,10 @@ const resources = {
                 description02: "Saiba como Ajudar",
                 slide03_title: "Adoção de Animais",
                 description03: "Que tal um amigo peludinho para animar seus dias?",
+            },
+            cats_page: {
+                title: "GATINHOS DISPONÍVEIS",
+                interest: "Tenho Interesse",
             }
         },
     },

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import CatAdoptionPage from "../assets/gato_adocao_page.png";
+import { Link } from "react-router-dom";
 
 const AdoptionPage = () => {
     const { t } = useTranslation();
@@ -26,9 +27,11 @@ const AdoptionPage = () => {
                 <li>{t("adoption_page.requirements_content3")}</li>
                 <li>{t("adoption_page.requirements_content4")}</li>
             </ul>
-            <h1 className="bg-primary text-white mx-auto w-fit my-10 p-3 text-2xl font-tiny rounded-md ">
-                {t("adoption_page.see_our_available_cats")}
-            </h1>
+            <Link to="/cats">
+                <h1 className="bg-primary text-white mx-auto w-fit my-10 p-3 text-2xl font-tiny rounded-md cursor-pointer hover:bg-primary-dark">
+                    {t("adoption_page.see_our_available_cats")}
+                </h1>
+            </Link>
         </section>
     );
 };

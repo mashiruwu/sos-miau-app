@@ -7,7 +7,7 @@ const Header = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white">
+        <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white z-50">
             <Dropdown />
             <Link
                 to="/"
