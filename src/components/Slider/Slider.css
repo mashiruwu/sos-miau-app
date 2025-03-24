@@ -121,10 +121,6 @@
 }
 
 @media (aspect-ratio: 1/1) {
-    main{
-        padding: 0;
-        margin: 0;
-    }
     .option{
         display: none;
     }
@@ -144,10 +140,6 @@
 }
 
 @media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) {
-    main{
-        padding: 0;
-        margin: 0;
-    }
     .chose{
         width: 75vh;
         height: 60vh;
@@ -162,10 +154,6 @@
         height: 0;
     }
 
-    main{
-        padding: 0;
-        margin: 0;
-    }
     .chose{
         width: 85vw;
         height: 110vw;

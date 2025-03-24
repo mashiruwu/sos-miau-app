@@ -4,7 +4,7 @@ export function TransparencyPage(){
         <>
             <h1 className="text-3xl text-center mb-10">TRANSPARÊNCIA</h1>
 
-            <div className="flex justify-between items-center   -sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15">
+            <div className="flex justify-between items-center max-sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15">
                 <div className="w-60 h-60 bg-amber-300 rounded-full">
 
                 </div>
@@ -21,7 +21,7 @@ export function TransparencyPage(){
 
             <h1 className="text-3xl mb-5">RELATÓRIOS</h1>
             
-            <div className="grid grid-cols-3 gap-x-15 gap-y-5 mb-15">
+            <div className="grid grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 gap-x-15 gap-y-5 mb-15">
                 <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d]">FINANCEIRO JAN/25</button>
                 <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d]">ATIVIDADES JAN/25</button>
                 <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d]">IMPACTO DA ONG</button>
