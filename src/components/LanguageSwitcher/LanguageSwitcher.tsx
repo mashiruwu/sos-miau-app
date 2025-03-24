@@ -1,25 +1,21 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import BrazilIcon from "../assets/brazil.svg";
-import UnitedStatesIcon from "../assets/unitedStates.svg";
+import BrazilIcon from "../../assets/brazil.svg";
+import UnitedStatesIcon from "../../assets/unitedStates.svg";
 
 function LanguageSwitcher() {
     const { t, i18n } = useTranslation();
     const currentLanguage = i18n.language;
 
     useEffect(() => {
-        const savedLang = localStorage.getItem("lang") || "en   ";
-        if (currentLanguage !== savedLang) {
-            i18n.changeLanguage(savedLang);
-        }
-    }, [i18n, currentLanguage]);
+        const savedLang = localStorage.getItem("lang") || "br";
+        i18n.changeLanguage(savedLang);
+    }, [i18n]);
 
     function handleChangeCurrentLanguage(lang: "br" | "en") {
-        if (currentLanguage !== lang) {
-            localStorage.setItem("lang", lang);
-            i18n.changeLanguage(lang);
-        }
+        i18n.changeLanguage(lang);
+        localStorage.setItem("lang", lang);
     }
 
     return (

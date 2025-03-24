@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import LanguageSwitcher from "../LanguageSwitcher";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -33,24 +34,42 @@ const Footer = () => {
                     <div className="flex flex-col gap-2 text-sm">
                         <h1 className="text-2xl font-tiny">MENU</h1>
                         <div className="uppercase flex flex-col">
-                            <a className="hover:underline cursor-pointer">
+                            <Link
+                                to={"/about"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.about_us")}
-                            </a>
-                            <a className="hover:underline cursor-pointer">
+                            </Link>
+                            <Link
+                                to={"/adoption"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.want_adopt")}
-                            </a>
-                            <a className="hover:underline cursor-pointer">
+                            </Link>
+                            <Link
+                                to={"/help"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.help")}
-                            </a>
-                            <a className="hover:underline cursor-pointer">
+                            </Link>
+                            <Link
+                                to={"#"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.rescue")}
-                            </a>
-                            <a className="hover:underline cursor-pointer">
+                            </Link>
+                            <Link
+                                to={"#"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.adopted_cats")}
-                            </a>
-                            <a className="hover:underline cursor-pointer">
+                            </Link>
+                            <Link
+                                to={"#"}
+                                className="hover:underline cursor-pointer"
+                            >
                                 {t("footer.transparency")}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">

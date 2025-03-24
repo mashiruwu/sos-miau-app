@@ -1,6 +1,7 @@
 const resources = {
     en: {
         translation: {
+            homepage: "Home",
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
@@ -11,7 +12,7 @@ const resources = {
                 follow_us: "FOLLOW US",
                 about_us: "About us",
                 want_adopt: "Adoption",
-                help: "Donate",
+                help: "Help us",
                 rescue: "Rescue",
                 adopted_cats: "Adopted cats",
                 transparency: "Transparency",
@@ -59,10 +60,106 @@ const resources = {
                     "If you want to meet our cats available for adoption, contact us!",
                 see_our_available_cats: "AVAILABLE CATS",
             },
+            signup: {
+                title: "Sign Up",
+                description: "Sign up now to adopt the miaus!",
+                name: "Name",
+                surname: "Surname",
+                cpf: "CPF",
+                birthdate: "Birthdate",
+                address: "Address",
+                complement: "Complement",
+                phone: "Phone",
+                email: "Email",
+                has_protection_screen: "Does your residence have protection screens?",
+                yes: "Yes",
+                no: "No",
+                password: "Password",
+                confirm_password: "Confirm Password",
+                submit: "Register",
+                password_mismatch: "Passwords do not match!",
+                image_alt: "Sign up image",
+            },
+            loginPage: {
+                title: "Login",
+                description: "Access your account to adopt the miaus!",
+                email: "Email",
+                password: "Password",
+                submit: "Login",
+                image_alt: "Login image",
+            },
+            landing_carousel: {
+                slide01_title: "About the NGO",
+                description01: "Get to know us",
+                slide02_title: "I want to help",
+                description02: "Learn how to help",
+                slide03_title: "Animal Adoption",
+                description03:
+                    "How about a furry friend to cheer up your days?",
+            },
+            want_help: {
+                make_donation: {
+                    title: "Make a donation",
+                    alt: "PIX key in QR Code",
+                    content: {
+                        _1: "We are an independent NGO, and every donation is essential to keep our work going. You can contribute in different ways:",
+                        _2: "💰 Financial donation: Helps cover daily costs such as food, medication, neutering, and veterinary care. Any amount makes a difference!",
+                        _3: "📦 Item donation: We accept food, hygienic sand, medication, blankets, toys, and other essential items for our rescued animals.",
+                        _4: "🏥 Partnerships with veterinary clinics: If you are a veterinarian or own a clinic, you can offer consultations or discounts for our rescues!",
+                    },
+                    donation_details: {
+                        title: "📌 Donation details:",
+                        pix: "🔹 PIX: [key@example.com]",
+                        bank_account:
+                            "🔹 Bank account: [Bank, Agency, Account]",
+                        contact_us:
+                            "Contact us to arrange item donations or offer help in other ways!",
+                    },
+                },
+                share_our_work: {
+                    title: "📣 Spread the Word About Our Work",
+                    content: {
+                        _1: "Not everyone can adopt or contribute financially, but spreading the word is also an amazing way to help! Share our posts, invite friends to learn about SOS Miau, and help more cats find a home.",
+                        _2: "📲 Follow our social media and share:",
+                    },
+                    social_media: {
+                        instagram: "Instagram: @sosmiau",
+                        facebook: "Facebook: SOS Miau Official",
+                        whatsapp: "WhatsApp: [contact number]",
+                    },
+                },
+                become_sponsor: {
+                    title: "BECOME A SPONSOR",
+                    content: {
+                        _1: "We can't always adopt, but you can change a cat's life by becoming a sponsor! With a monthly contribution, you help cover the costs of food, veterinary care, and the well-being of our rescued cats.",
+                        _2: "📦 With your sponsorship, we guarantee:",
+                        _3: "🩺 Veterinary consultations and vaccinations.",
+                        _4: "🍲 Quality food.",
+                        _5: "🏡 Shelter maintenance and comfort items for the cats.",
+                        _6: "As a sponsor, you will receive updates about your sponsored cat and can follow their journey until they find a forever home!",
+                    },
+                },
+                adopt_cat: {
+                    title: "ADOPT A CAT",
+                    content: {
+                        _1: "💙 What do you need to adopt?",
+                        _2: "✅ Be of legal age and present a photo ID.",
+                        _3: "✅ Have a safe environment for the cat (screened windows are essential).",
+                        _4: "✅ Commitment to providing love, veterinary care, and proper nutrition.",
+                        _5: "If you want to meet our cats available for adoption, ",
+                        link: "click here",
+                    },
+                },
+            },
+            cats_page: {
+                title: "AVAILABLE CATS",
+                interest: "I'm interested",
+            }
         },
     },
     br: {
         translation: {
+            homepage: "Início",
             login: "Entrar",
             sign_up: "Cadastra-se",
             footer: {
@@ -119,6 +216,100 @@ const resources = {
                 requirements_content4:
                     "Se você deseja conhecer nossos gatinhos disponíveis para adoção, entre em contato conosco!",
                 see_our_available_cats: "VER GATINHOS DISPONÍVEIS",
+            },
+            signup: {
+                title: "Cadastro",
+                description: "Cadastre-se agora para poder adotar os miaus!",
+                name: "Nome",
+                surname: "Sobrenome",
+                cpf: "CPF",
+                birthdate: "Data de Nascimento",
+                address: "Endereço",
+                complement: "Complemento",
+                phone: "Celular",
+                email: "Email",
+                has_protection_screen: "Sua residência possui tela de proteção?",
+                yes: "Sim",
+                no: "Não",
+                password: "Senha",
+                confirm_password: "Confirme a senha",
+                submit: "Cadastrar-se",
+                password_mismatch: "As senhas não coincidem!",
+                image_alt: "Imagem de cadastro",
+            },
+            loginPage: {
+                title: "Entrar",
+                description: "Acesse sua conta para adotar os miaus!",
+                email: "Email",
+                password: "Senha",
+                submit: "Entrar",
+                image_alt: "Imagem de login",
+            },
+            landing_carousel: {
+                slide01_title: "Sobre a ONG",
+                description01: "Saiba mais sobre nós",
+                slide02_title: "Quero ajudar",
+                description02: "Saiba como Ajudar",
+                slide03_title: "Adoção de Animais",
+                description03: "Que tal um amigo peludinho para animar seus dias?",
+            },
+            cats_page: {
+                title: "GATINHOS DISPONÍVEIS",
+                interest: "Tenho Interesse",
+            },
+            want_help: {
+                make_donation: {
+                    title: "Faça uma doação",
+                    alt: "Chave PIX em QR Code",
+                    content: {
+                        _1: "Somos uma ONG independente, e cada doação é fundamental para manter nosso trabalho. Você pode contribuir de diferentes formas:",
+                        _2: "💰 Doação financeira: Ajuda nos custos diários com ração, medicamentos, castrações e atendimentos veterinários. Qualquer valor faz a diferença!",
+                        _3: "📦 Doação de itens: Aceitamos ração, areia higiênica, medicamentos, cobertores, brinquedos e outros itens essenciais para nossos resgatados.",
+                        _4: "🏥 Parcerias com clínicas veterinárias: Se você é veterinário ou tem uma clínica, pode oferecer consultas ou descontos para nossos resgatados!",
+                    },
+                    donation_details: {
+                        title: "📌 Dados para doação:",
+                        pix: "🔹 PIX: [chave@example.com]",
+                        bank_account:
+                            "🔹 Conta bancária: [Banco, Agência, Conta]",
+                        contact_us:
+                            "Entre em contato para combinar doações de itens ou oferecer ajuda de outras formas!",
+                    },
+                },
+                share_our_work: {
+                    title: "📣 Divulgue Nosso Trabalho",
+                    content: {
+                        _1: "Nem todo mundo pode adotar ou contribuir financeiramente, mas a divulgação também é uma maneira incrível de ajudar! Compartilhe nossos posts, convide amigos para conhecer a SOS Miau e ajude mais gatinhos a encontrarem um lar.",
+                        _2: "📲 Siga nossas redes sociais e compartilhe:",
+                    },
+                    social_media: {
+                        instagram: "Instagram: @sosmiau",
+                        facebook: "Facebook: SOS Miau Oficial",
+                        whatsapp: "WhatsApp: [número para contato]",
+                    },
+                },
+                become_sponsor: {
+                    title: "SEJA UM PADRINHO/MADRINHA",
+                    content: {
+                        _1: "Nem sempre podemos adotar, mas você pode mudar a vida de um gatinho ao se tornar um padrinho ou madrinha! Com uma contribuição mensal, você ajuda nos custos com alimentação, cuidados veterinários e bem-estar dos nossos resgatados.",
+                        _2: "📦 Com seu apadrinhamento, garantimos:",
+                        _3: "🩺 Consultas veterinárias e vacinas.",
+                        _4: "🍲 Alimentação de qualidade.",
+                        _5: "🏡 Manutenção do abrigo e itens de conforto para os gatinhos.",
+                        _6: "Ao se tornar um padrinho, você recebe atualizações sobre o gatinho apadrinhado e pode acompanhá-lo até que ele encontre um lar definitivo!",
+                    },
+                },
+                adopt_cat: {
+                    title: "ADOTE UM GATINHO",
+                    content: {
+                        _1: "💙 O que você precisa para adotar?",
+                        _2: "✅ Ser maior de idade e apresentar documento com foto.",
+                        _3: "✅ Ter um ambiente seguro para o gatinho (janelas teladas são essenciais).",
+                        _4: "✅ Compromisso em oferecer amor, cuidados veterinários e alimentação adequada.",
+                        _5: "Se você deseja conhecer nossos gatinhos disponíveis para adoção, ",
+                        link: "clique aqui",
+                    },
+                },
             },
         },
     },
