@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Dropdown() {
     const { t } = useTranslation();
@@ -29,20 +30,23 @@ export default function Dropdown() {
 
             <MenuItems
                 transition
-                className="absolute left-0 z-10 mt-2 w-42 origin-top-right rounded-md bg-white ring-1 ring-primary transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                className="absolute left-0 mt-2 w-42 origin-top-right rounded-md bg-white ring-1 ring-primary transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
             >
                 <div className="py-1">
+                    <MenuItem to="/">
+                        <b>{t("homepage")}</b>
+                    </MenuItem>
                     <MenuItem to="/about">{t("footer.about_us")}</MenuItem>
                     <MenuItem to="/adoption">{t("footer.want_adopt")}</MenuItem>
-                    <MenuItem to="#">{t("footer.help")}</MenuItem>
+                    <MenuItem to="/help">{t("footer.help")}</MenuItem>
                     <MenuItem to="#">{t("footer.rescue")}</MenuItem>
                     <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
                     <MenuItem to="#">{t("footer.transparency")}</MenuItem>
                     <div className="lg:hidden block">
-                        <MenuItem to="#">
+                        <MenuItem to="/login">
                             <b>{t("login")}</b>
                         </MenuItem>
-                        <MenuItem to="#">
+                        <MenuItem to="/signup">
                             <b>{t("sign_up")}</b>
                         </MenuItem>
                     </div>
