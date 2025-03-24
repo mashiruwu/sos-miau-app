@@ -41,7 +41,7 @@ export default function Dropdown() {
                     <MenuItem to="/help">{t("footer.help")}</MenuItem>
                     <MenuItem to="#">{t("footer.rescue")}</MenuItem>
                     <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
-                    <MenuItem to="#">{t("footer.transparency")}</MenuItem>
+                    <MenuItem to="/transparency">{t("footer.transparency")}</MenuItem>
                     <div className="lg:hidden block">
                         <MenuItem to="/login">
                             <b>{t("login")}</b>
