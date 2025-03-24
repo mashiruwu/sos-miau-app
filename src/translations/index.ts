@@ -151,6 +151,10 @@ const resources = {
                     },
                 },
             },
+            cats_page: {
+                title: "AVAILABLE CATS",
+                interest: "I'm interested",
+            }
         },
     },
     br: {
@@ -247,8 +251,11 @@ const resources = {
                 slide02_title: "Quero ajudar",
                 description02: "Saiba como Ajudar",
                 slide03_title: "Adoção de Animais",
-                description03:
-                    "Que tal um amigo peludinho para animar seus dias?",
+                description03: "Que tal um amigo peludinho para animar seus dias?",
+            },
+            cats_page: {
+                title: "GATINHOS DISPONÍVEIS",
+                interest: "Tenho Interesse",
             },
             want_help: {
                 make_donation: {

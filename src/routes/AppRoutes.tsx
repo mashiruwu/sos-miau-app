@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import About from "../pages/About";
 import AdoptionPage from "../pages/Adoption";
+import AvailableCats from "../pages/AvailableCats";
 import Signup from "../pages/Signup";
 import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
+                    <Route path="/cats" element={<AvailableCats />} />
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />

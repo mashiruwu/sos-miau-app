@@ -28,7 +28,7 @@ const AdoptionPage = () => {
                 <li>{t("adoption_page.requirements_content4")}</li>
             </ul>
             <h1 className="bg-primary text-white w-fit mx-auto my-10 p-4 text-2xl font-tiny rounded-md shadow-2xl cursor-pointer hover:bg-primary-hover">
-                <Link to={"#"}>
+                <Link to={"/cats"}>
                     {t("adoption_page.see_our_available_cats")}
                 </Link>
             </h1>

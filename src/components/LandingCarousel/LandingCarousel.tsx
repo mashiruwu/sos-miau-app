@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "swiper/css";
@@ -33,7 +32,7 @@ const maxSlides = 3;
 function LandingCarousel() {
   const { t } = useTranslation();
   return (
-    <div className="relative inset-x-0 top-0 left-0 w-screen">
+    <div className="relative z-0 inset-x-0 top-0 left-0 w-screen">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{clickable: true}}
@@ -51,8 +50,8 @@ function LandingCarousel() {
               alt={`Gato ${index + 1}`}
               className="w-screen h-[500px] object-cover"
             />
-            <div className="absolute inset-0 bg-black/80 z-10"></div>
-            <div className="absolute bottom-10 left-10 text-white z-20">
+            <div className="absolute inset-0 bg-black/80"></div>
+            <div className="absolute bottom-10 left-10 text-white">
               <p className="font-tiny text-[3vw]">{t(item.text1)}</p>
               <p className="font-afacad text-[1vw]">{t(item.text2)}</p>
             </div>
