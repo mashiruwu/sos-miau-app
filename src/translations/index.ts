@@ -71,7 +71,8 @@ const resources = {
                 complement: "Complement",
                 phone: "Phone",
                 email: "Email",
-                has_protection_screen: "Does your residence have protection screens?",
+                has_protection_screen:
+                    "Does your residence have protection screens?",
                 yes: "Yes",
                 no: "No",
                 password: "Password",
@@ -154,7 +155,13 @@ const resources = {
             cats_page: {
                 title: "AVAILABLE CATS",
                 interest: "I'm interested",
-            }
+                button_adopt: "Adopt",
+                thanks_for_adopting:
+                    "THANK YOU FOR OFFERING A HOME TO THIS LITTLE ANGEL!",
+                thanks_for_adopting_description:
+                    "We will contact you using the phone number in your registration for the next steps.",
+                thanks_for_adopting_close_button: "Close",
+            },
         },
     },
     br: {
@@ -228,7 +235,8 @@ const resources = {
                 complement: "Complemento",
                 phone: "Celular",
                 email: "Email",
-                has_protection_screen: "Sua residência possui tela de proteção?",
+                has_protection_screen:
+                    "Sua residência possui tela de proteção?",
                 yes: "Sim",
                 no: "Não",
                 password: "Senha",
@@ -251,11 +259,18 @@ const resources = {
                 slide02_title: "Quero ajudar",
                 description02: "Saiba como Ajudar",
                 slide03_title: "Adoção de Animais",
-                description03: "Que tal um amigo peludinho para animar seus dias?",
+                description03:
+                    "Que tal um amigo peludinho para animar seus dias?",
             },
             cats_page: {
                 title: "GATINHOS DISPONÍVEIS",
                 interest: "Tenho Interesse",
+                button_adopt: "Adotar",
+                thanks_for_adopting:
+                    "OBRIGADO POR OFERECER UM LAR A ESSE(A) ANJINHO(A)!",
+                thanks_for_adopting_description:
+                    "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
+                thanks_for_adopting_close_button: "Fechar",
             },
             want_help: {
                 make_donation: {
