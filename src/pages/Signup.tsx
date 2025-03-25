@@ -37,10 +37,10 @@ const Signup = () => {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-around w-full h-full">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
             {/* Form Section */}
             <div className="w-full lg:w-2/4 p-4 sm:p-6 lg:p-8">
-                <form onSubmit={handleSubmit} className="p-6">
+                <form onSubmit={handleSubmit} className="lg:w-1/2 lg:mx-auto">
                     <h1 className="text-2xl text-[#153151] mb-4 text-center lg:text-left">
                         {t("signup.title")}
                     </h1>
@@ -55,6 +55,8 @@ const Signup = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
+                                placeholder="Digite seu nome"
+                                required
                             />
                         </div>
                         <div className="sm:col-span-2 lg:col-span-1">
@@ -64,6 +66,8 @@ const Signup = () => {
                                 name="surname"
                                 value={formData.surname}
                                 onChange={handleChange}
+                                placeholder="Digite seu sobrenome"
+                                required
                             />
                         </div>
 
@@ -74,6 +78,8 @@ const Signup = () => {
                                 name="cpf"
                                 value={formData.cpf}
                                 onChange={handleChange}
+                                placeholder="___.___.___-__"
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -85,6 +91,8 @@ const Signup = () => {
                                 onChange={handleChange}
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
+                                placeholder="__/__/____"
+                                required
                             />
                         </div>
 
@@ -95,6 +103,8 @@ const Signup = () => {
                                 name="address"
                                 value={formData.address}
                                 onChange={handleChange}
+                                placeholder="Digite seu endereço"
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -104,6 +114,8 @@ const Signup = () => {
                                 name="complement"
                                 value={formData.complement}
                                 onChange={handleChange}
+                                placeholder="Digite o complemento"
+                                required
                             />
                         </div>
 
@@ -114,6 +126,8 @@ const Signup = () => {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
+                                placeholder="(XX) XXXXX-XXXX"
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -123,6 +137,8 @@ const Signup = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                placeholder="Digite seu email"
+                                required
                             />
                         </div>
 
@@ -164,6 +180,8 @@ const Signup = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                placeholder="Digite sua senha"
+                                required
                             />
                         </div>
                         <div>
@@ -173,6 +191,8 @@ const Signup = () => {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
+                                placeholder="Confirme sua senha"
+                                required
                             />
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
@@ -181,7 +201,7 @@ const Signup = () => {
             </div>
 
             {/* Image Section */}
-            <div className="w-full lg:w-1/3 ">
+            <div className="w-full lg:w-1/3">
                 <img
                     src={SignupImage}
                     alt={t("signup.image_alt")}

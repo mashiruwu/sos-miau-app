@@ -23,10 +23,10 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-around w-full h-full">
+        <div className="flex flex-col lg:flex-row items-center lg:items-center lg:justify-center w-full h-full lg:pb-30">
             {/* Form Section */}
             <div className="w-full lg:w-2/4 p-4 sm:p-6 lg:p-8">
-                <form onSubmit={handleSubmit} className="p-6">
+                <form onSubmit={handleSubmit} className="lg:w-1/2 lg:mx-auto">
                     <h1 className="text-2xl text-[#153151] mb-4 text-center lg:text-left">
                         {t("loginPage.title")}
                     </h1>
@@ -41,6 +41,8 @@ const Login = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                placeholder="Digite seu e-mail"
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -50,6 +52,8 @@ const Login = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                placeholder="Digite sua senha"
+                                required
                             />
                         </div>
                         <SubmitButton>{t("loginPage.submit")}</SubmitButton>
@@ -62,7 +66,7 @@ const Login = () => {
                 <img
                     src={LoginImage}
                     alt={t("loginPage.image_alt")}
-                    className="w-full h-auto"
+                    className="w-full h-auto "
                 />
             </div>
         </div>

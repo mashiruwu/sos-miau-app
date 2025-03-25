@@ -1,7 +1,12 @@
 const resources = {
     en: {
         translation: {
-            homepage: "Home",
+            homepage: {
+                home: "Home",
+                match: "MATCH WITH MEOW",
+                match_description:
+                    "By liking “Match with Meow”, you create an adoption request.",
+            },
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
@@ -162,11 +167,27 @@ const resources = {
                     "We will contact you using the phone number in your registration for the next steps.",
                 thanks_for_adopting_close_button: "Close",
             },
+            transparency: {
+                title: "Transparency",
+                partnerships: {
+                    title: "Partnerships",
+                    description:
+                        "At SOS Miau, we believe that unity is strength! We rely on the support of companies, veterinary clinics, and amazing people who share our commitment to protecting and caring for cats in vulnerable situations. Thanks to our partnerships, we are able to provide veterinary treatments, ensure quality food, promote adoption events, and raise awareness about the importance of animal welfare. 💙 Want to become a partner of SOS Miau? Get in touch and make a difference in the lives of many cats! 🐾",
+                },
+                reports: {
+                    title: "Reports",
+                },
+            },
         },
     },
     br: {
         translation: {
-            homepage: "Início",
+            homepage: {
+                home: "Início",
+                match: "MATCH COM MIAU",
+                match_description:
+                    "Ao dar um like no “Match com Miau”, você cria uma solicitação de adoção.",
+            },
             login: "Entrar",
             sign_up: "Cadastra-se",
             footer: {
@@ -324,6 +345,17 @@ const resources = {
                         _5: "Se você deseja conhecer nossos gatinhos disponíveis para adoção, ",
                         link: "clique aqui",
                     },
+                },
+            },
+            transparency: {
+                title: "Transparência",
+                partnerships: {
+                    title: "Parcerias",
+                    description:
+                        "Na SOS Miau, acreditamos que a união faz a força! Contamos com o apoio de empresas, clínicas veterinárias e pessoas incríveis que compartilham nosso compromisso de proteger e cuidar dos gatinhos em situação de vulnerabilidade. Graças às nossas parcerias, conseguimos oferecer tratamentos veterinários, garantir alimentação de qualidade, promover eventos de adoção e conscientizar mais pessoas sobre a importância do bem-estar animal.💙 Quer se tornar um parceiro da SOS Miau? Entre em contato e venha fazer a diferença na vida de muitos gatinhos! 🐾",
+                },
+                reports: {
+                    title: "Relatórios",
                 },
             },
         },
