@@ -21,17 +21,10 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 npm install
 
-ou, se estiver usando Yarn:
-
-yarn install
-
 3. **Execute o servidor de desenvolvimento**
 
 npm run dev
 
-ou
-
-yarn dev
-
 4. **Acesse no navegador**
+
 O projeto estará rodando em http://localhost:5173 (ou outra porta indicada no terminal).
