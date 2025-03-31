@@ -160,6 +160,13 @@ const resources = {
             cats_page: {
                 title: "AVAILABLE CATS",
                 interest: "I'm interested",
+            },
+            adopted_cats: {
+                title: "ADOPTED CATS",
+                text1: "On our journey of rescue and care, many kittens have found a home full of love and affection. Each adoption represents a new story of hope and happiness, both for the felines and their new families.",
+                text2: "On this page, we celebrate these happy endings! Meet some of our former rescues who now live surrounded by comfort and love. Their stories inspire us to continue our work and highlight the importance of responsible adoption.",
+                text3: "If you have adopted a cat from us, send a photo and a testimonial to share this beautiful journey. Your experience may encourage others to open their hearts to a four-legged friend!",
+                text4: "And if you're still looking for a feline companion, visit our Adoption page and discover who is waiting for you. Together, we can change lives and spread love!",
                 button_adopt: "Adopt",
                 thanks_for_adopting:
                     "THANK YOU FOR OFFERING A HOME TO THIS LITTLE ANGEL!",
@@ -292,6 +299,14 @@ const resources = {
                 thanks_for_adopting_description:
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",
+            },
+            adopted_cats: {
+                title: "GATINHOS ADOTADOS",
+                text1: "Na nossa jornada de resgate e cuidado, muitos gatinhos encontraram um lar cheio de amor e carinho. Cada adoção representa uma nova história de esperança e felicidade, tanto para os felinos quanto para suas novas famílias.",
+                text2: "Nesta página, celebramos esses finais felizes! Conheça alguns dos nossos antigos resgatados que agora vivem cercados de conforto e afeto. Suas histórias nos inspiram a continuar nosso trabalho e mostram a importância da adoção responsável.",
+                text3: "Se você já adotou um gatinho conosco, envie uma foto e um depoimento para compartilhar essa linda trajetória. Sua experiência pode encorajar outras pessoas a abrir o coração para um amigo de quatro patas!",
+                text4: "E se você ainda está procurando um companheiro felino, visite nossa página de Adoção e descubra quem está esperando por você. Juntos, podemos mudar vidas e espalhar amor!"
+
             },
             want_help: {
                 make_donation: {

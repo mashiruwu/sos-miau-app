@@ -59,7 +59,7 @@ const Footer = () => {
                                 {t("footer.rescue")}
                             </Link>
                             <Link
-                                to={"#"}
+                                to={"/adoptedcats"}
                                 className="hover:underline cursor-pointer"
                             >
                                 {t("footer.adopted_cats")}
