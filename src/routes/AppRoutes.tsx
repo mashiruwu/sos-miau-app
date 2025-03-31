@@ -8,6 +8,7 @@ import AvailableCats from "../pages/AvailableCats";
 import Signup from "../pages/Signup";
 import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
+import AdoptedCats from "../pages/AdoptedCats";
 
 export const AppRoutes = () => {
     return (
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/adoptedcats" element={<AdoptedCats />} />
                 </Route>
             </Route>
         </Routes>

@@ -8,12 +8,12 @@ export const DefaultLayout = () => {
     const isHelp = location.pathname === "/help";
     const isSignupPage = location.pathname === "/Signup";
     const isLoginPage = location.pathname === "/login";
+    const isAdoptedCats = location.pathname === "/adoptedcats";
 
     return (
         <>
             <Header />
-            {/* Remove as classes de margem/padding apenas para a página de Signup */}
-            <main className={isLoginPage ? "" : isSignupPage ? "" : isHome || isHelp ? "" : "mt-16 lg:px-[20%] px-[10%]"}>
+            <main className={isLoginPage ? "" : isSignupPage ? "" : isHome || isHelp || isAdoptedCats ? "" : "mt-16 lg:px-[20%] px-[10%]"}>
                 <Outlet />
             </main>
             <Footer />
