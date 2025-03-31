@@ -7,6 +7,8 @@ interface InputFieldProps {
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    required?: boolean;
 }
 
 const InputField = ({
@@ -16,6 +18,8 @@ const InputField = ({
     onChange,
     onFocus,
     onBlur,
+    placeholder,
+    required,
 }: InputFieldProps) => {
     return (
         <input
@@ -26,6 +30,8 @@ const InputField = ({
             onFocus={onFocus}
             onBlur={onBlur}
             className="border-b-2 border-[#153151] w-full p-2"
+            required={required}
+            placeholder={placeholder}
         />
     );
 };

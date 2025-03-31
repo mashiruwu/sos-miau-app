@@ -1,0 +1,178 @@
+.chose{
+    padding: 0;
+    margin: 0;
+    margin: auto;
+    margin-top: 30px;
+
+        
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.slide{
+    width: 50%;
+    height: 100%;
+    border-radius: 20px;
+    
+    background-color: #153151;
+    transform-origin: bottom;
+
+    z-index: 2;
+
+    padding: 10px;
+    overflow: hidden;
+
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Adds shadow */
+}
+.slide:hover{
+    background-color: #1d436f;
+}
+
+.additional-div{
+    width: 50%;
+    height: 100%;
+    background-color: #132945;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    transform: translate(-48%, -48.5%);
+    z-index: 0;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Adds shadow */
+}
+.additional-div2{
+    width: 50%;
+    height: 100%;
+    background-color: #10243c;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    transform: translate(-46%, -47%);
+    z-index: -1;
+}
+
+.NoRecomendations{
+
+    transition: 0.5s ease;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    background-color: #153151;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 1;
+}
+
+.option{
+    width: 20%;
+    height: 100%;
+
+    z-index: 1;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.option button{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.option button img{
+    height: 70px;
+}
+
+.option #dislike{
+    background-color: #A1D6B2;
+}
+.option #dislike:hover{
+    background-color: #c1f8d2;
+}
+.option #dislike:active{
+    background-color: #73aa84;
+}
+
+
+
+
+
+.option #like{
+    background-color: #D91656;
+}
+.option #like:hover{
+    background-color: #fd3a7b;
+}
+.option #like:active{
+    background-color: #ad1145;
+}
+
+@media (aspect-ratio: 1/1) {
+    .option{
+        display: none;
+    }
+    .chose{
+        width: 70vw;
+        height: 70vh;
+    }
+
+}
+
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 20/1) {
+
+    .chose{
+        width: 100vh;
+        height: 70vh;
+    }
+}
+
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) {
+    .chose{
+        width: 75vh;
+        height: 60vh;
+    }
+}
+
+@media (min-aspect-ratio: 1/20) and (max-aspect-ratio: 4/5) {
+    
+    .option{
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .chose{
+        width: 85vw;
+        height: 110vw;
+        justify-content: center;
+        align-items: unset;
+        padding: 0;
+    }
+    .slide{
+        width: 100%;
+        margin: 0;
+    }
+    .additional-div{
+        width: 100%;
+    }
+    .additional-div2{
+        width: 100%;
+    }
+    .NoRecomendations{
+        width: 100%;
+    }
+    
+}

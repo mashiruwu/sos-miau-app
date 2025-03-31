@@ -1,7 +1,12 @@
 const resources = {
     en: {
         translation: {
-            homepage: "Home",
+            homepage: {
+                home: "Home",
+                match: "MATCH WITH MEOW",
+                match_description:
+                    "By liking “Match with Meow”, you create an adoption request.",
+            },
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
@@ -71,7 +76,8 @@ const resources = {
                 complement: "Complement",
                 phone: "Phone",
                 email: "Email",
-                has_protection_screen: "Does your residence have protection screens?",
+                has_protection_screen:
+                    "Does your residence have protection screens?",
                 yes: "Yes",
                 no: "No",
                 password: "Password",
@@ -161,12 +167,34 @@ const resources = {
                 text2: "On this page, we celebrate these happy endings! Meet some of our former rescues who now live surrounded by comfort and love. Their stories inspire us to continue our work and highlight the importance of responsible adoption.",
                 text3: "If you have adopted a cat from us, send a photo and a testimonial to share this beautiful journey. Your experience may encourage others to open their hearts to a four-legged friend!",
                 text4: "And if you're still looking for a feline companion, visit our Adoption page and discover who is waiting for you. Together, we can change lives and spread love!",
+                button_adopt: "Adopt",
+                thanks_for_adopting:
+                    "THANK YOU FOR OFFERING A HOME TO THIS LITTLE ANGEL!",
+                thanks_for_adopting_description:
+                    "We will contact you using the phone number in your registration for the next steps.",
+                thanks_for_adopting_close_button: "Close",
+            },
+            transparency: {
+                title: "Transparency",
+                partnerships: {
+                    title: "Partnerships",
+                    description:
+                        "At SOS Miau, we believe that unity is strength! We rely on the support of companies, veterinary clinics, and amazing people who share our commitment to protecting and caring for cats in vulnerable situations. Thanks to our partnerships, we are able to provide veterinary treatments, ensure quality food, promote adoption events, and raise awareness about the importance of animal welfare. 💙 Want to become a partner of SOS Miau? Get in touch and make a difference in the lives of many cats! 🐾",
+                },
+                reports: {
+                    title: "Reports",
+                },
             },
         },
     },
     br: {
         translation: {
-            homepage: "Início",
+            homepage: {
+                home: "Início",
+                match: "MATCH COM MIAU",
+                match_description:
+                    "Ao dar um like no “Match com Miau”, você cria uma solicitação de adoção.",
+            },
             login: "Entrar",
             sign_up: "Cadastra-se",
             footer: {
@@ -235,7 +263,8 @@ const resources = {
                 complement: "Complemento",
                 phone: "Celular",
                 email: "Email",
-                has_protection_screen: "Sua residência possui tela de proteção?",
+                has_protection_screen:
+                    "Sua residência possui tela de proteção?",
                 yes: "Sim",
                 no: "Não",
                 password: "Senha",
@@ -258,11 +287,18 @@ const resources = {
                 slide02_title: "Quero ajudar",
                 description02: "Saiba como Ajudar",
                 slide03_title: "Adoção de Animais",
-                description03: "Que tal um amigo peludinho para animar seus dias?",
+                description03:
+                    "Que tal um amigo peludinho para animar seus dias?",
             },
             cats_page: {
                 title: "GATINHOS DISPONÍVEIS",
                 interest: "Tenho Interesse",
+                button_adopt: "Adotar",
+                thanks_for_adopting:
+                    "OBRIGADO POR OFERECER UM LAR A ESSE(A) ANJINHO(A)!",
+                thanks_for_adopting_description:
+                    "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
+                thanks_for_adopting_close_button: "Fechar",
             },
             adopted_cats: {
                 title: "GATINHOS ADOTADOS",
@@ -324,6 +360,17 @@ const resources = {
                         _5: "Se você deseja conhecer nossos gatinhos disponíveis para adoção, ",
                         link: "clique aqui",
                     },
+                },
+            },
+            transparency: {
+                title: "Transparência",
+                partnerships: {
+                    title: "Parcerias",
+                    description:
+                        "Na SOS Miau, acreditamos que a união faz a força! Contamos com o apoio de empresas, clínicas veterinárias e pessoas incríveis que compartilham nosso compromisso de proteger e cuidar dos gatinhos em situação de vulnerabilidade. Graças às nossas parcerias, conseguimos oferecer tratamentos veterinários, garantir alimentação de qualidade, promover eventos de adoção e conscientizar mais pessoas sobre a importância do bem-estar animal.💙 Quer se tornar um parceiro da SOS Miau? Entre em contato e venha fazer a diferença na vida de muitos gatinhos! 🐾",
+                },
+                reports: {
+                    title: "Relatórios",
                 },
             },
         },

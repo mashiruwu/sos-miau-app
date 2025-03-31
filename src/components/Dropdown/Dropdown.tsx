@@ -34,14 +34,16 @@ export default function Dropdown() {
             >
                 <div className="py-1">
                     <MenuItem to="/">
-                        <b>{t("homepage")}</b>
+                        <b>{t("homepage.home")}</b>
                     </MenuItem>
                     <MenuItem to="/about">{t("footer.about_us")}</MenuItem>
                     <MenuItem to="/adoption">{t("footer.want_adopt")}</MenuItem>
                     <MenuItem to="/help">{t("footer.help")}</MenuItem>
                     <MenuItem to="#">{t("footer.rescue")}</MenuItem>
-                    <MenuItem to="/adoptedcats">{t("footer.adopted_cats")}</MenuItem>
-                    <MenuItem to="#">{t("footer.transparency")}</MenuItem>
+                    <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
+                    <MenuItem to="/transparency">
+                        {t("footer.transparency")}
+                    </MenuItem>
                     <div className="lg:hidden block">
                         <MenuItem to="/login">
                             <b>{t("login")}</b>
