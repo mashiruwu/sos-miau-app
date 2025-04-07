@@ -39,7 +39,7 @@ export default function Dropdown() {
                     <MenuItem to="/about">{t("footer.about_us")}</MenuItem>
                     <MenuItem to="/adoption">{t("footer.want_adopt")}</MenuItem>
                     <MenuItem to="/help">{t("footer.help")}</MenuItem>
-                    <MenuItem to="#">{t("footer.rescue")}</MenuItem>
+                    <MenuItem to="/rescue">{t("footer.rescue")}</MenuItem>
                     <MenuItem to="#">{t("footer.adopted_cats")}</MenuItem>
                     <MenuItem to="/transparency">
                         {t("footer.transparency")}

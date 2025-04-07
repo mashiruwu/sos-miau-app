@@ -52,6 +52,8 @@ export function InfoCarousel({
         return () => cancelAnimationFrame(raf);
     }, [currentSlide]);
 
+    const isRescuePage = window.location.pathname === "/rescue";
+
     return (
         <div className="relative w-full max-w-4xl mx-auto flex flex-col font-afacad text-lg">
             <div
@@ -70,9 +72,11 @@ export function InfoCarousel({
                                 : "opacity-0 translate-x-full z-0"
                         }`}
                     >
-                        <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
-                            {slide.title}
-                        </h1>
+                        {!isRescuePage && (
+                            <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                                {slide.title}
+                            </h1>
+                        )}
 
                         <div className="flex lg:flex-row flex-col items-start justify-between mt-8 gap-6 px-4">
                             <div className="flex lg:flex-col flex-col-reverse items-center gap-2">
@@ -84,7 +88,12 @@ export function InfoCarousel({
                                 <p>{slide.alt}</p>
                             </div>
 
-                            <div className="lg:w-[500px] w-full text-left text-primary">
+                            <div className="lg:w-[500px] w-full text-left text-primary flex flex-col items-start">
+                                {isRescuePage && (
+                                    <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                                        {slide.title}
+                                    </h1>
+                                )}
                                 <p>{slide.content}</p>
                             </div>
                         </div>

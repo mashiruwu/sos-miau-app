@@ -178,6 +178,18 @@ const resources = {
                     title: "Reports",
                 },
             },
+            rescue: {
+                title: "Rescues",
+                slides: {
+                    luna: "Luna was found in a cardboard box on a cold, rainy day. Fragile and scared, she could barely meow. After receiving the necessary care, including food, vaccination, and lots of love, Luna revealed her affectionate and playful side. Today, she lives in a loving home where she receives all she ever deserved!",
+                    polenta:
+                        "Polenta was rescued from an abandoned construction site, where she lived among rubble and many dangers. Extremely skinny and afraid of humans, she amazed everyone with her quick recovery. Today, she’s a chubby, energetic kitty who loves being held and playing with little balls!",
+                    ragnar: "Ragnar was born in a street litter and was the smallest of them all. After being taken in as a kitten, he faced a serious infection but fought through it and survived. Today, he owns the couch in his home and loves kneading his humans' laps.",
+                    billy: "Found trapped in an abandoned garage, Billy went days without food. After being rescued, he received veterinary care and lots of affection. Today, he's a calm cat who loves sleeping wrapped in blankets and purrs easily.",
+                    lily: "Lily was saved from a flood-risk area. He was wet, cold, and very hungry. He was quickly taken in and recovered with the support of the volunteer team. Today, he has a loving home and enjoys waking up his humans with morning meows asking for treats.",
+                    amora: "Amora lived in a vacant lot and was seen caring for other abandoned kittens, even though she wasn’t their mother. With her protective instinct, she won over everyone at the shelter. She now lives with other rescued cats and continues to be a loving mama.",
+                },
+            },
         },
     },
     br: {
@@ -356,6 +368,18 @@ const resources = {
                 },
                 reports: {
                     title: "Relatórios",
+                },
+            },
+            rescue: {
+                title: "Resgates",
+                slides: {
+                    luna: "Luna foi encontrada dentro de uma caixa de papelão em um dia frio e chuvoso. Frágil e assustada, mal conseguia miar. Após receber os cuidados necessários, incluindo alimentação, vacinação e muito amor, Luna revelou seu lado carinhoso e brincalhão. Hoje vive em um lar amoroso onde recebe tudo o que sempre mereceu!",
+                    polenta:
+                        "Polenta foi resgatada de uma obra abandonada, onde vivia entre entulhos e muitos perigos. Extremamente magra e com medo de humanos, surpreendeu a todos com sua rápida recuperação. Hoje é uma gatinha gordinha e cheia de energia, adora ficar no colo e brincar com bolinhas!",
+                    ragnar: "Ragnar nasceu em uma ninhada de rua e era o menorzinho de todos. Após ser acolhido ainda filhote, enfrentou uma infecção grave, mas foi guerreiro e sobreviveu. Hoje é o dono do sofá da casa onde vive e adora amassar pãozinho no colo dos tutores.",
+                    billy: "Billy foi encontrado preso em uma garagem abandonada e passou dias sem comer. Após ser resgatado, recebeu cuidados veterinários e muito carinho. Hoje é um gato calmo que adora dormir enrolado em cobertores e ronrona fácil.",
+                    lily: "Lily foi salva de uma área de risco de alagamento. Estava molhada, com frio e muita fome. Foi rapidamente acolhida e se recuperou com o apoio da equipe de voluntários. Hoje, tem um lar amoroso e adora acordar seus humanos com miados matinais pedindo petiscos.",
+                    amora: "Amora vivia em um terreno baldio e era vista cuidando de outros gatinhos abandonados, mesmo não sendo a mãe deles. Com seu instinto protetor, conquistou a todos no abrigo. Hoje vive com outros gatinhos resgatados e continua sendo uma mamãe amorosa.",
                 },
             },
         },
