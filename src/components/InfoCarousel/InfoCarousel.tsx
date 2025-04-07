@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface InfoSlide {
     id: number;
     title: string;
-    description: string;
+    description?: string;
     content: string | React.ReactNode;
     image: string;
     alt?: string;
@@ -23,6 +23,8 @@ export function InfoCarousel({
     interval = 5000,
 }: InfoCarouselProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [slideHeight, setSlideHeight] = useState<number | null>(null);
+    const slideRef = useRef<HTMLDivElement>(null);
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -34,17 +36,34 @@ export function InfoCarousel({
 
     useEffect(() => {
         if (!autoPlay) return;
-
         const slideInterval = setInterval(nextSlide, interval);
         return () => clearInterval(slideInterval);
     }, [autoPlay, interval]);
 
+    // Corrige a altura após o slide atual ser renderizado
+    useEffect(() => {
+        const updateHeight = () => {
+            if (slideRef.current) {
+                setSlideHeight(slideRef.current.offsetHeight);
+            }
+        };
+
+        const raf = requestAnimationFrame(updateHeight);
+        return () => cancelAnimationFrame(raf);
+    }, [currentSlide]);
+
+    const isRescuePage = window.location.pathname === "/rescue";
+
     return (
-        <div className="relative w-full max-w-4xl mx-auto flex flex-col gap-80 font-afacad text-lg">
-            <div className="relative lg:min-h-[300px] min-h-[700px]">
+        <div className="relative w-full max-w-4xl mx-auto flex flex-col font-afacad text-lg">
+            <div
+                className="relative transition-all duration-500"
+                style={{ height: slideHeight ?? "auto" }}
+            >
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
+                        ref={currentSlide === index ? slideRef : null}
                         className={`absolute top-0 left-0 w-full transition-all duration-500 transform text-center ${
                             currentSlide === index
                                 ? "opacity-100 translate-x-0 z-10"
@@ -53,27 +72,37 @@ export function InfoCarousel({
                                 : "opacity-0 translate-x-full z-0"
                         }`}
                     >
-                        <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center ">
-                            {slide.title}
-                        </h1>
-                        <div className="flex lg:flex-row flex-col items-center justify-between mt-20">
-                            <div className="flex lg:flex-col flex-col-reverse">
+                        {!isRescuePage && (
+                            <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                                {slide.title}
+                            </h1>
+                        )}
+
+                        <div className="flex lg:flex-row flex-col items-start justify-between mt-8 gap-6 px-4">
+                            <div className="flex lg:flex-col flex-col-reverse items-center gap-2">
                                 <img
                                     src={slide.image}
-                                    className="lg:w-[300px] w-[200px]"
+                                    className="w-full max-w-[200px] lg:max-w-[300px]"
+                                    alt={slide.alt || ""}
                                 />
                                 <p>{slide.alt}</p>
                             </div>
 
-                            <div className="lg:w-[500px] w-[300px] text-left">
+                            <div className="lg:w-[500px] w-full text-left text-primary flex flex-col items-start">
+                                {isRescuePage && (
+                                    <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                                        {slide.title}
+                                    </h1>
+                                )}
                                 <p>{slide.content}</p>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
+
             {/* Dots Navigation */}
-            <div className="flex items-center justify-center mx-auto gap-2">
+            <div className="flex items-center justify-center mx-auto gap-2 mt-6">
                 {slides.map((_, index) => (
                     <button
                         key={index}
