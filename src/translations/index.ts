@@ -195,6 +195,8 @@ const resources = {
                     billy: "Found trapped in an abandoned garage, Billy went days without food. After being rescued, he received veterinary care and lots of affection. Today, he's a calm cat who loves sleeping wrapped in blankets and purrs easily.",
                     lily: "Lily was saved from a flood-risk area. He was wet, cold, and very hungry. He was quickly taken in and recovered with the support of the volunteer team. Today, he has a loving home and enjoys waking up his humans with morning meows asking for treats.",
                     amora: "Amora lived in a vacant lot and was seen caring for other abandoned kittens, even though she wasn’t their mother. With her protective instinct, she won over everyone at the shelter. She now lives with other rescued cats and continues to be a loving mama.",
+                },
+            },
             user_settings: {
                 title: "User Settings",
                 description: "Update your personal information below.",
@@ -204,7 +206,8 @@ const resources = {
                 email: "Email",
                 address: "Address",
                 complement: "Complement",
-                has_protection_screen: "Does your residence have protection screens?",
+                has_protection_screen:
+                    "Does your residence have protection screens?",
                 yes: "Yes",
                 no: "No",
                 submit: "Save Changes",
@@ -337,8 +340,7 @@ const resources = {
                 text1: "Na nossa jornada de resgate e cuidado, muitos gatinhos encontraram um lar cheio de amor e carinho. Cada adoção representa uma nova história de esperança e felicidade, tanto para os felinos quanto para suas novas famílias.",
                 text2: "Nesta página, celebramos esses finais felizes! Conheça alguns dos nossos antigos resgatados que agora vivem cercados de conforto e afeto. Suas histórias nos inspiram a continuar nosso trabalho e mostram a importância da adoção responsável.",
                 text3: "Se você já adotou um gatinho conosco, envie uma foto e um depoimento para compartilhar essa linda trajetória. Sua experiência pode encorajar outras pessoas a abrir o coração para um amigo de quatro patas!",
-                text4: "E se você ainda está procurando um companheiro felino, visite nossa página de Adoção e descubra quem está esperando por você. Juntos, podemos mudar vidas e espalhar amor!"
-
+                text4: "E se você ainda está procurando um companheiro felino, visite nossa página de Adoção e descubra quem está esperando por você. Juntos, podemos mudar vidas e espalhar amor!",
             },
             want_help: {
                 make_donation: {
@@ -415,6 +417,8 @@ const resources = {
                     billy: "Billy foi encontrado preso em uma garagem abandonada e passou dias sem comer. Após ser resgatado, recebeu cuidados veterinários e muito carinho. Hoje é um gato calmo que adora dormir enrolado em cobertores e ronrona fácil.",
                     lily: "Lily foi salva de uma área de risco de alagamento. Estava molhada, com frio e muita fome. Foi rapidamente acolhida e se recuperou com o apoio da equipe de voluntários. Hoje, tem um lar amoroso e adora acordar seus humanos com miados matinais pedindo petiscos.",
                     amora: "Amora vivia em um terreno baldio e era vista cuidando de outros gatinhos abandonados, mesmo não sendo a mãe deles. Com seu instinto protetor, conquistou a todos no abrigo. Hoje vive com outros gatinhos resgatados e continua sendo uma mamãe amorosa.",
+                },
+            },
             user_settings: {
                 title: "Configurações do Usuário",
                 description: "Atualize suas informações pessoais abaixo.",
@@ -424,7 +428,8 @@ const resources = {
                 email: "Email",
                 address: "Endereço",
                 complement: "Complemento",
-                has_protection_screen: "Sua residência possui tela de proteção?",
+                has_protection_screen:
+                    "Sua residência possui tela de proteção?",
                 yes: "Sim",
                 no: "Não",
                 submit: "Salvar Alterações",
