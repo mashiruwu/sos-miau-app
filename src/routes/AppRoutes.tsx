@@ -9,6 +9,7 @@ import AvailableCats from "../pages/AvailableCats";
 import Signup from "../pages/Signup";
 import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
+import Rescue from "../pages/Rescue";
 
 export const AppRoutes = () => {
     return (
@@ -18,11 +19,15 @@ export const AppRoutes = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/adoption" element={<AdoptionPage />} />
-                    <Route path="/transparency" element={<TransparencyPage />} />
+                    <Route
+                        path="/transparency"
+                        element={<TransparencyPage />}
+                    />
                     <Route path="/cats" element={<AvailableCats />} />
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/rescue" element={<Rescue />} />
                 </Route>
             </Route>
         </Routes>

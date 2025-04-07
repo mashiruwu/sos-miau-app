@@ -8,6 +8,7 @@ export const DefaultLayout = () => {
     const isHelp = location.pathname === "/help";
     const isSignupPage = location.pathname === "/signup";
     const isLoginPage = location.pathname === "/login";
+    const isRescuePage = location.pathname === "/rescue";
 
     return (
         <>
@@ -15,7 +16,11 @@ export const DefaultLayout = () => {
             {/* Remove as classes de margem/padding apenas para a página de Signup */}
             <main
                 className={
-                    isLoginPage || isSignupPage || isHome || isHelp
+                    isLoginPage ||
+                    isSignupPage ||
+                    isHome ||
+                    isHelp ||
+                    isRescuePage
                         ? ""
                         : "mt-16 lg:px-[20%] px-[10%]"
                 }
