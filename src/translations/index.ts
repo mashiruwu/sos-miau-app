@@ -160,6 +160,13 @@ const resources = {
             cats_page: {
                 title: "AVAILABLE CATS",
                 interest: "I'm interested",
+            },
+            adopted_cats: {
+                title: "ADOPTED CATS",
+                text1: "On our journey of rescue and care, many kittens have found a home full of love and affection. Each adoption represents a new story of hope and happiness, both for the felines and their new families.",
+                text2: "On this page, we celebrate these happy endings! Meet some of our former rescues who now live surrounded by comfort and love. Their stories inspire us to continue our work and highlight the importance of responsible adoption.",
+                text3: "If you have adopted a cat from us, send a photo and a testimonial to share this beautiful journey. Your experience may encourage others to open their hearts to a four-legged friend!",
+                text4: "And if you're still looking for a feline companion, visit our Adoption page and discover who is waiting for you. Together, we can change lives and spread love!",
                 button_adopt: "Adopt",
                 thanks_for_adopting:
                     "THANK YOU FOR OFFERING A HOME TO THIS LITTLE ANGEL!",
@@ -178,6 +185,7 @@ const resources = {
                     title: "Reports",
                 },
             },
+<<<<<<< HEAD
             rescue: {
                 title: "Rescues",
                 slides: {
@@ -188,6 +196,28 @@ const resources = {
                     billy: "Found trapped in an abandoned garage, Billy went days without food. After being rescued, he received veterinary care and lots of affection. Today, he's a calm cat who loves sleeping wrapped in blankets and purrs easily.",
                     lily: "Lily was saved from a flood-risk area. He was wet, cold, and very hungry. He was quickly taken in and recovered with the support of the volunteer team. Today, he has a loving home and enjoys waking up his humans with morning meows asking for treats.",
                     amora: "Amora lived in a vacant lot and was seen caring for other abandoned kittens, even though she wasn’t their mother. With her protective instinct, she won over everyone at the shelter. She now lives with other rescued cats and continues to be a loving mama.",
+=======
+            user_settings: {
+                title: "User Settings",
+                description: "Update your personal information below.",
+                name: "Name",
+                surname: "Surname",
+                phone: "Phone",
+                email: "Email",
+                address: "Address",
+                complement: "Complement",
+                has_protection_screen: "Does your residence have protection screens?",
+                yes: "Yes",
+                no: "No",
+                submit: "Save Changes",
+                placeholders: {
+                    name: "Enter your name",
+                    surname: "Enter your surname",
+                    phone: "Enter your phone number",
+                    email: "Enter your email",
+                    address: "Enter your address",
+                    complement: "Enter the complement",
+>>>>>>> cc10a1c9ed94d34819bdce146b421725abe9c36b
                 },
             },
         },
@@ -305,6 +335,14 @@ const resources = {
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",
             },
+            adopted_cats: {
+                title: "GATINHOS ADOTADOS",
+                text1: "Na nossa jornada de resgate e cuidado, muitos gatinhos encontraram um lar cheio de amor e carinho. Cada adoção representa uma nova história de esperança e felicidade, tanto para os felinos quanto para suas novas famílias.",
+                text2: "Nesta página, celebramos esses finais felizes! Conheça alguns dos nossos antigos resgatados que agora vivem cercados de conforto e afeto. Suas histórias nos inspiram a continuar nosso trabalho e mostram a importância da adoção responsável.",
+                text3: "Se você já adotou um gatinho conosco, envie uma foto e um depoimento para compartilhar essa linda trajetória. Sua experiência pode encorajar outras pessoas a abrir o coração para um amigo de quatro patas!",
+                text4: "E se você ainda está procurando um companheiro felino, visite nossa página de Adoção e descubra quem está esperando por você. Juntos, podemos mudar vidas e espalhar amor!"
+
+            },
             want_help: {
                 make_donation: {
                     title: "Faça uma doação",
@@ -370,6 +408,7 @@ const resources = {
                     title: "Relatórios",
                 },
             },
+<<<<<<< HEAD
             rescue: {
                 title: "Resgates",
                 slides: {
@@ -380,6 +419,28 @@ const resources = {
                     billy: "Billy foi encontrado preso em uma garagem abandonada e passou dias sem comer. Após ser resgatado, recebeu cuidados veterinários e muito carinho. Hoje é um gato calmo que adora dormir enrolado em cobertores e ronrona fácil.",
                     lily: "Lily foi salva de uma área de risco de alagamento. Estava molhada, com frio e muita fome. Foi rapidamente acolhida e se recuperou com o apoio da equipe de voluntários. Hoje, tem um lar amoroso e adora acordar seus humanos com miados matinais pedindo petiscos.",
                     amora: "Amora vivia em um terreno baldio e era vista cuidando de outros gatinhos abandonados, mesmo não sendo a mãe deles. Com seu instinto protetor, conquistou a todos no abrigo. Hoje vive com outros gatinhos resgatados e continua sendo uma mamãe amorosa.",
+=======
+            user_settings: {
+                title: "Configurações do Usuário",
+                description: "Atualize suas informações pessoais abaixo.",
+                name: "Nome",
+                surname: "Sobrenome",
+                phone: "Celular",
+                email: "Email",
+                address: "Endereço",
+                complement: "Complemento",
+                has_protection_screen: "Sua residência possui tela de proteção?",
+                yes: "Sim",
+                no: "Não",
+                submit: "Salvar Alterações",
+                placeholders: {
+                    name: "Digite seu nome",
+                    surname: "Digite seu sobrenome",
+                    phone: "Digite seu número de celular",
+                    email: "Digite seu email",
+                    address: "Digite seu endereço",
+                    complement: "Digite o complemento",
+>>>>>>> cc10a1c9ed94d34819bdce146b421725abe9c36b
                 },
             },
         },

@@ -9,7 +9,12 @@ import AvailableCats from "../pages/AvailableCats";
 import Signup from "../pages/Signup";
 import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
+<<<<<<< HEAD
 import Rescue from "../pages/Rescue";
+=======
+import AdoptedCats from "../pages/AdoptedCats";
+import UserSettings from "../pages/UserSettings";
+>>>>>>> cc10a1c9ed94d34819bdce146b421725abe9c36b
 
 export const AppRoutes = () => {
     return (
@@ -27,7 +32,12 @@ export const AppRoutes = () => {
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
                     <Route path="/rescue" element={<Rescue />} />
+=======
+                    <Route path="/adoptedcats" element={<AdoptedCats />} />
+                    <Route path="/usersettings" element={<UserSettings />} />
+>>>>>>> cc10a1c9ed94d34819bdce146b421725abe9c36b
                 </Route>
             </Route>
         </Routes>
