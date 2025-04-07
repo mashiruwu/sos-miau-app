@@ -143,7 +143,7 @@ const UserSettings = () => {
                                 </Label>
                             </div>
                         </div>
-                        <div className="col-span-2 mt-8">
+                        <div className="col-span-2 mt-1">
                             <SubmitButton>
                                 {t("user_settings.submit")}
                             </SubmitButton>
