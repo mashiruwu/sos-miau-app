@@ -55,3 +55,103 @@ exports.deleteMatch = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.checkMatch = async (req, res) => {
+  try {
+    const matchData = req.body;
+
+    const adopterId = matchData.idAdopter
+    const catId = matchData.idCat
+
+    let matchSnapshot = await db.collection("matches").get();
+
+    for (let doc of matchSnapshot.docs) {
+      if(doc.data().matchData.adopter_id == adopterId && doc.data().matchData.cat_id == catId){
+        return  res.json({id: doc.id, data: doc.data()})
+      }
+    }
+
+    return  res.json({aceito: false})
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.checkMatchesByCat = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+
+    let matchSnapshot = await db.collection("matches").get();
+
+    let matches = []
+    for (let doc of matchSnapshot.docs) {
+      if(doc.data().matchData.cat_id == id){
+        matches.push({id: doc.id, data: doc.data()})
+      }
+    }
+    if(matches.length > 0){
+      return  res.json(matches)
+    }
+
+    return  res.json({aceito: false})
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.checkMatchesByOng = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const OngReg = db.collection("donor_ong").doc(id);
+    const OngDoc = await OngReg.get();
+
+    let matchSnapshot = await db.collection("matches").get();
+    let matches = []
+    for (let doc of matchSnapshot.docs) {
+      for (let cat of OngDoc.data().cats_available){
+        if(doc.data().matchData.cat_id == cat){
+          matches.push({id: doc.id, data: doc.data()})
+        }
+      }
+    }
+
+    if(matches.length > 0){
+      return  res.json(matches)
+    }
+
+    return  res.json({aceito: false})
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.checkMatchesByAdopter = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+
+    let matchSnapshot = await db.collection("matches").get();
+
+    let matches = []
+    for (let doc of matchSnapshot.docs) {
+      if(doc.data().matchData.adopter_id == id){
+        matches.push({id: doc.id, data: doc.data()})
+      }
+    }
+    if(matches.length > 0){
+      return  res.json(matches)
+    }
+
+    return  res.json({aceito: false})
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
