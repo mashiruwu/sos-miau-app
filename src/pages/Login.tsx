@@ -35,9 +35,14 @@ const Login = () => {
               console.error("Failed to submit");
               return;
             }
-        
+            
             const data = await response.json();
+            sessionStorage.setItem('userId', data.id);
+            
             console.log("Form data submitted successfully:", data);
+            window.location.href = `/`;
+
+
           } catch (error) {
             console.error("Error submitting form:", error);
           }
