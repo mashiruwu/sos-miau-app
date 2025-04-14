@@ -57,6 +57,38 @@ exports.deleteAdopter = async (req, res) => {
   }
 };
 
+exports.loginAdopter = async (req, res) => {
+  try {
+    const userEmail = req.body.email;
+    const userPassword = req.body.password;
+  
+    const adoptersRef = db.collection("adopters")
+
+    const querySnapshot =  await adoptersRef.where("email", "==", userEmail).where("password", "==", userPassword).get()
+    
+    if (querySnapshot.empty) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      const userId = doc.id;
+
+      // Set a cookie named 'userId'
+      res.cookie('userId', userId, {
+        httpOnly: true, // Helps mitigate XSS attacks by not exposing the cookie to client-side JavaScript.
+        secure: process.env.NODE_ENV !== 'development', // Ensure the cookie is sent only over HTTPS in production.
+        sameSite: 'strict', // Helps prevent CSRF attacks.
+      });
+
+
+      return res.status(200).json(doc.data());
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+};
 exports.avaliableCats = async (req, res) => {
   try {
     const adopterId = req.params.id;
