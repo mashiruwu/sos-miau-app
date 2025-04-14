@@ -22,45 +22,89 @@ const Signup = () => {
         complement: "",
     });
 
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    const [submitMessage, setSubmitMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const validateField = (name: string, value: string): string => {
+        switch (name) {
+            case "email":
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "Email inválido";
+            case "password":
+                return value.length >= 6 ? "" : "A senha deve ter pelo menos 6 caracteres";
+            case "confirmPassword":
+                return value === formData.password ? "" : "As senhas não coincidem";
+            case "birthdate":
+                const birth = new Date(value);
+                const today = new Date();
+                const age = today.getFullYear() - birth.getFullYear();
+                const isBirthdayPassed = today < new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
+                const finalAge = isBirthdayPassed ? age - 1 : age;
+                return finalAge >= 18 ? "" : "Você precisa ter pelo menos 18 anos para se cadastrar";
+            default:
+                return value.trim() === "" ? "Campo obrigatório" : "";
+        }
+    };
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+
+        const error = validateField(name, value);
+        setErrors((prev) => ({ ...prev, [name]: error }));
     };
+
+    const hasErrors = Object.values(errors).some((err) => err !== "");
+    const hasEmptyRequired = ["name", "surname", "email", "password", "confirmPassword"].some(
+        (key) => formData[key as keyof typeof formData].trim() === ""
+    );
+    const isFormInvalid = hasErrors || hasEmptyRequired;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (formData.password !== formData.confirmPassword) {
-          alert(t("signup.password_mismatch"));
-          return;
-        }
-      
-        try {
-          const response = await fetch("http://localhost:3000/adopter/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-      
-          if (!response.ok) {
-            // Handle error
-            console.error("Failed to submit");
+        if (isFormInvalid) {
+            setSubmitMessage("Por favor, corrija os erros antes de enviar.");
             return;
-          }
-      
-          const data = await response.json();
-          console.log("Form data submitted successfully:", data);
-        } catch (error) {
-          console.error("Error submitting form:", error);
         }
-      };
-      
+
+        setIsSubmitting(true);
+        try {
+            const response = await fetch("http://localhost:3000/adopter/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                setSubmitMessage("Erro ao enviar o formulário.");
+                return;
+            }
+
+            setSubmitMessage("Formulário enviado com sucesso!");
+            setFormData({
+                name: "",
+                surname: "",
+                cpf: "",
+                phone: "",
+                birthdate: "",
+                hasProtectionScreen: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+                address: "",
+                complement: "",
+            });
+            setErrors({});
+        } catch (error) {
+            setSubmitMessage("Erro inesperado ao enviar.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
-            {/* Form Section */}
-            <div className="w-full lg:w-2/4 p-4 sm:p-6 lg:p-8">
+            <div className="w-full lg:w-3/4 p-4 sm:p-6 lg:p-8">
                 <form onSubmit={handleSubmit} className="lg:w-1/2 lg:mx-auto">
                     <h1 className="text-2xl text-[#153151] mb-4 text-center lg:text-left">
                         {t("signup.title")}
@@ -69,99 +113,44 @@ const Signup = () => {
                         {t("signup.description")}
                     </p>
                     <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div className="sm:col-span-2 lg:col-span-1">
-                            <Label>{t("signup.name")}</Label>
-                            <InputField
-                                type="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Digite seu nome"
-                                required
-                            />
-                        </div>
-                        <div className="sm:col-span-2 lg:col-span-1">
-                            <Label>{t("signup.surname")}</Label>
-                            <InputField
-                                type="text"
-                                name="surname"
-                                value={formData.surname}
-                                onChange={handleChange}
-                                placeholder="Digite seu sobrenome"
-                                required
-                            />
-                        </div>
-
-                        <div className="col-span-2">
-                            <Label>{t("signup.cpf")}</Label>
-                            <InputField
-                                type="text"
-                                name="cpf"
-                                value={formData.cpf}
-                                onChange={handleChange}
-                                placeholder="___.___.___-__"
-                                // required
-                            />
-                        </div>
-                        <div className="col-span-2">
-                            <Label>{t("signup.birthdate")}</Label>
-                            <InputField
-                                type="text"
-                                name="birthdate"
-                                value={formData.birthdate}
-                                onChange={handleChange}
-                                onFocus={(e) => (e.target.type = "date")}
-                                onBlur={(e) => (e.target.type = "text")}
-                                placeholder="__/__/____"
-                                // required
-                            />
-                        </div>
-
-                        <div className="col-span-2">
-                            <Label>{t("signup.address")}</Label>
-                            <InputField
-                                type="text"
-                                name="address"
-                                value={formData.address}
-                                onChange={handleChange}
-                                placeholder="Digite seu endereço"
-                                // required
-                            />
-                        </div>
-                        <div className="col-span-2">
-                            <Label>{t("signup.complement")}</Label>
-                            <InputField
-                                type="text"
-                                name="complement"
-                                value={formData.complement}
-                                onChange={handleChange}
-                                placeholder="Digite o complemento"
-                                // required
-                            />
-                        </div>
-
-                        <div className="col-span-2">
-                            <Label>{t("signup.phone")}</Label>
-                            <InputField
-                                type="text"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                placeholder="(XX) XXXXX-XXXX"
-                                // required
-                            />
-                        </div>
-                        <div className="col-span-2">
-                            <Label>{t("signup.email")}</Label>
-                            <InputField
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Digite seu email"
-                                required
-                            />
-                        </div>
+                        {[
+                            { name: "name", label: t("signup.name") + " *", type: "text", required: true },
+                            { name: "surname", label: t("signup.surname") + " *", type: "text", required: true },
+                            { name: "cpf", label: t("signup.cpf"), type: "text" },
+                            {
+                                name: "birthdate",
+                                label: t("signup.birthdate"),
+                                type: "date",
+                                required: true,
+                            },
+                            { name: "address", label: t("signup.address"), type: "text" },
+                            { name: "complement", label: t("signup.complement"), type: "text" },
+                            { name: "phone", label: t("signup.phone"), type: "text" },
+                            { name: "email", label: t("signup.email") + " *", type: "email", required: true },
+                            { name: "password", label: t("signup.password") + " *", type: "password", required: true },
+                            {
+                                name: "confirmPassword",
+                                label: t("signup.confirm_password") + " *",
+                                type: "password",
+                                required: true,
+                            },
+                        ].map((field) => (
+                            <div key={field.name} className="col-span-2">
+                                <Label>{field.label}</Label>
+                                <InputField
+                                    type={field.type}
+                                    name={field.name}
+                                    value={formData[field.name as keyof typeof formData]}
+                                    onChange={handleChange}
+                                    placeholder={field.label}
+                                    required={field.required}
+                                    className={errors[field.name] ? "border border-red-500" : ""}
+                                />
+                                {errors[field.name] && (
+                                    <p className="text-red-500 text-sm">{errors[field.name]}</p>
+                                )}
+                            </div>
+                        ))}
 
                         <div className="mt-4 col-span-2">
                             <span className="block text-[#153151] mb-2">
@@ -172,9 +161,7 @@ const Signup = () => {
                                     type="radio"
                                     name="hasProtectionScreen"
                                     value={"Sim"}
-                                    checked={
-                                        formData.hasProtectionScreen === "Sim"
-                                    }
+                                    checked={formData.hasProtectionScreen === "Sim"}
                                     onChange={handleChange}
                                 />
                                 {t("signup.yes")}
@@ -184,44 +171,25 @@ const Signup = () => {
                                     type="radio"
                                     name="hasProtectionScreen"
                                     value={"Não"}
-                                    checked={
-                                        formData.hasProtectionScreen === "Não"
-                                    }
+                                    checked={formData.hasProtectionScreen === "Não"}
                                     onChange={handleChange}
                                 />
-
                                 {t("signup.no")}
                             </Label>
                         </div>
 
-                        <div>
-                            <Label>{t("signup.password")}</Label>
-                            <InputField
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="Digite sua senha"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <Label>{t("signup.confirm_password")}</Label>
-                            <InputField
-                                type="password"
-                                name="confirmPassword"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                placeholder="Confirme sua senha"
-                                required
-                            />
-                        </div>
-                        <SubmitButton>{t("signup.submit")}</SubmitButton>
+                        <SubmitButton disabled={isFormInvalid || isSubmitting}>
+                            {isSubmitting ? t("signup.submitting") : t("signup.submit")}
+                        </SubmitButton>
+
+                        {submitMessage && (
+                            <p className="col-span-2 text-center text-sm mt-2 text-[#153151]">
+                                {submitMessage}
+                            </p>
+                        )}
                     </div>
                 </form>
             </div>
-
-            {/* Image Section */}
             <div className="w-full lg:w-1/3">
                 <img
                     src={SignupImage}
