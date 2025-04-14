@@ -11,6 +11,7 @@ import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
 import Rescue from "../pages/Rescue";
 import AdoptedCats from "../pages/AdoptedCats";
+import CatRegister from "../pages/CatRegister";
 import UserSettings from "../pages/UserSettings";
 import RegisteredCats from "../pages/RegisteredCats";
 
@@ -32,6 +33,7 @@ export const AppRoutes = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/rescue" element={<Rescue />} />
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
+                    <Route path="/catregister" element={<CatRegister />} />
                     <Route path="/usersettings" element={<UserSettings />} />
                     <Route
                         path="/registeredcats"
