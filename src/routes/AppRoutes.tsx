@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import Rescue from "../pages/Rescue";
 import AdoptedCats from "../pages/AdoptedCats";
 import UserSettings from "../pages/UserSettings";
+import RegisteredCats from "../pages/RegisteredCats";
 
 export const AppRoutes = () => {
     return (
@@ -32,6 +33,10 @@ export const AppRoutes = () => {
                     <Route path="/rescue" element={<Rescue />} />
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
                     <Route path="/usersettings" element={<UserSettings />} />
+                    <Route
+                        path="/registeredcats"
+                        element={<RegisteredCats />}
+                    />
                 </Route>
             </Route>
         </Routes>
