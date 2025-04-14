@@ -8,6 +8,7 @@ export const DefaultLayout = () => {
     const isHelp = location.pathname === "/help";
     const isSignupPage = location.pathname === "/signup";
     const isLoginPage = location.pathname === "/login";
+    const isRescuePage = location.pathname === "/rescue";
     const isAdoptedCats = location.pathname === "/adoptedcats";
 
     return (
@@ -15,7 +16,12 @@ export const DefaultLayout = () => {
             <Header />
             <main
                 className={
-                    isLoginPage || isSignupPage || isHome || isHelp || isAdoptedCats
+                    isLoginPage ||
+                    isSignupPage ||
+                    isHome ||
+                    isHelp ||
+                    isRescuePage ||
+                    isAdoptedCats
                         ? ""
                         : "mt-16 lg:px-[20%] px-[10%]"
                 }
