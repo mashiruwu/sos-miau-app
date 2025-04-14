@@ -27,14 +27,35 @@ const Signup = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
-            alert(t("signup.password_mismatch"));
-            return;
+          alert(t("signup.password_mismatch"));
+          return;
         }
-        console.log("Form data submitted:", formData);
-    };
+      
+        try {
+          const response = await fetch("http://localhost:3000/adopter/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          if (!response.ok) {
+            // Handle error
+            console.error("Failed to submit");
+            return;
+          }
+      
+          const data = await response.json();
+          console.log("Form data submitted successfully:", data);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+        }
+      };
+      
 
     return (
         <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
@@ -79,20 +100,20 @@ const Signup = () => {
                                 value={formData.cpf}
                                 onChange={handleChange}
                                 placeholder="___.___.___-__"
-                                required
+                                // required
                             />
                         </div>
                         <div className="col-span-2">
                             <Label>{t("signup.birthdate")}</Label>
                             <InputField
                                 type="text"
-                                name="cpf"
-                                value={formData.cpf}
+                                name="birthdate"
+                                value={formData.birthdate}
                                 onChange={handleChange}
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
                                 placeholder="__/__/____"
-                                required
+                                // required
                             />
                         </div>
 
@@ -104,7 +125,7 @@ const Signup = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 placeholder="Digite seu endereço"
-                                required
+                                // required
                             />
                         </div>
                         <div className="col-span-2">
@@ -115,7 +136,7 @@ const Signup = () => {
                                 value={formData.complement}
                                 onChange={handleChange}
                                 placeholder="Digite o complemento"
-                                required
+                                // required
                             />
                         </div>
 
@@ -127,7 +148,7 @@ const Signup = () => {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="(XX) XXXXX-XXXX"
-                                required
+                                // required
                             />
                         </div>
                         <div className="col-span-2">
