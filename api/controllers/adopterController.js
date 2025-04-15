@@ -130,7 +130,7 @@ exports.evaluateCat = async (req, res) => {
 
     const adopterId = matchData.idAdopter
     const catId = matchData.idCat
-    const like = matchData.like
+    const like = matchData.like === true || matchData.like === "true"
 
     const adopterRef = db.collection("adopters").doc(adopterId);
     const adopterDoc = await adopterRef.get();
@@ -138,7 +138,7 @@ exports.evaluateCat = async (req, res) => {
     if (!adopterDoc.exists) {
         return res.status(404).json({ message: "Adopter not found" });
     }
-
+    
     if (like){
       await adopterRef.update({
         likes: [...adopterDoc.data().likes, catId],
@@ -146,7 +146,7 @@ exports.evaluateCat = async (req, res) => {
     }
     else{
       await adopterRef.update({
-        dislikes: [...adopterDoc.data().likes, catId],
+        dislikes: [...adopterDoc.data().dislikes, catId],
       });
     }
 

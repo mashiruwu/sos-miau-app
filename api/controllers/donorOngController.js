@@ -107,7 +107,7 @@ exports.evaluateAdopter = async (req, res) => {
 
     const adopterId = bodyData.idAdopter
     const catId = bodyData.idCat
-    const like = bodyData.like
+    const like = matchData.like === true || matchData.like === "true"
 
     const adopterRef = db.collection("adopters").doc(adopterId);
     const adopterDoc = await adopterRef.get();

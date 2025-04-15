@@ -11,19 +11,31 @@
 }
 
 .Cat{
+    position: relative;
     width: 80%;
     height: 70%;
     border-radius: 20px;
     background-color: white;
 }
 .Cat img {
+    user-select: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
-  }
+}
+.Cat p {
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 800;
+    font-size: 30px;
+    color: yellow;
+    -webkit-text-stroke: 1px black; /* Border thickness and color */
+    position: absolute;
+}
 
 .Description{
+    overflow-y: scroll;
     padding: 10px;
     width: 80%;
     height: 25%;

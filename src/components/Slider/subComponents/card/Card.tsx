@@ -12,7 +12,8 @@ export function Card({ cat }: CardProps){
         <>
             <div className="Card">
                 <div className="Cat">
-                    <img src={cat.imgPath}></img>
+                    <p>{cat.name}</p>
+                    <img src={cat.photo_url}></img>
                 </div>
                 <div className="Description">
                     <p>{cat.description}</p>
