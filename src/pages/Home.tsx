@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
         const submitForm = async () => {
           try {
-            const response = await fetch("http://localhost:3000/adopter/avaliableCats/P9Qgv5RQ3dEbiewUnWUe", {
+            const response = await fetch("http://localhost:3000/adopter/avaliableCats/" + sessionStorage.getItem("userId"), {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const Home = () => {
                                 "Content-Type": "application/json",
                               },
                               body: JSON.stringify({
-                                idAdopter: "P9Qgv5RQ3dEbiewUnWUe",
+                                idAdopter: sessionStorage.getItem("userId"),
                                 idCat: id,
                                 like: "true"
                                 })
@@ -81,7 +81,7 @@ const Home = () => {
                                 "Content-Type": "application/json",
                               },
                               body: JSON.stringify({
-                                idAdopter: "P9Qgv5RQ3dEbiewUnWUe",
+                                idAdopter: sessionStorage.getItem("userId"),
                                 idCat: id,
                                 like: "false"
                                 })
