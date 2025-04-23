@@ -7,7 +7,7 @@ const About = () => {
 
     return (
         <>
-            <section className="bg-primary w-full mx-auto text-white rounded-md lg:px-10 px-4 py-10 flex lg:flex-row flex-col-reverse">
+            <section className="bg-primary dark:bg-secondary dark:text-white w-full mx-auto text-secondary rounded-md lg:px-10 px-4 py-10 flex lg:flex-row flex-col-reverse">
                 <div>
                     <img
                         src={CatAbout}
@@ -29,7 +29,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
-            <h1 className="font-tiny text-primary text-4xl text-center mt-10">
+            <h1 className="font-tiny text-secondary text-4xl text-center mt-10 ">
                 {t("about_page.what_do_we_do_title")}
             </h1>
             <section className="flex lg:flex-row flex-col justify-evenly my-10 items-center">
@@ -45,7 +45,7 @@ const About = () => {
                     className="w-[350px] lg:mt-0 mt-5"
                 />
             </section>
-            <h1 className="font-tiny text-primary text-4xl text-center mt-10">
+            <h1 className="font-tiny text-secondary text-4xl text-center mt-10">
                 {t("about_page.how_to_help_title")}
             </h1>
             <section className="my-10">
@@ -56,7 +56,7 @@ const About = () => {
                     <li>{t("about_page.how_to_help_content4")}</li>
                 </ul>
             </section>
-            <section className="bg-primary w-full text-white rounded-md p-10 my-20 flex font-afacad text-xl">
+            <section className="bg-primary dark:bg-secondary dark:text-white w-full text-secondary rounded-md p-10 my-20 flex font-afacad text-xl">
                 <p className="mx-auto">{t("about_page.join_our_mission")}</p>
             </section>
         </>

@@ -75,7 +75,7 @@ const Rescue = () => {
                 src="https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg"
                 className="w-full h-[500px] object-cover"
             />
-            <h1 className="text-center text-5xl font-tiny uppercase text-primary ">
+            <h1 className="text-center text-5xl font-tiny uppercase text-secondary ">
                 Resgates
             </h1>
             <InfoCarousel slides={infoSlides} />

@@ -7,7 +7,7 @@ const AdoptionPage = () => {
 
     return (
         <section className="font-afacad">
-            <h1 className="font-tiny text-primary text-5xl text-center">
+            <h1 className="font-tiny text-secondary text-5xl text-center">
                 {t("adoption_page.title")}
             </h1>
             <img
@@ -18,7 +18,7 @@ const AdoptionPage = () => {
             <p className="text-xl text-center mb-10">
                 {t("adoption_page.description")}
             </p>
-            <h1 className="font-tiny text-primary text-4xl text-center">
+            <h1 className="font-tiny text-secondary text-4xl text-center">
                 {t("adoption_page.requirements_title")}
             </h1>
             <ul className="text-center my-5 text-xl">
@@ -27,7 +27,7 @@ const AdoptionPage = () => {
                 <li>{t("adoption_page.requirements_content3")}</li>
                 <li>{t("adoption_page.requirements_content4")}</li>
             </ul>
-            <h1 className="bg-primary text-white w-fit mx-auto my-10 p-4 text-2xl font-tiny rounded-md shadow-2xl cursor-pointer hover:bg-primary-hover">
+            <h1 className="bg-primary dark:bg-secondary dark:text-white text-secondary w-fit mx-auto my-10 p-4 text-2xl font-tiny rounded-md shadow-2xl cursor-pointer hover:bg-primary-hover">
                 <Link to={"/cats"}>
                     {t("adoption_page.see_our_available_cats")}
                 </Link>

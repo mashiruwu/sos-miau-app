@@ -9,7 +9,7 @@
 @theme {
     --font-tiny: "Tiny5", sans-serif;
     --font-afacad: "Afacad", sans-serif;
-    --color-primary: #93BEDF;
+    --color-primary: #96A9C0;
     --color-secondary: #153151;
     --color-primary-hover: #1a3b6c;
 }
@@ -17,7 +17,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Barra de rolagem */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
