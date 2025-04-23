@@ -1,9 +1,15 @@
 import './Slider.css';
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
-import lista from './mock/mock';
+import catList from './mock/mock';
 
-export function Slider() {
+export function Slider(props: {data: [], handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void>}) {
+
+    let lista: string | any[] = []
+    if(props.data.length != 0){
+        lista = props.data
+    }
+    
     const [index, setIndex] = useState(0);
 
     const slide =  useRef<HTMLDivElement>(null); // Use useRef for DOM reference
@@ -99,13 +105,23 @@ export function Slider() {
             setInTransform(false);
         }, 500);
     }
-
+    
     function like() {
         setTransition(0.5);
         setTransformTranslate([200, "%"]);
         setTransformRotate(-20);
 
         console.log('Like');
+        
+        const onLikeClick = async () => {
+            try {
+              await props.handleLike(lista[index].id);
+              
+            } catch (error) {
+              console.error("Something went wrong when liking:", error);
+            }
+        };
+        onLikeClick()
 
         setTimeout(() => {
             resetAfterAction();
@@ -118,6 +134,15 @@ export function Slider() {
         setTransformRotate(20);
 
         console.log('Dislike');
+        const onLikeClick = async () => {
+            try {
+              await props.handleDislike(lista[index].id);
+              
+            } catch (error) {
+              console.error("Something went wrong when liking:", error);
+            }
+        };
+        onLikeClick()
 
         setTimeout(() => {
             resetAfterAction();
@@ -240,7 +265,6 @@ export function Slider() {
                     </div>
                     :
                     <>
-                        
                         <div 
                             className='NoRecomendations'  
                             style={{opacity: opacity}}                             
@@ -263,7 +287,7 @@ export function Slider() {
                 }
                 
                 <div className="additional-div2" style={aditional3Style}>
-
+                
                 </div>
 
                 

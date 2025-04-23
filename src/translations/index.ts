@@ -204,6 +204,7 @@ const resources = {
                 male: "Male",
                 female: "Female",
                 add_image: "Add Picture",
+            },
             rescue: {
                 title: "Rescues",
                 slides: {
@@ -445,6 +446,7 @@ const resources = {
                 male: "Macho",
                 female: "Fêmea",
                 add_image: "Adicionar Foto",
+            },
             rescue: {
                 title: "Resgates",
                 slides: {

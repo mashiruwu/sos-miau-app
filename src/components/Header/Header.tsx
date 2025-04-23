@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import HeaderLink from "./HeaderLink/HeaderLink";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,7 @@ const Header = () => {
   const { t } = useTranslation();
   const userId = sessionStorage.getItem("userId");
   const [darkMode, setDarkMode] = useState(false);
+
 
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);

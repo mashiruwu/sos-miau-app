@@ -17,9 +17,35 @@ const Login = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Login data submitted:", formData);
+
+        try {
+            const response = await fetch("http://localhost:3000/adopter/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+        
+            if (!response.ok) {
+              // Handle error
+              console.error("Failed to submit");
+              return;
+            }
+            
+            const data = await response.json();
+            sessionStorage.setItem('userId', data.id);
+            
+            console.log("Form data submitted successfully:", data);
+            window.location.href = `/`;
+
+
+          } catch (error) {
+            console.error("Error submitting form:", error);
+          }
     };
 
     return (

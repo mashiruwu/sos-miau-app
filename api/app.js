@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore,  } = require('firebase-admin/firestore')
+const { getFirestore, } = require('firebase-admin/firestore')
+const cors = require("cors");
+
+// Allow requests from your front-end's origin
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
 
 const serviceAccount = require('./credentials.json');
 
