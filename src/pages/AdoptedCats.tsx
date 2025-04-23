@@ -10,7 +10,7 @@ const AdoptedCats = () => {
         <div>
             <LandingCarousel/>
             <div>       
-                <h1 className="font-tiny text-primary text-3xl md:text-5xl text-center pt-20">
+                <h1 className="font-tiny text-secondary text-3xl md:text-5xl text-center pt-20">
                     {t("adopted_cats.title")}
                 </h1>                   
                 <div className="flex flex-wrap pr-15 pl-15 pt-15 justify-center text-center font-afacad text-xl">

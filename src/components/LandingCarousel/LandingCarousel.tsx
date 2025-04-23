@@ -17,7 +17,7 @@ const images = [
     src: "https://www.patasdacasa.com.br/sites/default/files/styles/article_detail_1200/public/2024-09/gato-preto.jpg.webp?itok=VI-YbRBa",
     text1: "landing_carousel.slide02_title",
     text2: "landing_carousel.description02",
-    link: "#",
+    link: "/help",
   },
   {
     src: "https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg",

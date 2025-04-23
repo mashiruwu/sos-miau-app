@@ -73,7 +73,7 @@ export function InfoCarousel({
                         }`}
                     >
                         {!isRescuePage && (
-                            <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                            <h1 className="lg:text-5xl text-3xl text-secondary mb-8 uppercase font-tiny text-center">
                                 {slide.title}
                             </h1>
                         )}
@@ -88,9 +88,9 @@ export function InfoCarousel({
                                 <p>{slide.alt}</p>
                             </div>
 
-                            <div className="lg:w-[500px] w-full text-left text-primary flex flex-col items-start">
+                            <div className="lg:w-[500px] w-full text-left text-secondary flex flex-col items-start">
                                 {isRescuePage && (
-                                    <h1 className="lg:text-5xl text-3xl text-primary mb-8 uppercase font-tiny text-center">
+                                    <h1 className="lg:text-5xl text-3xl text-secondary mb-8 uppercase font-tiny text-center">
                                         {slide.title}
                                     </h1>
                                 )}
@@ -109,7 +109,7 @@ export function InfoCarousel({
                         onClick={() => goToSlide(index)}
                         className={`w-3 h-3 rounded-full transition-all duration-300 ${
                             currentSlide === index
-                                ? "bg-primary scale-125"
+                                ? "bg-primary dark:bg-secondary scale-125"
                                 : "bg-primary/40 hover:bg-primary/60"
                         }`}
                         aria-label={`Go to slide ${index + 1}`}

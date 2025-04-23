@@ -24,7 +24,7 @@ const CatCard = () => {
     return (
         <>
             <div className="p-4 w-full max-w-sm">
-                <div className="flex flex-col items-center p-4 rounded-2xl bg-white border border-gray-200 shadow-md dark:bg-blue-950 dark:border-gray-700">
+                <div className="flex flex-col items-center p-4 rounded-2xl bg-secondary border-gray-200 shadow-md">
                     <div className="w-full h-64 flex justify-center items-center">
                         <img
                             src={Cat1}
