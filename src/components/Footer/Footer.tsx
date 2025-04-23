@@ -25,7 +25,7 @@ const Footer = () => {
     return (
         <>
             {!isMobile && (
-                <footer className="mt-auto h-fit bg-primary py-5 px-18 flex justify-between font-afacad text-white">
+                <footer className="mt-auto h-fit bg-primary py-5 px-18 flex justify-between font-afacad text-[#153151] dark:bg-secondary dark:text-white">
                     <div className="w-[45%] flex flex-col gap-2">
                         <h1 className="text-2xl font-tiny">SOS MIAU</h1>
                         <p className="text-md">{t("footer.description")}</p>
@@ -86,7 +86,7 @@ const Footer = () => {
                 </footer>
             )}
             {isMobile && (
-                <footer className="mt-auto h-fit bg-primary py-5 lg:px-20 px-10 flex justify-between gap-5 font-afacad text-white items-center">
+                <footer className="mt-auto h-fit bg-primary py-5 lg:px-20 px-10 flex justify-between gap-5 font-afacad text-white items-center dark:bg-secondary">
                     <h1 className="font-tiny">
                         <span className="font-afacad">©</span> SOS Miau
                     </h1>

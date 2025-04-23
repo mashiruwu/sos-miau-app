@@ -21,7 +21,7 @@ function LanguageSwitcher() {
     return (
         <div className="language-switcher flex items-center gap-2">
             <button
-                className={`transition-all duration-75 bg-yellow-200 dark:bg-blue-200 rounded-lg p-2 ${
+                className={`transition-all duration-75 bg-secondary dark:bg-blue-200 rounded-lg p-2 ${
                     currentLanguage === "en"
                         ? ""
                         : "border-b-2 border-yellow-600 dark:border-blue-600"
@@ -32,7 +32,7 @@ function LanguageSwitcher() {
             </button>
             <div className="h-4 w-[1px] bg-white"></div>
             <button
-                className={`transition-all duration-75 bg-yellow-200 dark:bg-blue-200 rounded-lg p-2 ${
+                className={`transition-all duration-75 bg-secondary dark:bg-blue-200 rounded-lg p-2 ${
                     currentLanguage === "br"
                         ? ""
                         : "border-b-2 border-yellow-600 dark:border-blue-600"

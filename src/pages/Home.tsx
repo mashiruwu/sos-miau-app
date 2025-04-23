@@ -9,10 +9,10 @@ const Home = () => {
         <>
             <LandingCarousel />
             <div className="py-20 px-4">
-                <h1 className="font-tiny text-6xl text-center text-primary">
+                <h1 className="font-tiny text-6xl text-center text-secondary">
                     {t("homepage.match")}
                 </h1>
-                <p className="font-afacad text-xl text-primary text-center">
+                <p className="font-afacad text-xl text-secondary text-center">
                     {t("homepage.match_description")}
                 </p>
                 <Slider></Slider>
