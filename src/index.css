@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Tiny5&display=swap");
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
     --font-tiny: "Tiny5", sans-serif;
     --font-afacad: "Afacad", sans-serif;
-    --color-primary: #153151;
+    --color-primary: #93BEDF;
+    --color-secondary: #153151;
     --color-primary-hover: #1a3b6c;
 }
 html {

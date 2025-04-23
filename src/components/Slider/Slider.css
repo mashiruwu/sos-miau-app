@@ -27,13 +27,13 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Adds shadow */
 }
 .slide:hover{
-    background-color: #1d436f;
+    background-color: #153151;
 }
 
 .additional-div{
     width: 50%;
     height: 100%;
-    background-color: #132945;
+    background-color: #93BEDF;
     border-radius: 20px;
     position: absolute;
     top: 50%;
@@ -46,7 +46,6 @@
 .additional-div2{
     width: 50%;
     height: 100%;
-    background-color: #10243c;
     border-radius: 20px;
     position: absolute;
     top: 50%;
@@ -174,5 +173,35 @@
     .NoRecomendations{
         width: 100%;
     }
-    
+
+    /* Dark mode styles */
+    .dark .slide,
+    .dark .additional-div,
+    .dark .additional-div2,
+    .dark .NoRecomendations {
+        background-color: #132945;
+        color: white;
+    }
+
+    /* Buttons in dark mode */
+    .dark .option #dislike {
+        background-color: #35765d;
+    }
+    .dark .option #dislike:hover {
+        background-color: #4a9b7b;
+    }
+    .dark .option #dislike:active {
+        background-color: #285342;
+    }
+
+    .dark .option #like {
+        background-color: #a0153f;
+    }
+    .dark .option #like:hover {
+        background-color: #c82759;
+    }
+    .dark .option #like:active {
+        background-color: #6f0e2d;
+    }
+
 }

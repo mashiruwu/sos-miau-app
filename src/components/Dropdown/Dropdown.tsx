@@ -16,8 +16,8 @@ export default function Dropdown() {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        color="white"
-                        className="size-10"
+                        color="#153151"
+                        className="size-10 dark:text-white"
                     >
                         <path
                             strokeLinecap="round"

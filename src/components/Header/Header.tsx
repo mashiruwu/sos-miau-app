@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import HeaderLink from "./HeaderLink/HeaderLink";
 import { useTranslation } from "react-i18next";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const Header = () => {
   const { t } = useTranslation();
   const userId = sessionStorage.getItem("userId");
+  const [darkMode, setDarkMode] = useState(false);
+
 
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -51,8 +54,31 @@ const Header = () => {
         setShowDropdown(false);
     };
 
+    useEffect(() => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+        setDarkMode(true);
+      } else {
+        document.documentElement.classList.remove("dark");
+        setDarkMode(false);
+      }
+    }, []);
+    
+    const toggleDarkMode = () => {
+      const newDarkMode = !darkMode;
+      setDarkMode(newDarkMode);
+      if (newDarkMode) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    };    
+
   return (
-    <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-white z-50">
+    <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-[#153151] dark:bg-secondary dark:text-white z-50">
       <Dropdown />
       <Link
         to="/"
@@ -84,6 +110,13 @@ const Header = () => {
         <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
         <HeaderLink to="/login">{t("login")}</HeaderLink>
         <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
+        <button onClick={toggleDarkMode} className="ml-2">
+                    {darkMode ? (
+                        <MdOutlineLightMode size={28} />
+                    ) : (
+                        <MdDarkMode size={28} />
+                    )}
+                </button>
         </div>
         )}
 
