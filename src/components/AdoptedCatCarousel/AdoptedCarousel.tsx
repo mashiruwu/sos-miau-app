@@ -27,7 +27,8 @@ export default function AdoptedCarousel() {
   return (
     <div className="flex justify-center items-center py-20 relative">
         <div className="absolute left-0 z-10">
-            <button className="relative z-10 p-17 bg-gray-300 rounded-full hover:bg-gray-400 transition-all swiper-button-prev text-white"/>
+            <button className="relative z-10 p-17 bg-gray-300 rounded-full hover:bg-gray-400 transition-all swiper-button-prev text-white"
+            aria-label="Previous Slide"/>
         </div>
         <div className="flex justify-center items-center">
             <Swiper
@@ -59,7 +60,9 @@ export default function AdoptedCarousel() {
             </Swiper>
         </div>
         <div>
-            <button className="flex z-10 p-17 bg-emerald-300 rounded-full hover:bg-emerald-500 transition-all swiper-button-next"/>
+            <button className="flex z-10 p-17 bg-emerald-300 rounded-full hover:bg-emerald-500 transition-all swiper-button-next"
+             aria-label="Next Slide"/>
+            
         </div>
 
     </div>

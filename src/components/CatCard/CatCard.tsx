@@ -50,6 +50,7 @@ const CatCard = () => {
                 <div
                     className="fixed inset-0 flex items-center justify-center backdrop-blur-md z-50 lg:px-0 px-4"
                     onClick={() => setIsOpen(false)}
+                    role="dialog"
                 >
                     <div
                         className="relative bg-white p-6 rounded-2xl shadow-lg max-w-lg w-full dark:bg-primary transition-transform transform scale-100"
@@ -77,7 +78,7 @@ const CatCard = () => {
                                         <h1 className="font-tiny text-green-500 text-xl uppercase">
                                             {cat.name}
                                         </h1>
-                                        <ul className="text-white font-afacad">
+                                        <ul className="text-black font-afacad">
                                             <li>• {cat.gender}</li>
                                             <li>• {cat.age}</li>
                                             <li>• {cat.breed}</li>
@@ -95,7 +96,8 @@ const CatCard = () => {
                             ))
                         ) : (
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold text-emerald-600 font-tiny">
+                                <h2 className="text-2xl font-bold text-emerald-600 font-tiny"
+                                aria-label="Obrigada">
                                     {t("cats_page.thanks_for_adopting")}
                                 </h2>
                                 <p className="text-gray-700 dark:text-gray-300 mt-2 font-afacad text-xl">
@@ -106,6 +108,7 @@ const CatCard = () => {
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="mt-4 px-6 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 font-tiny cursor-pointer uppercase"
+                                    aria-label="Close"
                                 >
                                     {t(
                                         "cats_page.thanks_for_adopting_close_button"
