@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
-export default function FullscreenOverlay() {
+export default function Card() {
     const [isOpen, setIsOpen] = useState(false);
 
     // Close overlay when ESC key is pressed
@@ -81,13 +81,13 @@ export default function FullscreenOverlay() {
                             </ul>
 
                             <div className="flex justify-center mt-8">
-                                <Button
+                                <button
                                     onClick={() => setIsOpen(false)}
                                     variant="outline"
                                     className="border-white text-white hover:bg-white hover:text-black"
                                 >
                                     Close Overlay
-                                </Button>
+                                </button>
                             </div>
                         </div>
                     </div>

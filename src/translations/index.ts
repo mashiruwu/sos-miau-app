@@ -160,6 +160,12 @@ const resources = {
             cats_page: {
                 title: "AVAILABLE CATS",
                 interest: "I'm interested",
+                button_adopt: "Adopt",
+                thanks_for_adopting:
+                    "THANK YOU FOR OFFERING A HOME TO THIS ANGEL!",
+                thanks_for_adopting_description:
+                    "We'll be in touch in the registered phone to procceed with next steps",
+                thanks_for_adopting_close_button: "Close",
             },
             adopted_cats: {
                 title: "ADOPTED CATS",
@@ -251,7 +257,7 @@ const resources = {
                     "Ao dar um like no “Match com Miau”, você cria uma solicitação de adoção.",
             },
             login: "Entrar",
-            sign_up: "Cadastra-se",
+            sign_up: "Cadastrar-se",
             footer: {
                 description:
                     "Somos a SOS MIAU, uma ONG dedicada ao resgate, cuidado e adoção responsável de gatos em situação de abandono. Nosso trabalho inclui resgatar felinos em risco, oferecer cuidados veterinários e encontrar lares amorosos para cada um deles. Acreditamos que todo gatinho merece carinho, segurança e uma segunda chance.",
@@ -350,7 +356,7 @@ const resources = {
                 interest: "Tenho Interesse",
                 button_adopt: "Adotar",
                 thanks_for_adopting:
-                    "OBRIGADO POR OFERECER UM LAR A ESSE(A) ANJINHO(A)!",
+                    "OBRIGADO POR OFERECER UM LAR A ESSE(A) ANJINHO(A)",
                 thanks_for_adopting_description:
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",

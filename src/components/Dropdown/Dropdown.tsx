@@ -9,7 +9,7 @@ export default function Dropdown() {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-sm font-semibold text-gray-900  cursor-pointer hover:bg-primary-hover rounded-md">
+                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 text-sm font-semibold text-gray-900  cursor-pointer hover:bg-primary-hover rounded-md" aria-label="botao">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
