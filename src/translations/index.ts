@@ -84,6 +84,9 @@ const resources = {
                 confirm_password: "Confirm Password",
                 submit: "Register",
                 password_mismatch: "Passwords do not match!",
+                weak_password: "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
+                invalid_cpf: "Invalid document",
+                age_error: "You need to be over 18 to access this website",
                 image_alt: "Sign up image",
             },
             loginPage: {
@@ -332,6 +335,9 @@ const resources = {
                 confirm_password: "Confirme a senha",
                 submit: "Cadastrar-se",
                 password_mismatch: "As senhas não coincidem!",
+                weak_password: "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
+                invalid_cpf: "CPF inválido",
+                age_error: "Você precisa ser maior de 18 anos para realizar cadastro neste site",
                 image_alt: "Imagem de cadastro",
             },
             loginPage: {

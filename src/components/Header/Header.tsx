@@ -4,6 +4,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import HeaderLink from "./HeaderLink/HeaderLink";
 import { useTranslation } from "react-i18next";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -48,10 +49,13 @@ const Header = () => {
         setShowDropdown((prev) => !prev);
     };
 
+    const navigate = useNavigate();
+
     const handleSignOut = () => {
         sessionStorage.removeItem("userId");
         setUser(null);
         setShowDropdown(false);
+        navigate("/");
     };
 
     useEffect(() => {
