@@ -4,7 +4,26 @@ import DefaultPic from "../assets/profile_pic.png";
 import InputField from "../components/InputField/InputField";
 import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
+import { getAnalytics } from "firebase/analytics";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCA6sFk_9q-z9NhsrlsE5D1o_FfFweDtrY",
+  authDomain: "sos-miau-app.firebaseapp.com",
+  projectId: "sos-miau-app",
+  storageBucket: "sos-miau-app.firebasestorage.app",
+  messagingSenderId: "795745556836",
+  appId: "1:795745556836:web:815a58e15c1b61c52ec271",
+  measurementId: "G-BS622408ZC"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+export const storage = getStorage(app);
 const CatRegister = () => {
     const { t } = useTranslation();
 
@@ -23,6 +42,8 @@ const CatRegister = () => {
         adoptionDate: "",
     });
 
+    const [catImageFile, setCatImageFile] = useState<File | null>(null);
+
     const [catImage, setCatImage] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,21 +51,52 @@ const CatRegister = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form data submitted:", formData);
+        let imageUrl = "";
+
+        if (catImageFile) {
+          const storageRef = ref(storage, `cats/${Date.now()}_${catImageFile.name}`);
+          const snapshot = await uploadBytes(storageRef, catImageFile);
+          imageUrl = await getDownloadURL(snapshot.ref);
+        }
+      
+        const payload = {
+          ...formData,
+          imageUrl,           
+        };
+      
+        try {
+            const response = await fetch("http://localhost:3000/cat/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+        if (!response.ok) {
+            console.error("Signup failed:", response.status);
+            return;
+        }
+
+        const newCat = await response.json();
+        console.log("Form data submitted:", newCat);
+
+
+        } catch (err) {
+          console.error(err);
+        }
+
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setCatImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+          setCatImageFile(file);
+          const reader = new FileReader();
+          reader.onloadend = () => setCatImage(reader.result as string);
+          reader.readAsDataURL(file);
         }
-    };
+      };
 
     return (
         <div className="w-full min-h-screen bg-white py-10 px-4 sm:px-10">
