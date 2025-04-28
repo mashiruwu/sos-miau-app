@@ -1,6 +1,8 @@
 const admin = require('firebase-admin');
 const db = admin.firestore();
+require('dotenv').config();
 
+const jwt = require('jsonwebtoken');
 exports.createAdopter = async (req, res) => {
   try {
     const adopterData = req.body;
@@ -69,26 +71,39 @@ exports.loginAdopter = async (req, res) => {
     if (querySnapshot.empty) {
       return res.status(404).json({ error: 'User not found' });
     }
-
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      const userId = doc.id;
-
-      // Set a cookie named 'userId'
-      res.cookie('userId', userId, {
-        httpOnly: true, // Helps mitigate XSS attacks by not exposing the cookie to client-side JavaScript.
-        secure: process.env.NODE_ENV !== 'development', // Ensure the cookie is sent only over HTTPS in production.
-        sameSite: 'strict', // Helps prevent CSRF attacks.
-      });
+    const doc = querySnapshot.docs[0];
+    const userId = doc.id;
 
 
-      return res.status(200).json(doc.data());
+    if (!process.env.JWT_SECRET) {
+      throw new Error('Missing JWT_SECRET env var');
     }
 
+
+    const token = jwt.sign(
+      { id: userId, email: userEmail },   
+      process.env.JWT_SECRET,           
+      { expiresIn: process.env.JWT_EXPIRES_IN || '1d' } 
+    );
+
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+    });
+
+    return res.status(200).json({
+      message: 'Login successful',
+      token,
+      user: doc.data()
+    });
+    
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
 };
+
 exports.avaliableCats = async (req, res) => {
   try {
     const adopterId = req.params.id;

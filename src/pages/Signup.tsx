@@ -29,32 +29,59 @@ const Signup = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+      
         if (formData.password !== formData.confirmPassword) {
           alert(t("signup.password_mismatch"));
           return;
         }
       
         try {
-          const response = await fetch("http://localhost:3000/adopter/", {
+          // 1️⃣ Signup
+          const signupRes = await fetch("http://localhost:3000/adopter/", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
           });
       
-          if (!response.ok) {
-            // Handle error
-            console.error("Failed to submit");
+          if (!signupRes.ok) {
+            console.error("Signup failed:", signupRes.status);
             return;
           }
       
-          const data = await response.json();
-          console.log("Form data submitted successfully:", data);
+          const newUser = await signupRes.json();
+          console.log("Signup successful:", newUser);
+      
+          const loginRes = await fetch("http://localhost:3000/adopter/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: formData.email,
+              password: formData.password,
+            }),
+          });
+      
+          if (!loginRes.ok) {
+            console.error("Login failed:", loginRes.status);
+            return;
+          }
+      
+          const loginData = await loginRes.json();
+          console.log("Login response:", loginData);
+      
+          if (!loginData.token || !loginData.user?.id) {
+            console.error("Resposta de login inválida", loginData);
+            return;
+          }
+      
+          localStorage.setItem("token", loginData.token);
+          sessionStorage.setItem("userId", loginData.user.id);
+      
+          window.location.href = "/";
         } catch (error) {
-          console.error("Error submitting form:", error);
+          console.error("Erro no handleSubmit:", error);
         }
       };
+      
       
 
     return (

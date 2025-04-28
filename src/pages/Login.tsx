@@ -37,8 +37,10 @@ const Login = () => {
             }
             
             const data = await response.json();
+
+            localStorage.setItem("token", data.token);
             sessionStorage.setItem('userId', data.id);
-            
+
             console.log("Form data submitted successfully:", data);
             window.location.href = `/`;
 
