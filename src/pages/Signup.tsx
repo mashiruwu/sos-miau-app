@@ -5,9 +5,11 @@ import InputField from "../components/InputField/InputField";
 import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         surname: "",
@@ -35,6 +37,12 @@ const Signup = () => {
           return;
         }
       
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordRegex.test(formData.password)) {
+            alert(t("signup.weak_password")); 
+            return;
+        }
+
         try {
           // 1️⃣ Signup
           const signupRes = await fetch("http://localhost:3000/adopter/", {
@@ -259,5 +267,6 @@ const Signup = () => {
         </div>
     );
 };
+
 
 export default Signup;

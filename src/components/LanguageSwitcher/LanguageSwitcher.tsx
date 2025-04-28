@@ -28,7 +28,7 @@ function LanguageSwitcher() {
                 }`}
                 onClick={() => handleChangeCurrentLanguage("en")}
             >
-                <img width={22} src={UnitedStatesIcon} alt={t("altLanguage")} />
+                <img width={22} src={UnitedStatesIcon} alt={t("english")} />
             </button>
             <div className="h-4 w-[1px] bg-white"></div>
             <button
@@ -39,7 +39,7 @@ function LanguageSwitcher() {
                 }`}
                 onClick={() => handleChangeCurrentLanguage("br")}
             >
-                <img width={24} src={BrazilIcon} alt={t("altLanguage")} />
+                <img width={24} src={BrazilIcon} alt={t("portuguese")} />
             </button>
         </div>
     );

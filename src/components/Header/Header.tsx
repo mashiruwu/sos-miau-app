@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown/Dropdown";
+import UserDropdown from "../UserDropdown/UserDropdown";
 import HeaderLink from "./HeaderLink/HeaderLink";
 import { useTranslation } from "react-i18next";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -48,10 +50,13 @@ const Header = () => {
         setShowDropdown((prev) => !prev);
     };
 
+    const navigate = useNavigate();
+
     const handleSignOut = () => {
         sessionStorage.removeItem("userId");
         setUser(null);
         setShowDropdown(false);
+        navigate("/");
     };
 
     useEffect(() => {
@@ -88,38 +93,29 @@ const Header = () => {
       </Link>
 
       {user ? (
-        <div className="relative">
-        <button
-            onClick={toggleDropdown}
-            className="lg:flex items-center gap-6 text-md uppercase"
-        >
-            <span>{user.name}</span>
-        </button>
-        {showDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded shadow-lg">
-            <button
-                onClick={handleSignOut}
-                className="w-full text-left px-4 py-2 hover:bg-gray-200"
-            >
-                Sign Out
-            </button>
-            </div>
-        )}
-        </div>
-        ) : (
         <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
-        <HeaderLink to="/login">{t("login")}</HeaderLink>
-        <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
+        <UserDropdown userName={user.name} onSignOut={handleSignOut} />
         <button onClick={toggleDarkMode} className="ml-2">
-                    {darkMode ? (
-                        <MdOutlineLightMode size={28} />
-                    ) : (
-                        <MdDarkMode size={28} />
-                    )}
-                </button>
+            {darkMode ? (
+              <MdOutlineLightMode size={28} />
+            ) : (
+              <MdDarkMode size={28} />
+            )}
+          </button>
         </div>
-        )}
-
+      ) : (
+        <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
+          <HeaderLink to="/login">{t("login")}</HeaderLink>
+          <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
+          <button onClick={toggleDarkMode} className="ml-2">
+            {darkMode ? (
+              <MdOutlineLightMode size={28} />
+            ) : (
+              <MdDarkMode size={28} />
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
