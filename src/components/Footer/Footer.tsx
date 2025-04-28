@@ -91,9 +91,9 @@ const Footer = () => {
                         <span className="font-afacad">©</span> SOS Miau
                     </h1>
                     <div className="flex justify-evenly gap-4">
-                        <FaFacebook size={20} />
-                        <FaInstagram size={20} />
-                        <FaSquareXTwitter size={20} />
+                        <FaFacebook data-testid="facebook-icon" size={20} />
+                        <FaInstagram data-testid="instagram-icon" size={20} />
+                        <FaSquareXTwitter data-testid="twitter-icon" size={20} />
                     </div>
                     <LanguageSwitcher />
                 </footer>
