@@ -28,8 +28,8 @@
     left: 50%;
     transform: translateX(-50%);
     font-weight: 800;
-    font-size: 30px;
-    color: yellow;
+    font-size: 40px;
+    color: white;
     -webkit-text-stroke: 1px black; /* Border thickness and color */
     position: absolute;
 }

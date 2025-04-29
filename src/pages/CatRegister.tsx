@@ -53,17 +53,17 @@ const CatRegister = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        let imageUrl = "";
+        let photo_url = "";
 
         if (catImageFile) {
           const storageRef = ref(storage, `cats/${Date.now()}_${catImageFile.name}`);
           const snapshot = await uploadBytes(storageRef, catImageFile);
-          imageUrl = await getDownloadURL(snapshot.ref);
+          photo_url = await getDownloadURL(snapshot.ref);
         }
       
         const payload = {
           ...formData,
-          imageUrl,           
+          photo_url,           
         };
       
         try {
@@ -110,17 +110,14 @@ const CatRegister = () => {
                         <InputField name="name" value={formData.name} onChange={handleChange} required />
                     </div>
                     <div>
-                        <Label>{t("cat_register.birthday")}</Label>
-                        <InputField
-                            name="birthday"
-                            type="text"
-                            value={formData.birthday}
-                            onChange={handleChange}
-                            onFocus={(e) => (e.target.type = "date")}
-                            onBlur={(e) => (e.target.type = "text")}
-                            placeholder="    /    /    "
-                            required
-                        />
+                    <Label>{t("cat_register.birthday")}</Label>
+                    <InputField
+                        name="birthday"
+                        type="date"
+                        value={formData.birthday}
+                        onChange={handleChange}
+                        required
+                    />
                     </div>
 
                     <div>
@@ -164,7 +161,7 @@ const CatRegister = () => {
                             onChange={handleChange}
                             onFocus={(e) => (e.target.type = "date")}
                             onBlur={(e) => (e.target.type = "text")}
-                            placeholder="    /    /    "
+                            placeholder=""
                         />
                     </div>
 

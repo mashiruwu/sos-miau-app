@@ -30,7 +30,7 @@ const Signup = () => {
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+        // e.preventDefault();
       
         if (formData.password !== formData.confirmPassword) {
           alert(t("signup.password_mismatch"));
@@ -44,7 +44,6 @@ const Signup = () => {
         }
 
         try {
-          // 1️⃣ Signup
           const signupRes = await fetch("http://localhost:3000/adopter/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
