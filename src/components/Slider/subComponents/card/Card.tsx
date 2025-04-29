@@ -7,6 +7,7 @@ interface CardProps {
 }
 
 export function Card({ cat }: CardProps){
+    console.log("🔗  cat.photo_url:", cat.photo_url);
 
     return (
         <>
