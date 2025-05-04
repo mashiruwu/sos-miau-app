@@ -15,7 +15,7 @@ const Signup = () => {
         surname: "",
         cpf: "",
         phone: "",
-        birthdate: "",
+        birthday: "",
         hasProtectionScreen: "",
         email: "",
         password: "",
@@ -24,34 +24,67 @@ const Signup = () => {
         complement: "",
     });
 
+    const [error, setError] = useState({
+        weakpassword: "",
+        passwordmissmatch: "",
+        email: "",
+        cpf: "",
+        phone: "",
+        birthday: "",
+    });
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        // e.preventDefault();
+        e.preventDefault();
+
+        setError({
+            weakpassword: "",
+            passwordmissmatch: "",
+            email: "",
+            cpf: "",
+            phone: "",
+            birthday: "",
+        })
       
         if (formData.password !== formData.confirmPassword) {
-          alert(t("signup.password_mismatch"));
+          //alert(t("signup.password_mismatch"));
+            setError((prev) => ({
+            ...prev,
+            passwordmissmatch: "senhas não são iguais"
+            }));
           return;
         }
       
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formData.password)) {
-            alert(t("signup.weak_password")); 
+            //alert(t("signup.weak_password"));
+            setError((prev) => ({
+                ...prev,
+                weakpassword: "senha fraca"
+            }));
             return;
         }
-
+        
         try {
           const signupRes = await fetch("http://localhost:3000/adopter/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
           });
-      
+
+          const result = await signupRes.json();
+
           if (!signupRes.ok) {
             console.error("Signup failed:", signupRes.status);
+            setError((prev) => ({
+                ...prev,
+                ...result.errors
+            }));
+            console.log(result.errors)
             return;
           }
       
@@ -83,7 +116,7 @@ const Signup = () => {
           localStorage.setItem("token", loginData.token);
           sessionStorage.setItem("userId", loginData.user.id);
       
-          window.location.href = "/";
+          //window.location.href = "/";
         } catch (error) {
           console.error("Erro no handleSubmit:", error);
         }
@@ -136,19 +169,21 @@ const Signup = () => {
                                 placeholder="___.___.___-__"
                                 // required
                             />
+                        <p className={"text-red-400 " + (error.cpf ? "" : "hidden")}>❗{error.cpf} </p>
                         </div>
                         <div className="col-span-2">
-                            <Label>{t("signup.birthdate")}</Label>
+                            <Label>{t("Birthday")}</Label>
                             <InputField
                                 type="text"
-                                name="birthdate"
-                                value={formData.birthdate}
+                                name="birthday"
+                                value={formData.birthday}
                                 onChange={handleChange}
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
                                 placeholder="__/__/____"
                                 // required
                             />
+                        <p className={"text-red-400 " + (error.birthday ? "" : "hidden")}>❗{error.birthday} </p>
                         </div>
 
                         <div className="col-span-2">
@@ -184,6 +219,7 @@ const Signup = () => {
                                 placeholder="(XX) XXXXX-XXXX"
                                 // required
                             />
+                            <p className={"text-red-400 " + (error.phone ? "" : "hidden")}>❗{error.phone}</p>
                         </div>
                         <div className="col-span-2">
                             <Label>{t("signup.email")}</Label>
@@ -195,6 +231,7 @@ const Signup = () => {
                                 placeholder="Digite seu email"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.email ? "" : "hidden")}>❗{error.email}</p>
                         </div>
 
                         <div className="mt-4 col-span-2">
@@ -238,6 +275,7 @@ const Signup = () => {
                                 placeholder="Digite sua senha"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.weakpassword ? "" : "hidden")}>❗{error.weakpassword}</p>
                         </div>
                         <div>
                             <Label>{t("signup.confirm_password")}</Label>
@@ -249,6 +287,7 @@ const Signup = () => {
                                 placeholder="Confirme sua senha"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.passwordmissmatch ? "" : "hidden")}>❗{error.passwordmissmatch}</p>
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
