@@ -116,7 +116,7 @@ const Signup = () => {
           localStorage.setItem("token", loginData.token);
           sessionStorage.setItem("userId", loginData.user.id);
       
-          //window.location.href = "/";
+          window.location.href = "/";
         } catch (error) {
           console.error("Erro no handleSubmit:", error);
         }
