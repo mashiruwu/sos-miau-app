@@ -70,9 +70,16 @@ exports.createAdopter = async (req, res) => {
     const adopterRef = db.collection('adopters').doc();
     adopterData.id = adopterRef.id;
 
-    await adopterRef.set(adopterData);
+    let adopter = {
+      adoptions: [],
+      dislikes: [],
+      likes: [],
+      ...adopterData
+    }
 
-    res.status(201).json(adopterData);
+    await adopterRef.set(adopter);
+
+    res.status(201).json(adopter);
 
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -218,7 +218,6 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                 setIndex((prevIndex) => {
                     const newIndex = prevIndex + 1;
                     if (lista.length - newIndex === 0) {
-                        console.log(1);
                         setOpacity(0);
 
                         setTimeout(() => {
