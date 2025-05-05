@@ -3,6 +3,7 @@ const db = admin.firestore();
 require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
+const Adopter = require('../models/adopterModel');
 
 function validateAdopterData(data) {
   const errors = {};
@@ -60,6 +61,7 @@ exports.createAdopter = async (req, res) => {
     // Step 3: Merge and respond if any errors
     const combinedErrors = { ...validationErrors, ...duplicateErrors };
 
+
     if (Object.keys(combinedErrors).length > 0) {
       return res.status(400).json({ errors: combinedErrors });
     }
@@ -68,10 +70,9 @@ exports.createAdopter = async (req, res) => {
     const adopterRef = db.collection('adopters').doc();
     adopterData.id = adopterRef.id;
 
-    const adopter = new Adopter(adopterData);
-    await adopterRef.set(adopter);
+    await adopterRef.set(adopterData);
 
-    res.status(201).json(adopter);
+    res.status(201).json(adopterData);
 
   } catch (error) {
     res.status(500).json({ error: error.message });
