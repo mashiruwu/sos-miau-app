@@ -88,8 +88,7 @@ const Signup = () => {
             return;
           }
       
-          const newUser = await signupRes.json();
-          console.log("Signup successful:", newUser);
+          console.log("Signup successful:", result);
       
           const loginRes = await fetch("http://localhost:3000/adopter/login", {
             method: "POST",
@@ -107,7 +106,7 @@ const Signup = () => {
       
           const loginData = await loginRes.json();
           console.log("Login response:", loginData);
-      
+          
           if (!loginData.token || !loginData.user?.id) {
             console.error("Resposta de login inválida", loginData);
             return;
@@ -115,7 +114,7 @@ const Signup = () => {
       
           localStorage.setItem("token", loginData.token);
           sessionStorage.setItem("userId", loginData.user.id);
-      
+          
           window.location.href = "/";
         } catch (error) {
           console.error("Erro no handleSubmit:", error);
