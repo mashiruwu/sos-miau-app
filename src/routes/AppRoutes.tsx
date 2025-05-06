@@ -14,6 +14,8 @@ import AdoptedCats from "../pages/AdoptedCats";
 import CatRegister from "../pages/CatRegister";
 import UserSettings from "../pages/UserSettings";
 import RegisteredCats from "../pages/RegisteredCats";
+import Matches from "../pages/Matches";
+import CatsInterestList from "../pages/CatsInterestList";
 
 export const AppRoutes = () => {
     return (
@@ -35,6 +37,8 @@ export const AppRoutes = () => {
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
                     <Route path="/catregister" element={<CatRegister />} />
                     <Route path="/usersettings" element={<UserSettings />} />
+                    <Route path="/matches" element={<Matches />} />
+                    <Route path="/interest" element={<CatsInterestList />} />
                     <Route
                         path="/registeredcats"
                         element={<RegisteredCats />}

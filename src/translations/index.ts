@@ -226,6 +226,26 @@ const resources = {
                     amora: "Amora lived in a vacant lot and was seen caring for other abandoned kittens, even though she wasn’t their mother. With her protective instinct, she won over everyone at the shelter. She now lives with other rescued cats and continues to be a loving mama.",
                 },
             },
+            matches: {
+                title: "Matches",
+                name: "Name",
+                adopter_name: "Adopter",
+                match_date: "Match Date"
+            },
+            cats_interest: {
+                title: "Adoption Candidates",
+                name: "Name",
+                gender: "Gender",
+                neutered: "Neutered",
+                birthdate: "Birth Date",
+                number: "Interested",
+                analysis: "Analysis",
+                yes: "Yes",
+                no: "No"
+            },
+            likes: {
+                like: "Likes"
+            },
             user_settings: {
                 title: "User Settings",
                 description: "Update your personal information below.",
@@ -470,6 +490,26 @@ const resources = {
                     lily: "Lily foi salva de uma área de risco de alagamento. Estava molhada, com frio e muita fome. Foi rapidamente acolhida e se recuperou com o apoio da equipe de voluntários. Hoje, tem um lar amoroso e adora acordar seus humanos com miados matinais pedindo petiscos.",
                     amora: "Amora vivia em um terreno baldio e era vista cuidando de outros gatinhos abandonados, mesmo não sendo a mãe deles. Com seu instinto protetor, conquistou a todos no abrigo. Hoje vive com outros gatinhos resgatados e continua sendo uma mamãe amorosa.",
                 },
+            },
+            matches: {
+                title: "Matches",
+                name: "Nome",
+                adopter_name: "Adotante",
+                match_date: "Data do Match"
+            },
+            cats_interest: {
+                title: "Gatos com Interessados",
+                name: "Nome",
+                gender: "Gênero",
+                neutered: "Castrado",
+                birthdate: "D. de Aniversário",
+                number: "Interessados",
+                analysis: "Análise",
+                yes: "Sim",
+                no: "Não"
+            },
+            likes: {
+                like: "Curtidas"
             },
             user_settings: {
                 title: "Configurações do Usuário",
