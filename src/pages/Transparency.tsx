@@ -16,11 +16,11 @@ export function TransparencyPage() {
 
     return (
         <>
-            <h1 className="text-5xl text-center mb-10 font-tiny text-primary uppercase">
+            <h1 className="text-5xl text-center mb-10 font-tiny text-secondary uppercase">
                 {t("transparency.title")}
             </h1>
-            <div className="flex justify-between items-center max-sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15 font-afacad text-xl text-primary">
-                <div className="w-60 h-60 rounded-full overflow-visible p-0">
+            <div className="flex justify-between items-center max-sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15 font-afacad text-xl text-secondary">
+                <div className="w-60 h-60 bg-amber-300 rounded-full"></div>
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={100} height={100}>
                         <Pie
@@ -37,7 +37,6 @@ export function TransparencyPage() {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-
                 <div className="w-3/5">
                     <h2>VALOR ARRECADADO EM FEV/25: R$ 22.579,43</h2>
                     <br></br>
@@ -78,7 +77,7 @@ export function TransparencyPage() {
                 </div>
             </div>
 
-            <h1 className="text-4xl mb-5 font-tiny text-primary uppercase">
+            <h1 className="text-4xl mb-5 font-tiny text-secondary uppercase">
                 {t("transparency.reports.title")}
             </h1>
 
@@ -109,11 +108,11 @@ export function TransparencyPage() {
                 </button>
             </div>
 
-            <h1 className="text-4xl mb-5 font-tiny text-primary uppercase">
+            <h1 className="text-4xl mb-5 font-tiny text-secondary uppercase">
                 {t("transparency.partnerships.title")}
             </h1>
 
-            <p className="font-afacad text-xl pb-10 text-primary">
+            <p className="font-afacad text-xl pb-10 text-secondary">
                 {t("transparency.partnerships.description")}
             </p>
         </>
