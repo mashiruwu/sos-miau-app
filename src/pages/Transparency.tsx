@@ -20,7 +20,7 @@ export function TransparencyPage() {
                 {t("transparency.title")}
             </h1>
             <div className="flex justify-between items-center max-sm:flex-col max-md:flex-row max-lg:flex-row max-xl:flex-row mb-15 font-afacad text-xl text-secondary">
-                <div className="w-60 h-60 bg-amber-300 rounded-full"></div>
+                <div className="w-60 h-60 rounded-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart width={100} height={100}>
                         <Pie
@@ -74,6 +74,7 @@ export function TransparencyPage() {
                         {item.value}% – {item.name}
                         </p>
                     ))}
+                </div>
             </div>
 
             <h1 className="text-4xl mb-5 font-tiny text-secondary uppercase">
