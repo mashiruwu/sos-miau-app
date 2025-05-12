@@ -1,86 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import catIcon from "../../assets/cat_icon_registered.png";
 import EditCatModal from "./EditCatModal/EditCatModal";
 import { Gato } from "../../types/types";
 import DeleteCatModal from "./DeleteCatModal/DeleteCatModal";
-
-const initialGatos: Gato[] = [
-    {
-        nome: "Gato 1",
-        genero: "F",
-        cadastro: "Sim",
-        nascimento: "21/03/2013",
-        raca: "SRD",
-        adotado: "Não",
-    },
-    {
-        nome: "Gato 2",
-        genero: "F",
-        cadastro: "Sim",
-        nascimento: "21/03/2013",
-        raca: "American Curl",
-        adotado: "Não",
-    },
-    {
-        nome: "Gato 3",
-        genero: "F",
-        cadastro: "Sim",
-        nascimento: "21/03/2013",
-        raca: "Siames",
-        adotado: "Sim",
-    },
-    {
-        nome: "Gato 4",
-        genero: "F",
-        cadastro: "Não",
-        nascimento: "21/03/2013",
-        raca: "SRD",
-        adotado: "Não",
-    },
-    {
-        nome: "Gato 5",
-        genero: "F",
-        cadastro: "Sim",
-        nascimento: "21/03/2013",
-        raca: "SRD",
-        adotado: "Não",
-    },
-    {
-        nome: "Gato 6",
-        genero: "F",
-        cadastro: "Não",
-        nascimento: "21/03/2013",
-        raca: "Sphinx",
-        adotado: "Sim",
-    },
-    {
-        nome: "Gato 7",
-        genero: "F",
-        cadastro: "Sim",
-        nascimento: "21/03/2013",
-        raca: "SRD",
-        adotado: "Não",
-    },
-    {
-        nome: "Gato 8",
-        genero: "F",
-        cadastro: "Não",
-        nascimento: "21/03/2013",
-        raca: "SRD",
-        adotado: "Não",
-    },
-];
+import { Link } from "react-router-dom";
 
 const TableRegisteredCats = () => {
-    const [gatos, setGatos] = useState<Gato[]>(initialGatos);
+    const [gatos, setGatos] = useState<Gato[]>([]);
     const [selectedCat, setSelectedCat] = useState<Gato | null>(null);
     const [catToDelete, setCatToDelete] = useState<Gato | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const handleAdocaoChange = (index: number, value: string) => {
+    useEffect(() => {
+        const getCats = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/donorOng/" + sessionStorage.getItem("userId"), {
+                  method: "GET",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+
+                if (!response.ok) {
+                  console.error("Failed to find Cats");
+                  return;
+                }
+
+                const data = await response.json();
+                console.log(data.cats_available)
+
+                setGatos(
+                    // ...(data.cats_available || []),
+                    // ...(data.cats_adopted   || []),
+                    data.cats_available
+                  );    
+              } catch (error) {
+                console.error("Error submitting form:", error);
+              }
+        }
+        getCats();
+
+      }, []);
+
+      
+    const handleAdocaoChange = (index: number, value: boolean) => {
         const updatedGatos = [...gatos];
-        updatedGatos[index].adotado = value;
+        updatedGatos[index].adopted = value;
         setGatos(updatedGatos);
     };
 
@@ -103,9 +69,9 @@ const TableRegisteredCats = () => {
 
     const filteredGatos = gatos.filter(
         (gato) =>
-            gato.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            gato.raca.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            gato.adotado.toLowerCase().includes(searchTerm.toLowerCase())
+            gato.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            gato.breed.toLowerCase().includes(searchTerm.toLowerCase()) 
+            // gato.adopted.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -127,6 +93,9 @@ const TableRegisteredCats = () => {
                         🔍
                     </span>
                 </div>
+                <Link to="/catregister" className="relative right-3 mb-4 text-gray-400">
+                        ADD
+                    </Link>
             </div>
 
             <table className="w-full table-auto border-collapse overflow-hidden text-sm">
@@ -156,18 +125,18 @@ const TableRegisteredCats = () => {
                                         className="rounded-full w-10 h-10"
                                     />
                                 </td>
-                                <td className="p-3">{gato.nome}</td>
-                                <td className="p-3">{gato.genero}</td>
-                                <td className="p-3">{gato.cadastro}</td>
-                                <td className="p-3">{gato.nascimento}</td>
-                                <td className="p-3">{gato.raca}</td>
+                                <td className="p-3">{gato.name}</td>
+                                <td className="p-3">{gato.gender}</td>
+                                <td className="p-3">{gato.id}</td>
+                                <td className="p-3">{gato.birthday}</td>
+                                <td className="p-3">{gato.breed}</td>
                                 <td className="p-3">
                                     <select
-                                        value={gato.adotado}
+                                        value={gato.adopted}
                                         onChange={(e) =>
                                             handleAdocaoChange(
                                                 index,
-                                                e.target.value as "Sim" | "Não"
+                                                e.target.value === "Sim" 
                                             )
                                         }
                                         className="bg-transparent border-none focus:outline-none"

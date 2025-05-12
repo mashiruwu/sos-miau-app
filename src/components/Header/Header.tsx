@@ -107,6 +107,9 @@ const Header = () => {
         <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
           <HeaderLink to="/login">{t("login")}</HeaderLink>
           <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
+          <span>|</span>
+          <HeaderLink to="/loginOng">É uma ONG?</HeaderLink>
+
           <button onClick={toggleDarkMode} className="ml-2">
             {darkMode ? (
               <MdOutlineLightMode size={28} />
