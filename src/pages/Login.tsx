@@ -85,6 +85,11 @@ const Login = () => {
                             />
                         </div>
                         <SubmitButton>{t("loginPage.submit")}</SubmitButton>
+                        <p className="text-left">
+                            <a href="/forgot-password" className="text-blue-500 hover:underline">
+                                {t("loginPage.forgot_password")}
+                            </a>
+                        </p>
                     </div>
                 </form>
             </div>
