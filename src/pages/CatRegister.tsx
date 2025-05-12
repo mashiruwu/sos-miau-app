@@ -27,7 +27,10 @@ export const storage = getStorage(app);
 const CatRegister = () => {
     const { t } = useTranslation();
 
+    
+
     const [formData, setFormData] = useState({
+        owner_id: sessionStorage.getItem("userId"),
         name: "",
         gender: "",
         race: "",
@@ -73,13 +76,15 @@ const CatRegister = () => {
             body: JSON.stringify(payload),
           });
 
-        if (!response.ok) {
+        if (!response.ok) {                              
             console.error("Signup failed:", response.status);
             return;
         }
 
         const newCat = await response.json();
         console.log("Form data submitted:", newCat);
+
+        window.location.href = `/registeredcats`;
 
 
         } catch (err) {

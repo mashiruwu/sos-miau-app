@@ -19,6 +19,8 @@ const Signup = () => {
         foundation_date: "",
         description: "",
         socials: [""],
+        cats_available: [""],
+        cats_adopted: [""],
         email: "",
         password: "",
         confirmPassword: "",
@@ -133,7 +135,7 @@ const Signup = () => {
                         {t("signup.description")}
                     </p>
                     <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div className="sm:col-span-2 lg:col-span-1">
+                        <div className="col-span-2">
                             <Label>{t("signup.name")}</Label>
                             <InputField
                                 type="name"
@@ -146,7 +148,7 @@ const Signup = () => {
                         </div>
 
                         <div className="col-span-2">
-                            <Label>{t("signup.cnpj")}</Label>
+                            <Label>CNPJ</Label>
                             <InputField
                                 type="text"
                                 name="cnpj"
@@ -211,17 +213,16 @@ const Signup = () => {
                         </div>
 
                         <div className="col-span-2">
-                            <Label>{t("signup.description")}</Label>
+                            <Label>Descriçao</Label>
                             <InputField
                                 type="text"
-                                name="complement"
+                                name="description"
                                 value={formData.description}
                                 onChange={handleChange}
                                 placeholder="Fale sobre a ONG"
                                 // required
                             />
                         </div>
-
                         <div>
                             <Label>{t("signup.password")}</Label>
                             <InputField
@@ -249,7 +250,7 @@ const Signup = () => {
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
                 </form>
-            </div>
+            </div> 
 
             {/* Image Section */}
             <div className="w-full lg:w-1/3">

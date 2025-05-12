@@ -1,6 +1,7 @@
 class Cat {
     constructor({
       id,
+      owner_id,
       name,
       gender,
       breed,
@@ -18,6 +19,7 @@ class Cat {
       adoption_date = null,
     } = {}) {
       this.id = id;
+      this.owner_id = owner_id
       this.name = name;
       this.gender = gender;
       this.breed = breed;

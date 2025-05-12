@@ -3,6 +3,7 @@ const router = express.Router();
 const donorOngController = require('../controllers/donorOngController');
 
 router.post('/', donorOngController.createDonorOng);
+router.post('/login', donorOngController.loginDonorOng);
 router.get('/:id', donorOngController.getDonorOng);
 router.put('/:id', donorOngController.updateDonorOng);
 router.delete('/:id', donorOngController.deleteDonorOng);

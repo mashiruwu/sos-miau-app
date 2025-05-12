@@ -7,8 +7,10 @@ import AdoptionPage from "../pages/Adoption";
 import { TransparencyPage } from "../pages/Transparency";
 import AvailableCats from "../pages/AvailableCats";
 import Signup from "../pages/Signup";
+import SignupOng from "../pages/SignUpOng";
 import HelpPage from "../pages/Help";
 import Login from "../pages/Login";
+import LoginOng from "../pages/LoginOng";
 import Rescue from "../pages/Rescue";
 import AdoptedCats from "../pages/AdoptedCats";
 import CatRegister from "../pages/CatRegister";
@@ -30,7 +32,9 @@ export const AppRoutes = () => {
                     <Route path="/cats" element={<AvailableCats />} />
                     <Route path="/help" element={<HelpPage />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/signupOng" element={<SignupOng />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/loginOng" element={<LoginOng />} />
                     <Route path="/rescue" element={<Rescue />} />
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
                     <Route path="/catregister" element={<CatRegister />} />
