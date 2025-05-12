@@ -1,16 +1,86 @@
 const admin = require('firebase-admin');
 const db = admin.firestore();
+require('dotenv').config();
+
+const jwt = require('jsonwebtoken');
+const Adopter = require('../models/adopterModel');
+
+function validateAdopterData(data) {
+  const errors = {};
+
+  if (!data.name || typeof data.name !== 'string') {
+    errors.name = 'Nome é obrigatório e deve ser uma string.';
+  }
+
+  if (!data.surname || typeof data.surname !== 'string') {
+    errors.surname = 'Sobrenome é obrigatório e deve ser uma string.';
+  }
+
+  if (!data.cpf || !/^\d{11}$/.test(data.cpf)) {
+    errors.cpf = 'CPF deve conter 11 dígitos numéricos.';
+  }
+
+  if (!data.email || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data.email)) {
+    errors.email = 'Email inválido.';
+  }
+
+  if (!data.password || data.password.length < 8) {
+    errors.password = 'Senha deve conter no mínimo 8 caracteres.';
+  }
+
+  if (!data.phone || !/^\d{10,11}$/.test(data.phone)) {
+    errors.phone = 'Telefone inválido.';
+  }
+
+  if (!data.birthday || isNaN(Date.parse(data.birthday))) {
+    errors.birthday = 'Data de nascimento inválida.';
+  }
+
+  return errors;
+}
 
 exports.createAdopter = async (req, res) => {
   try {
     const adopterData = req.body;
-    const adopterRef = db.collection('adopters').doc();
 
+    // Step 1: Validation
+    const validationErrors = validateAdopterData(adopterData); // returns an object now
+
+    // Step 2: Duplicate checks
+    const [emailSnap, cpfSnap, phoneSnap] = await Promise.all([
+      db.collection('adopters').where('email', '==', adopterData.email).get(),
+      db.collection('adopters').where('cpf', '==', adopterData.cpf).get(),
+      db.collection('adopters').where('phone', '==', adopterData.phone).get(),
+    ]);
+
+    const duplicateErrors = {};
+    if (!emailSnap.empty) duplicateErrors.email = 'Email já cadastrado.';
+    if (!cpfSnap.empty) duplicateErrors.cpf = 'CPF já cadastrado.';
+    if (!phoneSnap.empty) duplicateErrors.phone = 'Telefone já cadastrado.';
+
+    // Step 3: Merge and respond if any errors
+    const combinedErrors = { ...validationErrors, ...duplicateErrors };
+
+
+    if (Object.keys(combinedErrors).length > 0) {
+      return res.status(400).json({ errors: combinedErrors });
+    }
+
+    // Create adopter
+    const adopterRef = db.collection('adopters').doc();
     adopterData.id = adopterRef.id;
 
+    let adopter = {
+      adoptions: [],
+      dislikes: [],
+      likes: [],
+      ...adopterData
+    }
 
-    await adopterRef.set(adopterData);
-    res.status(201).json(adopterData);
+    await adopterRef.set(adopter);
+
+    res.status(201).json(adopter);
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -69,26 +139,39 @@ exports.loginAdopter = async (req, res) => {
     if (querySnapshot.empty) {
       return res.status(404).json({ error: 'User not found' });
     }
-
-    if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0];
-      const userId = doc.id;
-
-      // Set a cookie named 'userId'
-      res.cookie('userId', userId, {
-        httpOnly: true, // Helps mitigate XSS attacks by not exposing the cookie to client-side JavaScript.
-        secure: process.env.NODE_ENV !== 'development', // Ensure the cookie is sent only over HTTPS in production.
-        sameSite: 'strict', // Helps prevent CSRF attacks.
-      });
+    const doc = querySnapshot.docs[0];
+    const userId = doc.id;
 
 
-      return res.status(200).json(doc.data());
+    if (!process.env.JWT_SECRET) {
+      throw new Error('Missing JWT_SECRET env var');
     }
 
+
+    const token = jwt.sign(
+      { id: userId, email: userEmail },   
+      process.env.JWT_SECRET,           
+      { expiresIn: process.env.JWT_EXPIRES_IN || '1d' } 
+    );
+
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+    });
+
+    return res.status(200).json({
+      message: 'Login successful',
+      token,
+      user: doc.data()
+    });
+    
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
 };
+
 exports.avaliableCats = async (req, res) => {
   try {
     const adopterId = req.params.id;

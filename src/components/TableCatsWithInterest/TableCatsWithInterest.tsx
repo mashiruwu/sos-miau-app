@@ -1,10 +1,12 @@
 import catIcon from "../../assets/cat_icon_registered.png";
 import { useTranslation } from "react-i18next";
 import { TbTableShortcut } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
 
 const gatos = [
     {
+        id: 1,
         nome: "Gato 1",
         genero: "F",
         castrado: "Sim",
@@ -12,6 +14,7 @@ const gatos = [
         interested: "2",
     },
     {
+        id: 2,
         nome: "Gato 2",
         genero: "F",
         castrado: "Sim",
@@ -19,6 +22,7 @@ const gatos = [
         interested: "1",
     },
     {
+        id: 3,
         nome: "Gato 3",
         genero: "F",
         castrado: "Sim",
@@ -26,6 +30,7 @@ const gatos = [
         interested: "3",
     },
     {
+        id: 4,
         nome: "Gato 4",
         genero: "F",
         castrado: "Não",
@@ -33,6 +38,7 @@ const gatos = [
         interested: "2",
     },
     {
+        id: 5,
         nome: "Gato 5",
         genero: "F",
         castrado: "Sim",
@@ -40,6 +46,7 @@ const gatos = [
         interested: "3",
     },
     {
+        id: 6,
         nome: "Gato 6",
         genero: "F",
         castrado: "Não",
@@ -47,6 +54,7 @@ const gatos = [
         interested: "1",
     },
     {
+        id: 7,
         nome: "Gato 7",
         genero: "F",
         castrado: "Sim",
@@ -54,6 +62,7 @@ const gatos = [
         interested: "1",
     },
     {
+        id: 8,
         nome: "Gato 8",
         genero: "F",
         castrado: "Não",
@@ -65,11 +74,10 @@ const gatos = [
 const TableCatsWithInterest = () => {
     const navigate = useNavigate();
 
-    //trocar destino por página de perfil do gatinho
-    const handleClick = () => {
-      navigate("/destino"); 
-    };
-  
+    // const handleClick = () => {
+    //     navigate("/destino");
+    // };
+
     const { t } = useTranslation();
 
     return (
@@ -121,7 +129,11 @@ const TableCatsWithInterest = () => {
                             <td className="p-3">{gato.castrado}</td>
                             <td className="p-3">{gato.nascimento}</td>
                             <td className="p-3">{gato.interested}</td>
-                            <td onClick={handleClick} className="p-3"><TbTableShortcut /></td>
+                            <td className="p-3">
+                                <Link to={"/interest/cat/" + gato.id}>
+                                    <ExternalLink className="text-green-600 w-5 h-5 mx-auto" />
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

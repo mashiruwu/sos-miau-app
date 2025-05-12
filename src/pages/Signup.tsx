@@ -16,7 +16,7 @@ const Signup = () => {
         surname: "",
         cpf: "",
         phone: "",
-        birthdate: "",
+        birthday: "",
         hasProtectionScreen: "",
         email: "",
         password: "",
@@ -25,7 +25,7 @@ const Signup = () => {
         complement: "",
     });
 
-    const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
 
     function isValidCPF(cpf: string): boolean {
@@ -98,6 +98,16 @@ const Signup = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        setError({
+            weakpassword: "",
+            passwordmissmatch: "",
+            email: "",
+            cpf: "",
+            phone: "",
+            birthday: "",
+        })
+      
         if (formData.password !== formData.confirmPassword) {
             setError(t("signup.password_mismatch"));
             setShowErrorModal(true);
@@ -128,32 +138,61 @@ const Signup = () => {
             setShowErrorModal(true);
             return;
         }
-
+        
         try {
-          const response = await fetch("http://localhost:3000/adopter/", {
+          const signupRes = await fetch("http://localhost:3000/adopter/", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
           });
-      
-          if (!response.ok) {
-            // Handle error
-            console.error("Failed to submit");
+
+          const result = await signupRes.json();
+
+          if (!signupRes.ok) {
+            console.error("Signup failed:", signupRes.status);
+            setError((prev) => ({
+                ...prev,
+                ...result.errors
+            }));
+            console.log(result.errors)
             return;
           }
       
-          const data = await response.json();
-          console.log("Form data submitted successfully:", data);
-          navigate("/login"); 
-
+          console.log("Signup successful:", result);
+      
+          const loginRes = await fetch("http://localhost:3000/adopter/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: formData.email,
+              password: formData.password,
+            }),
+          });
+      
+          if (!loginRes.ok) {
+            console.error("Login failed:", loginRes.status);
+            return;
+          }
+      
+          const loginData = await loginRes.json();
+          console.log("Login response:", loginData);
+          
+          if (!loginData.token || !loginData.user?.id) {
+            console.error("Resposta de login inválida", loginData);
+            return;
+          }
+      
+          localStorage.setItem("token", loginData.token);
+          sessionStorage.setItem("userId", loginData.user.id);
+          
+          window.location.href = "/";
         } catch (error) {
           console.error("Error submitting form:", error);
           setError("Erro ao enviar o formulário. Tente novamente.");
           setShowErrorModal(true);
         }
       };
+      
       
 
     return (
@@ -201,13 +240,14 @@ const Signup = () => {
                                 placeholder="___.___.___-__"
                                 required
                             />
+                        <p className={"text-red-400 " + (error.cpf ? "" : "hidden")}>❗{error.cpf} </p>
                         </div>
                         <div className="col-span-2">
-                            <Label>{t("signup.birthdate")}</Label>
+                            <Label>{t("Birthday")}</Label>
                             <InputField
                                 type="text"
-                                name="birthdate"
-                                value={formData.birthdate}
+                                name="birthday"
+                                value={formData.birthday}
                                 onChange={handleChange}
                                 onFocus={(e) => {
                                     e.target.type = "date";
@@ -222,6 +262,7 @@ const Signup = () => {
                                 placeholder="__/__/____"
                                 required
                             />
+                        <p className={"text-red-400 " + (error.birthday ? "" : "hidden")}>❗{error.birthday} </p>
                         </div>
 
                         <div className="col-span-2">
@@ -257,6 +298,7 @@ const Signup = () => {
                                 placeholder="(XX) XXXXX-XXXX"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.phone ? "" : "hidden")}>❗{error.phone}</p>
                         </div>
                         <div className="col-span-2">
                             <Label>{t("signup.email")}</Label>
@@ -268,6 +310,7 @@ const Signup = () => {
                                 placeholder="Digite seu email"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.email ? "" : "hidden")}>❗{error.email}</p>
                         </div>
 
                         <div className="mt-4 col-span-2">
@@ -311,6 +354,7 @@ const Signup = () => {
                                 placeholder="Digite sua senha"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.weakpassword ? "" : "hidden")}>❗{error.weakpassword}</p>
                         </div>
                         <div>
                             <Label>{t("signup.confirm_password")}</Label>
@@ -322,6 +366,7 @@ const Signup = () => {
                                 placeholder="Confirme sua senha"
                                 required
                             />
+                            <p className={"text-red-400 " + (error.passwordmissmatch ? "" : "hidden")}>❗{error.passwordmissmatch}</p>
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>

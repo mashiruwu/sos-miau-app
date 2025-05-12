@@ -20,7 +20,6 @@ const Home = () => {
       
             if (!response.ok) {
               console.error("Failed to find Cats");
-              alert("Unable to Find Avaliable Cats")
               return;
             }
             const data = await response.json();
@@ -65,7 +64,6 @@ const Home = () => {
                       
                             if (!response.ok) {
                               console.error("Failed to find Cats");
-                              alert("Unable to Evaluate Cats")
                               return;
                             }
                 
@@ -89,7 +87,6 @@ const Home = () => {
                       
                             if (!response.ok) {
                               console.error("Failed to find Cats");
-                              alert("Unable to Evaluate Cats")
                               return;
                             }
                 

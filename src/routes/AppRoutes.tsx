@@ -16,6 +16,9 @@ import UserSettings from "../pages/UserSettings";
 import RegisteredCats from "../pages/RegisteredCats";
 import Matches from "../pages/Matches";
 import CatsInterestList from "../pages/CatsInterestList";
+import TableRegisteredUsers from "../components/TableRegisteredUsers/TableRegisteredUsers";
+import { UserLikedCats } from "../components/TableRegisteredUsers/UserLikedCats/UserLikedCats";
+import { CatProfile } from "../components/TableCatsWithInterest/CatProfile/CatProfile";
 
 export const AppRoutes = () => {
     return (
@@ -39,9 +42,18 @@ export const AppRoutes = () => {
                     <Route path="/usersettings" element={<UserSettings />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/interest" element={<CatsInterestList />} />
+                    <Route path="/interest/cat/:id" element={<CatProfile />} />
                     <Route
                         path="/registeredcats"
                         element={<RegisteredCats />}
+                    />
+                    <Route
+                        path="/registeredusers"
+                        element={<TableRegisteredUsers />}
+                    />
+                    <Route
+                        path="/userlikedcats/:id"
+                        element={<UserLikedCats />}
                     />
                 </Route>
             </Route>
