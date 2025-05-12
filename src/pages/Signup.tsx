@@ -5,6 +5,7 @@ import InputField from "../components/InputField/InputField";
 import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
+import ErrorModal from "../components/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -24,6 +25,72 @@ const Signup = () => {
         complement: "",
     });
 
+    const [error, setError] = useState<string | null>(null);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+
+    function isValidCPF(cpf: string): boolean {
+        cpf = cpf.replace(/[^\d]+/g, '');
+      
+        if (cpf.length !== 11) return false;
+      
+        if (/^(\d)\1{10}$/.test(cpf)) return false;
+      
+        let sum = 0;
+        let remainder;
+      
+        for (let i = 1; i <= 9; i++) {
+          sum += parseInt(cpf[i - 1]) * (11 - i);
+        }
+        remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        if (remainder !== parseInt(cpf[9])) return false;
+      
+        sum = 0;
+        for (let i = 1; i <= 10; i++) {
+          sum += parseInt(cpf[i - 1]) * (12 - i);
+        }
+        remainder = (sum * 10) % 11;
+        if (remainder === 10 || remainder === 11) remainder = 0;
+        if (remainder !== parseInt(cpf[10])) return false;
+      
+        return true;
+    }
+      
+    function isValidPhone(phone: string): boolean {
+        const cleaned = phone.replace(/\D/g, "");
+        return /^(\d{10}|\d{11})$/.test(cleaned); 
+    }    
+
+    function isValidBirthdate(birthdate: string): boolean {
+        const date = new Date(birthdate);
+        const now = new Date();
+    
+        if (isNaN(date.getTime())) return false; 
+    
+        const age = now.getFullYear() - date.getFullYear();
+        const monthDiff = now.getMonth() - date.getMonth();
+        const dayDiff = now.getDate() - date.getDate();
+    
+        const isOldEnough =
+            age > 18 ||
+            (age === 18 && (monthDiff > 0 || (monthDiff === 0 && dayDiff >= 0)));
+    
+        return isOldEnough && date < now;
+    }
+    
+    function formatToBR(dateString: string): string {
+        const [year, month, day] = dateString.split("-");
+        if (!year || !month || !day) return dateString;
+        return `${day}/${month}/${year}`;
+    }
+    
+    function formatToISO(dateString: string): string {
+        const [day, month, year] = dateString.split("/");
+        if (!year || !month || !day) return dateString;
+        return `${year}-${month}-${day}`;
+    }
+    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -32,13 +99,33 @@ const Signup = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
-          alert(t("signup.password_mismatch"));
+            setError(t("signup.password_mismatch"));
+            setShowErrorModal(true);
           return;
         }
       
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formData.password)) {
-            alert(t("signup.weak_password")); 
+            setError(t("signup.weak_password"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!isValidCPF(formData.cpf)) {
+            setError(t("signup.invalid_cpf"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!isValidPhone(formData.phone)) {
+            setError(t("signup.invalid_phone"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!isValidBirthdate(formData.birthdate)) {
+            setError(t("signup.age_error"));
+            setShowErrorModal(true);
             return;
         }
 
@@ -63,6 +150,8 @@ const Signup = () => {
 
         } catch (error) {
           console.error("Error submitting form:", error);
+          setError("Erro ao enviar o formulário. Tente novamente.");
+          setShowErrorModal(true);
         }
       };
       
@@ -110,7 +199,7 @@ const Signup = () => {
                                 value={formData.cpf}
                                 onChange={handleChange}
                                 placeholder="___.___.___-__"
-                                // required
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -120,10 +209,18 @@ const Signup = () => {
                                 name="birthdate"
                                 value={formData.birthdate}
                                 onChange={handleChange}
-                                onFocus={(e) => (e.target.type = "date")}
-                                onBlur={(e) => (e.target.type = "text")}
+                                onFocus={(e) => {
+                                    e.target.type = "date";
+                                    const iso = formatToISO(formData.birthdate);
+                                    setFormData({ ...formData, birthdate: iso });
+                                }}
+                                onBlur={(e) => {
+                                    e.target.type = "text";
+                                    const br = formatToBR(formData.birthdate);
+                                    setFormData({ ...formData, birthdate: br });
+                                }}
                                 placeholder="__/__/____"
-                                // required
+                                required
                             />
                         </div>
 
@@ -135,7 +232,7 @@ const Signup = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 placeholder="Digite seu endereço"
-                                // required
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -146,7 +243,7 @@ const Signup = () => {
                                 value={formData.complement}
                                 onChange={handleChange}
                                 placeholder="Digite o complemento"
-                                // required
+                                required
                             />
                         </div>
 
@@ -158,7 +255,7 @@ const Signup = () => {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="(XX) XXXXX-XXXX"
-                                // required
+                                required
                             />
                         </div>
                         <div className="col-span-2">
@@ -239,6 +336,12 @@ const Signup = () => {
                     className="w-full h-auto"
                 />
             </div>
+
+            <ErrorModal
+                isOpen={showErrorModal}
+                onClose={() => setShowErrorModal(false)}
+                message={error || ""}
+            />
         </div>
     );
 };
