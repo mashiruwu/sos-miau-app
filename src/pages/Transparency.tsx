@@ -74,7 +74,6 @@ export function TransparencyPage() {
                         {item.value}% – {item.name}
                         </p>
                     ))}
-                </div>
             </div>
 
             <h1 className="text-4xl mb-5 font-tiny text-secondary uppercase">
