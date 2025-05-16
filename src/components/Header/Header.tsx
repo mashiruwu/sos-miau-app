@@ -88,7 +88,7 @@ const Header = () => {
             <Dropdown />
             <Link
                 to="/"
-                className="font-tiny absolute  left-1/2 transform -translate-x-1/2 lg:text-5xl text-4xl text-center lg:w-fit w-full"
+                className="font-tiny absolute left-1/2 transform -translate-x-1/2 lg:text-5xl text-4xl text-center lg:w-fit w-full"
             >
                 SOS Miau
             </Link>

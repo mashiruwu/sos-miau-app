@@ -10,6 +10,7 @@ export const DefaultLayout = () => {
     const isLoginPage = location.pathname === "/login";
     const isRescuePage = location.pathname === "/rescue";
     const isAdoptedCats = location.pathname === "/adoptedcats";
+    const isLoginOng = location.pathname === "/loginOng";
 
     return (
         <>
@@ -21,7 +22,8 @@ export const DefaultLayout = () => {
                     isHome ||
                     isHelp ||
                     isRescuePage ||
-                    isAdoptedCats
+                    isAdoptedCats ||
+                    isLoginOng
                         ? ""
                         : "mt-16 lg:px-[20%] px-[10%]"
                 }

@@ -84,7 +84,8 @@ const resources = {
                 confirm_password: "Confirm Password",
                 submit: "Register",
                 password_mismatch: "Passwords do not match!",
-                weak_password: "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
+                weak_password:
+                    "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
                 invalid_cpf: "Invalid document",
                 invalid_phone: "Invalid phone",
                 age_error: "You need to be over 18 to access this website",
@@ -93,6 +94,8 @@ const resources = {
             loginPage: {
                 title: "Login",
                 description: "Access your account to adopt the miaus!",
+                loginOngDescription:
+                    "Log in to find your miaus a beautiful home!",
                 email: "Email",
                 password: "Password",
                 forgot_password: "Forgot Password",
@@ -232,7 +235,7 @@ const resources = {
                 title: "Matches",
                 name: "Name",
                 adopter_name: "Adopter",
-                match_date: "Match Date"
+                match_date: "Match Date",
             },
             cats_interest: {
                 title: "Adoption Candidates",
@@ -243,10 +246,10 @@ const resources = {
                 number: "Interested",
                 analysis: "Analysis",
                 yes: "Yes",
-                no: "No"
+                no: "No",
             },
             likes: {
-                like: "Likes"
+                like: "Likes",
             },
             user_settings: {
                 title: "User Settings",
@@ -357,15 +360,19 @@ const resources = {
                 confirm_password: "Confirme a senha",
                 submit: "Cadastrar-se",
                 password_mismatch: "As senhas não coincidem!",
-                weak_password: "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
+                weak_password:
+                    "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
                 invalid_cpf: "CPF inválido",
                 invalid_phone: "Telefone inválido",
-                age_error: "Você precisa ser maior de 18 anos para realizar cadastro neste site",
+                age_error:
+                    "Você precisa ser maior de 18 anos para realizar cadastro neste site",
                 image_alt: "Imagem de cadastro",
             },
             loginPage: {
                 title: "Entrar",
                 description: "Acesse sua conta para adotar os miaus!",
+                loginOngDescription:
+                    "Acesse sua conta para achar um lar para os miaus!",
                 email: "Email",
                 password: "Senha",
                 forgot_password: "Esqueci minha senha",
@@ -499,7 +506,7 @@ const resources = {
                 title: "Matches",
                 name: "Nome",
                 adopter_name: "Adotante",
-                match_date: "Data do Match"
+                match_date: "Data do Match",
             },
             cats_interest: {
                 title: "Gatos com Interessados",
@@ -510,10 +517,10 @@ const resources = {
                 number: "Interessados",
                 analysis: "Análise",
                 yes: "Sim",
-                no: "Não"
+                no: "Não",
             },
             likes: {
-                like: "Curtidas"
+                like: "Curtidas",
             },
             user_settings: {
                 title: "Configurações do Usuário",

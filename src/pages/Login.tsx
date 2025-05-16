@@ -22,32 +22,33 @@ const Login = () => {
         console.log("Login data submitted:", formData);
 
         try {
-            const response = await fetch("http://localhost:3000/adopter/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            });
-        
+            const response = await fetch(
+                "http://localhost:3000/adopter/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+
             if (!response.ok) {
-              // Handle error
-              console.error("Failed to submit");
-              return;
+                // Handle error
+                console.error("Failed to submit");
+                return;
             }
-            
+
             const data = await response.json();
 
             localStorage.setItem("token", data.token);
-            sessionStorage.setItem('userId', data.user.id);
+            sessionStorage.setItem("userId", data.user.id);
 
             console.log("Form data submitted successfully:", data);
             window.location.href = `/`;
-
-
-          } catch (error) {
+        } catch (error) {
             console.error("Error submitting form:", error);
-          }
+        }
     };
 
     return (
@@ -86,7 +87,10 @@ const Login = () => {
                         </div>
                         <SubmitButton>{t("loginPage.submit")}</SubmitButton>
                         <p className="text-left">
-                            <a href="/forgot-password" className="text-blue-500 hover:underline">
+                            <a
+                                href="/forgot-password"
+                                className="text-primary-hover font-bold text-sm hover:underline"
+                            >
                                 {t("loginPage.forgot_password")}
                             </a>
                         </p>
