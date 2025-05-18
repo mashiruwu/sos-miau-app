@@ -1,5 +1,12 @@
+import { useState, useEffect } from 'react';
+import useWebSocket from 'react-use-websocket';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { useTranslation } from "react-i18next";
+
+export interface ReportItem {
+    name: string;
+    value: number;
+  }
 
 const data01 = [
     { name: 'Cuidados Veterinários (consultas, vacinas, castrações, exames e emergências)', value: 45 },
@@ -7,11 +14,39 @@ const data01 = [
     { name: 'Manutenção do Abrigo (limpeza, infraestrutura e bem-estar dos resgatados)', value: 15 },
     { name: 'Campanhas de Adoção e Conscientização (eventos, materiais informativos e redes sociais)', value: 10 },
 ];
-
 const COLORS = ['#A6CEE3', '#FDBF6F', '#B2DF8A', '#FB9A99'];
 
 
 export function TransparencyPage() {
+
+    const { lastMessage, readyState } = useWebSocket('ws://localhost:3000/report', {
+        shouldReconnect: () => true,
+        retryOnError: true,
+    });
+    
+    const [data, setData] = useState<ReportItem[]>([]);
+    
+    // Whenever a WS message arrives, parse it
+    useEffect(() => {
+    if (lastMessage) {
+        try {
+        setData(JSON.parse(lastMessage.data));
+        } catch (err) {
+        console.error('Invalid WS payload', err);
+        }
+    }
+    }, [lastMessage]);
+    
+    useEffect(() => {
+        if (readyState === WebSocket.CLOSED) {
+            fetch('http://localhost:3000/report')
+            .then(r => r.json())
+            .then(setData)
+            .catch(console.error);
+        }
+    }, [readyState]);
+    
+
     const { t } = useTranslation();
 
     return (
@@ -26,11 +61,11 @@ export function TransparencyPage() {
                         <Pie
                             dataKey="value"
                             isAnimationActive={true}
-                            data={data01}
+                            data={data}
                             outerRadius="104%"
                             fill="#8884d8"
                         >
-                            {data01.map((entry, index) => (
+                            {data.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
@@ -41,7 +76,7 @@ export function TransparencyPage() {
                     <h2>VALOR ARRECADADO EM FEV/25: R$ 22.579,43</h2>
                     <br></br>
                     <h3>💰 Distribuição dos Recursos:</h3>
-                    {data01.map((item, index) => (
+                    {data.map((item, index) => (
                         <p key={index}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
