@@ -10,8 +10,9 @@ const About = () => {
             <section className="bg-primary dark:bg-secondary dark:text-white w-full mx-auto text-secondary rounded-md lg:px-10 px-4 py-10 flex lg:flex-row flex-col-reverse">
                 <div>
                     <img
-                        src={CatAbout}
-                        className="lg:visible lg:mb-0 mt-4 mx-auto"
+                    src={CatAbout}
+                    alt="Gato sobre nós"
+                    className="w-full max-w-[400px] h-auto lg:visible lg:mb-0 mt-4 mx-auto"
                     />
                 </div>
                 <div className="flex flex-col gap-5 lg:text-left text-center font-afacad text-lg">

@@ -10,6 +10,7 @@ const resources = {
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
+            ong_login: "Ong Login",
             footer: {
                 description:
                     "We are SOS MIAU, an NGO dedicated to rescuing, caring for, and responsibly adopting abandoned cats. Our work includes rescuing felines in danger, providing veterinary care, and finding loving homes for each of them. We believe that every kitten deserves love, security, and a second chance.",
@@ -65,6 +66,14 @@ const resources = {
                     "If you want to meet our cats available for adoption, contact us!",
                 see_our_available_cats: "AVAILABLE CATS",
             },
+            error: {
+                close: "Close",
+                error: "Error",
+            },
+            login_ong: {
+                not_signed: "You don't have an account?",
+                create: "Create an Account",
+            },
             signup: {
                 title: "Sign Up",
                 description: "Sign up now to adopt the miaus!",
@@ -87,6 +96,7 @@ const resources = {
                 weak_password:
                     "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
                 invalid_cpf: "Invalid document",
+                invalid_cnpj: "Invalid document",
                 invalid_phone: "Invalid phone",
                 age_error: "You need to be over 18 to access this website",
                 image_alt: "Sign up image",
@@ -251,6 +261,41 @@ const resources = {
             likes: {
                 like: "Likes",
             },
+            table_registeredcats: {
+                name: "Name",
+                gender: "Gender",
+                neutered: "Neutered",
+                birthdate: "Birthdate",
+                breed: "Breed",
+                adopted: "Adopted",
+                title: "Registered Cats",
+                nocats: "No cats found",
+                add_cat: "Add New Cat",
+                search: "Search by name, breed, adoption...",
+                registered_users: "Registered Users",
+                analysis: "Pending Analysis",
+            },
+            cat_profile: {
+                title: "Pepople Interested",
+                name: "Name",
+                protectionNet: "Protection Net",
+                email: "Email",
+                age: "Age",
+                hasSon: "Children",
+                otherPet: "Other pets",
+                approval: "Approval",
+                yes: "Yes",
+                no: "No",
+            },
+            registered_users: {
+                title: "Registered Users",
+                name: "Name",
+                protectionNet: "Protection Net",
+                email: "Email",
+                birthdate: "Birthdate",
+                likes: "Likes",
+                status: "See Likes"
+            },
             user_settings: {
                 title: "User Settings",
                 description: "Update your personal information below.",
@@ -286,6 +331,7 @@ const resources = {
             },
             login: "Entrar",
             sign_up: "Cadastrar-se",
+            ong_login: "É UMA ONG?",
             footer: {
                 description:
                     "Somos a SOS MIAU, uma ONG dedicada ao resgate, cuidado e adoção responsável de gatos em situação de abandono. Nosso trabalho inclui resgatar felinos em risco, oferecer cuidados veterinários e encontrar lares amorosos para cada um deles. Acreditamos que todo gatinho merece carinho, segurança e uma segunda chance.",
@@ -341,6 +387,14 @@ const resources = {
                     "Se você deseja conhecer nossos gatinhos disponíveis para adoção, entre em contato conosco!",
                 see_our_available_cats: "VER GATINHOS DISPONÍVEIS",
             },
+            error: {
+                close: "Fechar",
+                error: "Erro",
+            },
+            login_ong: {
+                not_signed: "Não está cadastrado?",
+                create: "Crie uma conta",
+            },
             signup: {
                 title: "Cadastro",
                 description: "Cadastre-se agora para poder adotar os miaus!",
@@ -363,6 +417,7 @@ const resources = {
                 weak_password:
                     "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
                 invalid_cpf: "CPF inválido",
+                invalid_cnpj: "CNPJ inválido",
                 invalid_phone: "Telefone inválido",
                 age_error:
                     "Você precisa ser maior de 18 anos para realizar cadastro neste site",
@@ -521,6 +576,41 @@ const resources = {
             },
             likes: {
                 like: "Curtidas",
+            },
+            table_registeredcats: {
+                name: "Nome",
+                gender: "Gênero",
+                neutered: "Castrado",
+                birthdate: "D. de Nascimento",
+                breed: "Raça",
+                adopted: "Adotado",
+                title: "Gatinhos Cadastrados",
+                nocats: "Nenhum gatinho encontrado",
+                add_cat: "Adicionar Gatinho",
+                search: "Buscar por nome, raça ou adoção...",
+                registered_users: "Usuários Cadastrados",
+                analysis: "Análise Pendente",
+            },
+            cat_profile: {
+                title: "Interessados",
+                name: "Nome",
+                protectionNet: "Rede de Proteção",
+                email: "Email",
+                age: "Idade",
+                hasSon: "Filho(s)",
+                otherPet: "Outro(s) Pet(s)",
+                approval: "Aprovação",
+                yes: "Sim",
+                no: "Não",
+            },
+            registered_users: {
+                title: "Usuários Cadastrados",
+                name: "Nome",
+                protectionNet: "Rede de Proteção",
+                email: "Email",
+                birthdate: "Aniversário",
+                likes: "Curtidas",
+                status: "Visualizar Likes"
             },
             user_settings: {
                 title: "Configurações do Usuário",

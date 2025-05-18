@@ -6,6 +6,7 @@ import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import { useNavigate } from "react-router-dom";
+import ErrorModal from "../components/ErrorModal/ErrorModal";
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -26,46 +27,47 @@ const Signup = () => {
         confirmPassword: "",
     });
 
-    const [error, setError] = useState({
-        weakpassword: "",
-        passwordmissmatch: "",
-        email: "",
-        cnpj: "",
-        phone: "",
-    });
+    const [error, setError] = useState<string | null>(null);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+
+    function isValidPhone(phone: string): boolean {
+        const cleaned = phone.replace(/\D/g, "");
+        return /^(\d{10}|\d{11})$/.test(cleaned); 
+    }    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setError({
-            weakpassword: "",
-            passwordmissmatch: "",
-            email: "",
-            cnpj: "",
-            phone: "",
-        })
+        setError("");
       
         if (formData.password !== formData.confirmPassword) {
-          //alert(t("signup.password_mismatch"));
-            setError((prev) => ({
-            ...prev,
-            passwordmissmatch: "senhas não são iguais"
-            }));
+            setError(t("signup.password_mismatch"));
+            setShowErrorModal(true);
           return;
         }
       
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formData.password)) {
-            //alert(t("signup.weak_password"));
-            setError((prev) => ({
-                ...prev,
-                weakpassword: "senha fraca"
-            }));
+            setError(t("signup.weak_password"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!isValidPhone(formData.phone)) {
+            setError(t("signup.invalid_phone"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        const cnpjRegex = /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2})$/;
+        if (!cnpjRegex.test(formData.cnpj)) {
+            setError(t("signup.invalid_cnpj"));
+            setShowErrorModal(true);
             return;
         }
         
@@ -155,9 +157,8 @@ const Signup = () => {
                                 value={formData.cnpj}
                                 onChange={handleChange}
                                 placeholder="___.___.___-__"
-                                // required
+                                required
                             />
-                        <p className={"text-red-400 " + (error.cnpj ? "" : "hidden")}>❗{error.cnpj} </p>
                         </div>
 
                         <div className="col-span-2">
@@ -168,7 +169,7 @@ const Signup = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 placeholder="Digite o endereço"
-                                // required
+                                required
                             />
                         </div>
 
@@ -180,9 +181,8 @@ const Signup = () => {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="(XX) XXXXX-XXXX"
-                                // required
+                                required
                             />
-                            <p className={"text-red-400 " + (error.phone ? "" : "hidden")}>❗{error.phone}</p>
                         </div>
 
                         <div className="col-span-2">
@@ -195,7 +195,6 @@ const Signup = () => {
                                 placeholder="Digite o email"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.email ? "" : "hidden")}>❗{error.email}</p>
                         </div>
 
                         <div className="col-span-2">
@@ -208,7 +207,7 @@ const Signup = () => {
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
                                 placeholder="__/__/____"
-                                // required
+                                required
                             />
                         </div>
 
@@ -220,7 +219,7 @@ const Signup = () => {
                                 value={formData.description}
                                 onChange={handleChange}
                                 placeholder="Fale sobre a ONG"
-                                // required
+                                required
                             />
                         </div>
                         <div>
@@ -233,7 +232,6 @@ const Signup = () => {
                                 placeholder="Digite sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.weakpassword ? "" : "hidden")}>❗{error.weakpassword}</p>
                         </div>
                         <div>
                             <Label>{t("signup.confirm_password")}</Label>
@@ -245,7 +243,6 @@ const Signup = () => {
                                 placeholder="Confirme sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.passwordmissmatch ? "" : "hidden")}>❗{error.passwordmissmatch}</p>
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
@@ -260,6 +257,12 @@ const Signup = () => {
                     className="w-full h-auto"
                 />
             </div>
+
+            <ErrorModal
+                isOpen={showErrorModal}
+                onClose={() => setShowErrorModal(false)}
+                message={error || ""}
+            />
         </div>
     );
 };

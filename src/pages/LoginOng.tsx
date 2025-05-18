@@ -44,6 +44,7 @@ const Login = () => {
 
             localStorage.setItem("token", data.token);
             sessionStorage.setItem("userId", data.user.id);
+            sessionStorage.setItem("ongId", data.user.id);
 
             console.log("Form data submitted successfully:", data);
             window.location.href = `/registeredcats`;
@@ -89,12 +90,12 @@ const Login = () => {
                         <SubmitButton>{t("loginPage.submit")}</SubmitButton>
                     </div>
                     <p className="mt-4 text-center text-sm text-gray-600">
-                        Não está cadastrado?
+                        {t('login_ong.not_signed')}
                         <Link
-                            to="/signup"
+                            to="/signupOng"
                             className="text-[#153151] pl-2 font-medium hover:underline"
                         >
-                            Crie uma conta
+                        {t('login_ong.create')}
                         </Link>
                     </p>
                 </form>
