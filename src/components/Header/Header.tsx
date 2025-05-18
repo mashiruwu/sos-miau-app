@@ -6,6 +6,7 @@ import HeaderLink from "./HeaderLink/HeaderLink";
 import { useTranslation } from "react-i18next";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import OngDropdown from "../OngDropdown/OngDropdown";
 
 const Header = () => {
     const { t } = useTranslation();
@@ -43,9 +44,43 @@ const Header = () => {
         }
     };
 
+
+    const ongId = sessionStorage.getItem("ongId");
+    const [ong, setOng] = useState(null);
+
+    const getOng = async () => {
+    if (!ongId) return;
+    console.log("Fetching ONG with ID:", ongId);
+
+    try {
+        const response = await fetch(
+            `http://localhost:3000/donorOng/${ongId}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        if (!response.ok) {
+            console.error("Failed to fetch ONG");
+            return;
+        }
+
+        const data = await response.json();
+        console.log("ONG fetched successfully:", data);
+        setOng(data);
+    } catch (error) {
+        console.error("Error fetching ONG:", error);
+    }
+    };
+
     useEffect(() => {
         getUser();
-    }, [userId]);
+        getOng();
+    }, [userId, ongId]);
+
 
     const toggleDropdown = () => {
         setShowDropdown((prev) => !prev);
@@ -93,12 +128,19 @@ const Header = () => {
                 SOS Miau
             </Link>
 
-            {user ? (
+            {user || ong ? (
                 <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
-                    <UserDropdown
-                        userName={user.name}
-                        onSignOut={handleSignOut}
-                    />
+                    {ong ? (
+                        <OngDropdown
+                            ongName={ong.name}
+                            onSignOut={handleSignOut}
+                        />
+                    ) : (
+                        <UserDropdown
+                            userName={user?.name}
+                            onSignOut={handleSignOut}
+                        />
+                    )}
                     <button onClick={toggleDarkMode} className="ml-2">
                         {darkMode ? (
                             <MdOutlineLightMode size={28} />
@@ -107,12 +149,12 @@ const Header = () => {
                         )}
                     </button>
                 </div>
-            ) : (
+            ) :  (
                 <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
                     <HeaderLink to="/login">{t("login")}</HeaderLink>
                     <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
                     <span>|</span>
-                    <HeaderLink to="/loginOng">É uma ONG?</HeaderLink>
+                    <HeaderLink to="/loginOng">{t("ong_login")}</HeaderLink>
 
                     <button onClick={toggleDarkMode} className="ml-2">
                         {darkMode ? (

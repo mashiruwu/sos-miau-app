@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import catIcon from "../../assets/cat_icon_registered.png";
 import EditCatModal from "./EditCatModal/EditCatModal";
 import { Gato } from "../../types/types";
 import DeleteCatModal from "./DeleteCatModal/DeleteCatModal";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const TableRegisteredCats = () => {
+    const {t} = useTranslation();
     const [gatos, setGatos] = useState<Gato[]>([]);
     const [selectedCat, setSelectedCat] = useState<Gato | null>(null);
     const [catToDelete, setCatToDelete] = useState<Gato | null>(null);
@@ -77,14 +79,14 @@ const TableRegisteredCats = () => {
     return (
         <div className="p-8 font-afacad">
             <div className="flex justify-between items-center mb-4">
-                <h1 className="text-4xl text-primary mb-4">
-                    Gatinhos Cadastrados
+                <h1 className="text-4xl text-secondary mb-4 font-tiny">
+                    {t("table_registeredcats.title")}
                 </h1>
 
                 <div className="relative mb-4 w-full max-w-md">
                     <input
                         type="text"
-                        placeholder="Buscar por nome, raça ou adoção..."
+                        placeholder={t("table_registeredcats.search")}
                         className="w-full rounded-full pl-6 pr-10 py-2 shadow-inner border border-gray-300 focus:outline-none"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -93,21 +95,21 @@ const TableRegisteredCats = () => {
                         🔍
                     </span>
                 </div>
-                <Link to="/catregister" className="relative right-3 mb-4 text-gray-400">
-                        ADD
+                <Link to="/catregister" className="relative right-3 mb-4 text-secondary">
+                        {t("table_registeredcats.add_cat")}
                     </Link>
             </div>
 
             <table className="w-full table-auto border-collapse overflow-hidden text-sm">
                 <thead>
-                    <tr className="text-left text-primary text-lg">
+                    <tr className="text-left text-secondary text-lg">
                         <th className="p-3"> </th>
-                        <th className="p-3">Nome</th>
-                        <th className="p-3">Gênero</th>
-                        <th className="p-3">Cadastro</th>
-                        <th className="p-3">D. de Nascimento</th>
-                        <th className="p-3">Raça</th>
-                        <th className="p-3">Adotado</th>
+                        <th className="p-3">{t("table_registeredcats.name")}</th>
+                        <th className="p-3">{t("table_registeredcats.gender")}</th>
+                        <th className="p-3">{t("table_registeredcats.neutered")}</th>
+                        <th className="p-3">{t("table_registeredcats.birthdate")}</th>
+                        <th className="p-3">{t("table_registeredcats.breed")}</th>
+                        <th className="p-3">{t("table_registeredcats.adopted")}</th>
                         <th className="p-3"></th>
                     </tr>
                 </thead>
@@ -163,9 +165,9 @@ const TableRegisteredCats = () => {
                         <tr>
                             <td
                                 colSpan={8}
-                                className="text-center p-4 text-gray-400"
+                                className="text-center p-4 text-secondary"
                             >
-                                Nenhum gatinho encontrado.
+                                {t("table_registeredcats.nocats")}
                             </td>
                         </tr>
                     )}
