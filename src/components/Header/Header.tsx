@@ -7,90 +7,19 @@ import { useTranslation } from "react-i18next";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import OngDropdown from "../OngDropdown/OngDropdown";
+import { useAuth } from "../../context/AuthProvider";
 
 const Header = () => {
     const { t } = useTranslation();
-    const userId = sessionStorage.getItem("userId");
+    const { user, ong, signOut } = useAuth();
+
     const [darkMode, setDarkMode] = useState(false);
-
-    const [user, setUser] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
-
-    const getUser = async () => {
-        if (!userId) return;
-        console.log("Fetching user with ID:", userId);
-
-        try {
-            const response = await fetch(
-                `http://localhost:3000/adopter/${userId}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (!response.ok) {
-                console.error("Failed to fetch user");
-                return;
-            }
-
-            const data = await response.json();
-            console.log("User fetched successfully:", data);
-            setUser(data);
-        } catch (error) {
-            console.error("Error fetching user:", error);
-        }
-    };
-
-    const ongId = sessionStorage.getItem("ongId");
-    const [ong, setOng] = useState(null);
-
-    const getOng = async () => {
-        if (!ongId) return;
-        console.log("Fetching ONG with ID:", ongId);
-
-        try {
-            const response = await fetch(
-                `http://localhost:3000/donorOng/${ongId}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (!response.ok) {
-                console.error("Failed to fetch ONG");
-                return;
-            }
-
-            const data = await response.json();
-            console.log("ONG fetched successfully:", data);
-            setOng(data);
-        } catch (error) {
-            console.error("Error fetching ONG:", error);
-        }
-    };
-
-    useEffect(() => {
-        getUser();
-        getOng();
-    }, [userId, ongId]);
-
-    const toggleDropdown = () => {
-        setShowDropdown((prev) => !prev);
-    };
 
     const navigate = useNavigate();
 
     const handleSignOut = () => {
-        sessionStorage.removeItem("userId");
-        setUser(null);
-        sessionStorage.removeItem("ongId");
-        setOng(null);
+        signOut();
         setShowDropdown(false);
         navigate("/");
     };
@@ -100,22 +29,14 @@ const Header = () => {
         if (savedTheme === "dark") {
             document.documentElement.classList.add("dark");
             setDarkMode(true);
-        } else {
-            document.documentElement.classList.remove("dark");
-            setDarkMode(false);
         }
     }, []);
 
     const toggleDarkMode = () => {
-        const newDarkMode = !darkMode;
-        setDarkMode(newDarkMode);
-        if (newDarkMode) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        }
+        const newMode = !darkMode;
+        setDarkMode(newMode);
+        document.documentElement.classList.toggle("dark", newMode);
+        localStorage.setItem("theme", newMode ? "dark" : "light");
     };
 
     return (

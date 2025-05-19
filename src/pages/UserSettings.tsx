@@ -8,6 +8,7 @@ import { ClipLoader } from "react-spinners";
 
 const UserSettings = () => {
     const { t } = useTranslation();
+
     const [formData, setFormData] = useState({
         name: "",
         surname: "",
@@ -18,6 +19,7 @@ const UserSettings = () => {
         hasProtectionScreen: "",
         foundation_date: "",
         description: "",
+        website: "",
         cnpj: "",
     });
 
@@ -109,7 +111,6 @@ const UserSettings = () => {
 
         const requests = [];
 
-        // Requisição principal baseada no tipo de usuário
         if (userRole === "adopter") {
             requests.push(
                 fetch(`http://localhost:3000/adopter/${userId}`, {
