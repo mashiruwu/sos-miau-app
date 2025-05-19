@@ -98,6 +98,15 @@ const Login = () => {
                         {t('login_ong.create')}
                         </Link>
                     </p>
+                    <p className="mt-4 text-center text-sm text-gray-600">
+                        {t('loginPage.forgot_password_desc')}
+                        <Link
+                            to="/forgot-password"
+                            className="text-[#153151] pl-2 font-medium hover:underline"
+                        >
+                        {t('loginPage.forgot_password')}
+                        </Link>
+                    </p>
                 </form>
             </div>
 

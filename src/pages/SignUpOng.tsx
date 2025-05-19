@@ -7,6 +7,8 @@ import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
+import { auth } from "../../api/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -72,23 +74,22 @@ const Signup = () => {
         }
         
         try {
-          const signupRes = await fetch("http://localhost:3000/donorOng/", {
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const firebaseUid = userCredential.user.uid;
+
+            const backendResponse = await fetch("http://localhost:3000/donorOng/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          });
+            body: JSON.stringify({ ...formData, firebaseUid }), // adiciona o uid do Firebase
+            });
 
-          const result = await signupRes.json();
+            const result = await backendResponse.json();
 
-          if (!signupRes.ok) {
-            console.error("Signup failed:", signupRes.status);
-            setError((prev) => ({
-                ...prev,
-                ...result.errors
-            }));
-            console.log(result.errors)
+            if (!backendResponse.ok) {
+            setError(result.errors || "Erro no cadastro backend");
+            setShowErrorModal(true);
             return;
-          }
+            }
       
           console.log("Signup successful:", result);
       
@@ -118,8 +119,9 @@ const Signup = () => {
           sessionStorage.setItem("userId", loginData.user.id);
           
           window.location.href = "/";
-        } catch (error) {
-          console.error("Erro no handleSubmit:", error);
+        } catch (error: any) {
+            setError(error.message || "Erro desconhecido no Firebase");
+            setShowErrorModal(true);
         }
       };
       

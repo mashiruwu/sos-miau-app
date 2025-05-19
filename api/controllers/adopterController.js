@@ -46,7 +46,6 @@ function validateAdopterData(data) {
 exports.createAdopter = async (req, res) => {
   console.log("Received body:", req.body);
 
-
   try {
     const adopterData = req.body;
     adopterData.cpf = cpfLimpo; 
@@ -91,6 +90,7 @@ exports.createAdopter = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log({ error: error.message });
   }
 };
 
@@ -106,6 +106,7 @@ exports.getAdopter = async (req, res) => {
     res.status(200).json(doc.data());
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log({ error: error.message });
   }
 
 };
