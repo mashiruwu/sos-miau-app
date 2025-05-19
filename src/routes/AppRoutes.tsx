@@ -19,7 +19,7 @@ import RegisteredCats from "../pages/RegisteredCats";
 import Matches from "../pages/Matches";
 import CatsInterestList from "../pages/CatsInterestList";
 import TableRegisteredUsers from "../components/TableRegisteredUsers/TableRegisteredUsers";
-import { UserLikedCats } from "../components/TableRegisteredUsers/UserLikedCats/UserLikedCats";
+import { UserLikedCats } from "../pages/UserLikedCats";
 import { CatProfile } from "../components/TableCatsWithInterest/CatProfile/CatProfile";
 
 export const AppRoutes = () => {
@@ -55,10 +55,7 @@ export const AppRoutes = () => {
                         path="/registeredusers"
                         element={<TableRegisteredUsers />}
                     />
-                    <Route
-                        path="/userlikedcats/:id"
-                        element={<UserLikedCats />}
-                    />
+                    <Route path="/likes" element={<UserLikedCats />} />
                 </Route>
             </Route>
         </Routes>
