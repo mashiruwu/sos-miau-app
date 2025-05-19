@@ -73,9 +73,11 @@ const UserSettings = () => {
                     email: userData.email || "",
                     address: userData.address || "",
                     complement: userData.complement || "",
-                    hasProtectionScreen: userData.has_protection_net
-                        ? "Sim"
-                        : "Não",
+                    hasProtectionScreen:
+                        userData.hasProtectionScreen === true ||
+                        userData.hasProtectionScreen === "Sim"
+                            ? "Sim"
+                            : "Não",
                     foundation_date: userData.foundation_date || "",
                     description: userData.description || "",
                     website: userData.website || "",
