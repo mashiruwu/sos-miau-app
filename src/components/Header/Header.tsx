@@ -44,43 +44,41 @@ const Header = () => {
         }
     };
 
-
     const ongId = sessionStorage.getItem("ongId");
     const [ong, setOng] = useState(null);
 
     const getOng = async () => {
-    if (!ongId) return;
-    console.log("Fetching ONG with ID:", ongId);
+        if (!ongId) return;
+        console.log("Fetching ONG with ID:", ongId);
 
-    try {
-        const response = await fetch(
-            `http://localhost:3000/donorOng/${ongId}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+        try {
+            const response = await fetch(
+                `http://localhost:3000/donorOng/${ongId}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                console.error("Failed to fetch ONG");
+                return;
             }
-        );
 
-        if (!response.ok) {
-            console.error("Failed to fetch ONG");
-            return;
+            const data = await response.json();
+            console.log("ONG fetched successfully:", data);
+            setOng(data);
+        } catch (error) {
+            console.error("Error fetching ONG:", error);
         }
-
-        const data = await response.json();
-        console.log("ONG fetched successfully:", data);
-        setOng(data);
-    } catch (error) {
-        console.error("Error fetching ONG:", error);
-    }
     };
 
     useEffect(() => {
         getUser();
         getOng();
     }, [userId, ongId]);
-
 
     const toggleDropdown = () => {
         setShowDropdown((prev) => !prev);
@@ -149,7 +147,7 @@ const Header = () => {
                         )}
                     </button>
                 </div>
-            ) :  (
+            ) : (
                 <div className="lg:flex items-center gap-6 text-md uppercase lg:visible hidden">
                     <HeaderLink to="/login">{t("login")}</HeaderLink>
                     <HeaderLink to="/signup">{t("sign_up")}</HeaderLink>
