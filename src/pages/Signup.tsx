@@ -7,6 +7,8 @@ import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../api/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -133,20 +135,37 @@ const Signup = () => {
         }
         
         try {
-          const signupRes = await fetch("http://localhost:3000/adopter/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...formData, cpf: formData.cpf.replace(/[^\d]/g, '') }),
-          });
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
+
+            const user = userCredential.user;
+            console.log("Usuário criado no Firebase:", user.uid);
+
+            const signupRes = await fetch("http://localhost:3000/adopter/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formData,
+                    cpf: formData.cpf.replace(/[^\d]/g, ""),
+                    firebaseUid: user.uid, 
+                }),
+            });
+    
 
           const result = await signupRes.json();
 
           if (!signupRes.ok) {
             console.error("Signup failed:", signupRes.status);
-            setError((prev) => ({
-                ...prev,
-                ...result.errors
-            }));
+            if (result.errors && typeof result.errors === "object") {
+                const messages = Object.values(result.errors).join(" ");
+                setError(messages);
+            } else {
+                setError(result.message || "Erro inesperado.");
+            }
+            setShowErrorModal(true);
             console.log(result.errors)
             return;
           }
