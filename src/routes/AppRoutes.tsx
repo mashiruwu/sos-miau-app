@@ -21,6 +21,8 @@ import CatsInterestList from "../pages/CatsInterestList";
 import TableRegisteredUsers from "../components/TableRegisteredUsers/TableRegisteredUsers";
 import { UserLikedCats } from "../components/TableRegisteredUsers/UserLikedCats/UserLikedCats";
 import { CatProfile } from "../components/TableCatsWithInterest/CatProfile/CatProfile";
+import ForgotPassword from "../pages/ForgotPassword";
+import ResetPassword from "../pages/ResetPassword";
 
 export const AppRoutes = () => {
     return (
@@ -44,6 +46,8 @@ export const AppRoutes = () => {
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
                     <Route path="/catregister" element={<CatRegister />} />
                     <Route path="/usersettings" element={<UserSettings />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/interest" element={<CatsInterestList />} />
                     <Route path="/interest/cat/:id" element={<CatProfile />} />
