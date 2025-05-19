@@ -91,6 +91,8 @@ const Header = () => {
     const handleSignOut = () => {
         sessionStorage.removeItem("userId");
         setUser(null);
+        sessionStorage.removeItem("ongId");
+        setOng(null);
         setShowDropdown(false);
         navigate("/");
     };
