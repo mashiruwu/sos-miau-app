@@ -15,35 +15,37 @@ const TableRegisteredCats = () => {
     useEffect(() => {
         const getCats = async () => {
             try {
-                const response = await fetch("http://localhost:3000/donorOng/" + sessionStorage.getItem("userId"), {
-                  method: "GET",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                });
+                const response = await fetch(
+                    "http://localhost:3000/donorOng/" +
+                        sessionStorage.getItem("userId"),
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
 
                 if (!response.ok) {
-                  console.error("Failed to find Cats");
-                  return;
+                    console.error("Failed to find Cats");
+                    return;
                 }
 
                 const data = await response.json();
-                console.log(data.cats_available)
+                console.log(data.cats_available);
 
                 setGatos(
                     // ...(data.cats_available || []),
                     // ...(data.cats_adopted   || []),
                     data.cats_available
-                  );    
-              } catch (error) {
+                );
+            } catch (error) {
                 console.error("Error submitting form:", error);
-              }
-        }
+            }
+        };
         getCats();
+    }, []);
 
-      }, []);
-
-      
     const handleAdocaoChange = (index: number, value: boolean) => {
         const updatedGatos = [...gatos];
         updatedGatos[index].adopted = value;
@@ -70,8 +72,8 @@ const TableRegisteredCats = () => {
     const filteredGatos = gatos.filter(
         (gato) =>
             gato.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            gato.breed.toLowerCase().includes(searchTerm.toLowerCase()) 
-            // gato.adopted.toLowerCase().includes(searchTerm.toLowerCase())
+            gato.breed.toLowerCase().includes(searchTerm.toLowerCase())
+        // gato.adopted.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -93,9 +95,12 @@ const TableRegisteredCats = () => {
                         🔍
                     </span>
                 </div>
-                <Link to="/catregister" className="relative right-3 mb-4 text-gray-400">
-                        ADD
-                    </Link>
+                <Link
+                    to="/catregister"
+                    className="relative right-3 mb-4 text-gray-400 bg-primary hover:bg-primary/80 rounded-full px-4 py-2 text-white font-bold shadow-md transition duration-300 ease-in-out"
+                >
+                    ADD
+                </Link>
             </div>
 
             <table className="w-full table-auto border-collapse overflow-hidden text-sm">
@@ -136,7 +141,7 @@ const TableRegisteredCats = () => {
                                         onChange={(e) =>
                                             handleAdocaoChange(
                                                 index,
-                                                e.target.value === "Sim" 
+                                                e.target.value === "Sim"
                                             )
                                         }
                                         className="bg-transparent border-none focus:outline-none"
