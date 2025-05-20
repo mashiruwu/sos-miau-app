@@ -2,17 +2,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SignupImage from "../assets/signup_image2.png";
 import InputField from "../components/InputField/InputField";
-import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
-import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
 import { auth } from "../../api/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         cnpj: "",
@@ -34,25 +31,25 @@ const Signup = () => {
 
     function isValidPhone(phone: string): boolean {
         const cleaned = phone.replace(/\D/g, "");
-        return /^(\d{10}|\d{11})$/.test(cleaned); 
-    }    
+        return /^(\d{10}|\d{11})$/.test(cleaned);
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-    
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         setError("");
-      
+
         if (formData.password !== formData.confirmPassword) {
             setError(t("signup.password_mismatch"));
             setShowErrorModal(true);
-          return;
+            return;
         }
-      
+
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formData.password)) {
             setError(t("signup.weak_password"));
@@ -72,60 +69,68 @@ const Signup = () => {
             setShowErrorModal(true);
             return;
         }
-        
+
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
             const firebaseUid = userCredential.user.uid;
 
-            const backendResponse = await fetch("http://localhost:3000/donorOng/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...formData, firebaseUid }), // adiciona o uid do Firebase
-            });
+            const backendResponse = await fetch(
+                "http://localhost:3000/donorOng/",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ ...formData, firebaseUid }), // adiciona o uid do Firebase
+                }
+            );
 
             const result = await backendResponse.json();
 
             if (!backendResponse.ok) {
-            setError(result.errors || "Erro no cadastro backend");
-            setShowErrorModal(true);
-            return;
+                setError(result.errors || "Erro no cadastro backend");
+                setShowErrorModal(true);
+                return;
             }
-      
-          console.log("Signup successful:", result);
-      
-          const loginRes = await fetch("http://localhost:3000/donorOng/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: formData.email,
-              password: formData.password,
-            }),
-          });
-      
-          if (!loginRes.ok) {
-            console.error("Login failed:", loginRes.status);
-            return;
-          }
-      
-          const loginData = await loginRes.json();
-          console.log("Login response:", loginData);
-          
-          if (!loginData.token || !loginData.user?.id) {
-            console.error("Resposta de login inválida", loginData);
-            return;
-          }
-      
-          localStorage.setItem("token", loginData.token);
-          sessionStorage.setItem("userId", loginData.user.id);
-          
-          window.location.href = "/";
+
+            console.log("Signup successful:", result);
+
+            const loginRes = await fetch(
+                "http://localhost:3000/donorOng/login",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        email: formData.email,
+                        password: formData.password,
+                    }),
+                }
+            );
+
+            if (!loginRes.ok) {
+                console.error("Login failed:", loginRes.status);
+                return;
+            }
+
+            const loginData = await loginRes.json();
+            console.log("Login response:", loginData);
+
+            if (!loginData.token || !loginData.user?.id) {
+                console.error("Resposta de login inválida", loginData);
+                return;
+            }
+
+            localStorage.setItem("token", loginData.token);
+            sessionStorage.setItem("userId", loginData.user.id);
+
+            window.location.href = "/";
         } catch (error: any) {
             setError(error.message || "Erro desconhecido no Firebase");
             setShowErrorModal(true);
         }
-      };
-      
-      
+    };
 
     return (
         <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
@@ -200,7 +205,7 @@ const Signup = () => {
                         </div>
 
                         <div className="col-span-2">
-                            <Label>{t("Foundation Date")}</Label>
+                            <Label>{t("signup.foundation_date")}</Label>
                             <InputField
                                 type="text"
                                 name="foundation_date"
@@ -214,7 +219,7 @@ const Signup = () => {
                         </div>
 
                         <div className="col-span-2">
-                            <Label>Descriçao</Label>
+                            <Label>{t("signup.descriptionOng")}</Label>
                             <InputField
                                 type="text"
                                 name="description"
@@ -249,7 +254,7 @@ const Signup = () => {
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
                 </form>
-            </div> 
+            </div>
 
             {/* Image Section */}
             <div className="w-full lg:w-1/3">
@@ -268,6 +273,5 @@ const Signup = () => {
         </div>
     );
 };
-
 
 export default Signup;

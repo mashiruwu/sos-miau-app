@@ -100,6 +100,8 @@ const resources = {
                 invalid_phone: "Invalid phone",
                 age_error: "You need to be over 18 to access this website",
                 image_alt: "Sign up image",
+                foundation_date: "Foundation Date",
+                descriptionOng: "Description",
             },
             loginPage: {
                 title: "Login",
@@ -437,6 +439,8 @@ const resources = {
                 age_error:
                     "Você precisa ser maior de 18 anos para realizar cadastro neste site",
                 image_alt: "Imagem de cadastro",
+                foundation_date: "Data de Fundação",
+                descriptionOng: "Descrição",
             },
             loginPage: {
                 title: "Entrar",

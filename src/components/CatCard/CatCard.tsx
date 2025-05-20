@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cat1 from "../../assets/rescue_cat.png";
+import { useLocation } from "react-router-dom";
 
 const defaultCat = {
     id: 1,
@@ -21,8 +22,8 @@ const CatCard = ({ cat = defaultCat }) => {
 
     return (
         <>
-            <div className="p-4 w-full max-w-sm">
-                <div className="flex flex-col items-center p-4 rounded-2xl bg-secondary border-gray-200 shadow-md">
+            <div className="p-4 w-fit max-w-sm">
+                <div className="flex flex-col items-center p-4 w-[250px] rounded-2xl bg-secondary border-gray-200 shadow-md">
                     <div className="w-full h-64 flex justify-center items-center">
                         <img
                             src={cat.photo_url}
@@ -30,13 +31,13 @@ const CatCard = ({ cat = defaultCat }) => {
                             className="w-full h-full object-cover rounded-2xl"
                         />
                     </div>
-                    <div className="w-full p-2">
+                    <div className="w-full p-2 flex flex-col items-center gap-2">
                         <button
                             onClick={() => {
                                 setIsOpen(true);
                                 setAdopted(false);
                             }}
-                            className="w-full px-4 py-2 text-lg font-medium text-white bg-emerald-500 rounded-xl hover:bg-green-500 focus:outline-none"
+                            className="w-full px-4 py-2 text-lg font-medium text-white bg-[#9B7EBD] rounded-xl hover:bg- cursor-pointer focus:outline-none"
                         >
                             {t("cats_page.interest")}
                         </button>
@@ -51,28 +52,28 @@ const CatCard = ({ cat = defaultCat }) => {
                     role="dialog"
                 >
                     <div
-                        className="relative bg-white p-6 rounded-2xl shadow-lg max-w-lg w-full dark:bg-primary transition-transform transform scale-100"
+                        className="relative bg-white p-6 rounded-2xl shadow-lg max-w-lg w-full dark:bg-primary-hover transition-transform transform scale-100"
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-1 right-2 text-gray-600 hover:text-gray-900"
+                            className="absolute top-1 cursor-pointer right-2 text-gray-600 hover:text-gray-900"
                         >
                             ✖
                         </button>
 
                         {!adopted ? (
-                            <div className="flex lg:flex-row flex-col gap-5 lg:items-start items-center">
+                            <div className="flex lg:flex-col flex-col gap-5 lg:items-start items-center">
                                 <img
                                     src={cat.photo_url}
                                     alt={`Foto de ${cat.name}`}
                                     className="w-full h-64 object-cover rounded-lg"
                                 />
-                                <div className="flex flex-col gap-4">
-                                    <h1 className="font-tiny text-green-500 text-xl uppercase">
+                                <div className="flex flex-col gap-4 w-full">
+                                    <h1 className="font-tiny text-[#9B7EBD] text-xl uppercase">
                                         {cat.name}
                                     </h1>
-                                    <ul className="text-black font-afacad">
+                                    <ul className="text-black dark:text-white font-afacad">
                                         <li>• {cat.gender}</li>
                                         <li>• {cat.birthday}</li>
                                         <li>• {cat.race}</li>
@@ -81,7 +82,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                     </ul>
                                     <button
                                         onClick={() => setAdopted(true)}
-                                        className="bg-white px-6 py-2 rounded-md font-tiny text-green-500 hover:bg-zinc-200 text-lg transition-all uppercase"
+                                        className="bg-white  px-6 py-2 rounded-md font-tiny text-[#9B7EBD] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
                                     >
                                         {t("cats_page.button_adopt")}
                                     </button>
@@ -89,17 +90,17 @@ const CatCard = ({ cat = defaultCat }) => {
                             </div>
                         ) : (
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold text-emerald-600 font-tiny">
+                                <h2 className="text-2xl font-bold text-[#9B7EBD] font-tiny">
                                     {t("cats_page.thanks_for_adopting")}
                                 </h2>
-                                <p className="text-gray-700 mt-2 font-afacad text-xl">
+                                <p className="dark:text-[#CDC1FF] text-[#9B7EBD] mt-2 font-afacad text-xl">
                                     {t(
                                         "cats_page.thanks_for_adopting_description"
                                     )}
                                 </p>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="mt-4 px-6 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 font-tiny uppercase"
+                                    className="mt-4 px-6 py-2 bg-[#9B7EBD] text-white rounded-md hover:bg-[#9B7EBD] cursor-pointer font-tiny uppercase"
                                 >
                                     {t(
                                         "cats_page.thanks_for_adopting_close_button"

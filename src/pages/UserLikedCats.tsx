@@ -73,7 +73,7 @@ export const UserLikedCats = () => {
                         <ClipLoader color="#4F46E5" size={50} />
                     </div>
                 ) : catDetails.length > 0 ? (
-                    <div className="flex flex-wrap justify-center gap-6 mt-8">
+                    <div className="flex flex-wrap ">
                         {catDetails.map((cat) => (
                             <CatCard key={cat.id} cat={cat} />
                         ))}
