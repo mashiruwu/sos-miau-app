@@ -22,9 +22,37 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSave = () => {
-        if (onSave) onSave(formData);
-        setIsDisabled(true);
+    const handleSave = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("token");
+        const headers = {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        };
+
+        try {
+            const response = await fetch(
+                `http://localhost:3000/cat/${gato.id}`,
+                {
+                    method: "PUT",
+                    headers,
+                    body: JSON.stringify(formData),
+                }
+            );
+
+            if (response.ok) {
+                const updatedGato = await response.json();
+                onSave?.(updatedGato);
+                setIsDisabled(true);
+                onClose();
+            } else {
+                console.error("Erro ao salvar as alterações.");
+            }
+        } catch (error) {
+            console.error("Erro ao fazer a requisição:", error);
+        } finally {
+        }
     };
 
     return (
@@ -41,8 +69,8 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
                         </label>
                         <input
                             type="text"
-                            name="nome"
-                            value={formData.nome}
+                            name="name"
+                            value={formData.name}
                             onChange={onChange}
                             className={`w-full border border-gray-300 rounded px-3 py-2 ${
                                 isDisabled ? "bg-zinc-200" : ""
@@ -57,8 +85,8 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
                         </label>
                         <input
                             type="text"
-                            name="raca"
-                            value={formData.raca}
+                            name="race"
+                            value={formData.race}
                             onChange={onChange}
                             className={`w-full border border-gray-300 rounded px-3 py-2 ${
                                 isDisabled ? "bg-zinc-200" : ""
@@ -73,8 +101,8 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
                         </label>
                         <input
                             type="text"
-                            name="nascimento"
-                            value={formData.nascimento}
+                            name="birthday"
+                            value={formData.birthday}
                             onChange={onChange}
                             className={`w-full border border-gray-300 rounded px-3 py-2 ${
                                 isDisabled ? "bg-zinc-200" : ""
@@ -89,8 +117,8 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
                         </label>
                         <input
                             type="text"
-                            name="genero"
-                            value={formData.genero}
+                            name="gender"
+                            value={formData.gender}
                             onChange={onChange}
                             className={`w-full border border-gray-300 rounded px-3 py-2 ${
                                 isDisabled ? "bg-zinc-200" : ""
