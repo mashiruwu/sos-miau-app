@@ -40,11 +40,7 @@ const TableRegisteredCats = () => {
                 const data = await response.json();
                 console.log(data.cats_available);
 
-                setGatos(
-                    // ...(data.cats_available || []),
-                    // ...(data.cats_adopted   || []),
-                    data.cats_available
-                );
+                setGatos(data.cats_available);
             } catch (error) {
                 console.error("Error submitting form:", error);
             }
@@ -52,6 +48,30 @@ const TableRegisteredCats = () => {
         };
         getCats();
     }, []);
+
+    const handleConfirmDelete = async (gato: Gato) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3000/cat/${gato.id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                console.error("Erro ao excluir o gato");
+                return;
+            }
+
+            setGatos((prev) => prev.filter((g) => g.id !== gato.id));
+            setCatToDelete(null);
+        } catch (error) {
+            console.error("Erro ao excluir o gato:", error);
+        }
+    };
 
     const handleAdocaoChange = (index: number, value: boolean) => {
         const updatedGatos = [...gatos];
@@ -71,23 +91,20 @@ const TableRegisteredCats = () => {
         setCatToDelete(gato);
     };
 
-    const handleConfirmDelete = (gato: Gato) => {
-        setGatos((prev) => prev.filter((g) => g !== gato));
-        setCatToDelete(null);
-    };
-
     const handleSave = (updatedGato: Gato) => {
         setGatos((prev) =>
             prev.map((g) => (g.id === updatedGato.id ? updatedGato : g))
         );
-        setSelectedCat(null); // fecha o modal após salvar
+        setSelectedCat(null);
     };
 
-    const filteredGatos = gatos.filter(
-        (gato) =>
-            gato.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            gato.breed.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredGatos = gatos.filter((gato) => {
+        const name = gato.name?.toLowerCase() || "";
+        const race = gato.race?.toLowerCase() || "";
+        const term = searchTerm.toLowerCase();
+
+        return name.includes(term) || race.includes(term);
+    });
 
     return (
         <div className="p-8 font-afacad">
