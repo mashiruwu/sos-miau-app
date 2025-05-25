@@ -109,18 +109,56 @@ const HelpPage = () => {
     const [amount, setAmount] = useState(0.0);
     const [inputValue, setInputValue] = useState("R$ 0,00");
 
-    const formatToCurrency = (value) => {
+    const formatToCurrency = (value: string) => {
         const number = parseFloat(value.replace(/[^\d]/g, '')) / 100 || 0.00;
         return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { value: any; }; }) => {
         const raw = e.target.value;
         const cleaned = raw.replace(/[^\d]/g, ''); // Keep only digits
         const numeric = parseFloat(cleaned) / 100 || 0;
         setAmount(numeric);
         setInputValue(formatToCurrency(cleaned));
     };
+
+    const handlePay = () => {
+        const area = infoDonation[donationIndex]?.area;
+        const userId = sessionStorage.getItem("userId");
+        console.log(userId)
+
+        if (!userId || !area) {
+            return;
+        }
+
+        const report = {
+            userId,
+            userName: "user",
+            amount,
+            area
+        };
+
+        fetch('http://localhost:3000/report/donations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(report)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to submit donation");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Report submitted successfully:", data);
+            })
+            .catch(error => {
+                console.error("Error submitting report:", error);
+            }
+            );
+    }
 
     useEffect(() => {
         console.log(amount)
@@ -198,7 +236,7 @@ const HelpPage = () => {
                                         }
                                     </ul>
                                 </div>
-                                <button className="p-3 mt-4 rounded-md text-xl bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100" onClick={() => { setOpenModal(false) }}>
+                                <button className="p-3 mt-4 rounded-md text-xl bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100" onClick={() => { setOpenModal(false); handlePay(); }}>
                                     Finalizar Pagamento
                                 </button>
                             </div>
