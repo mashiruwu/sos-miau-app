@@ -114,21 +114,13 @@ const resources = {
             want_help: {
                 make_donation: {
                     title: "Make a donation",
-                    alt: "PIX key in QR Code",
+                    alt: "",
                     content: {
                         _1: "We are an independent NGO, and every donation is essential to keep our work going. You can contribute in different ways:",
                         _2: "💰 Financial donation: Helps cover daily costs such as food, medication, neutering, and veterinary care. Any amount makes a difference!",
                         _3: "📦 Item donation: We accept food, hygienic sand, medication, blankets, toys, and other essential items for our rescued animals.",
                         _4: "🏥 Partnerships with veterinary clinics: If you are a veterinarian or own a clinic, you can offer consultations or discounts for our rescues!",
-                    },
-                    donation_details: {
-                        title: "📌 Donation details:",
-                        pix: "🔹 PIX: [key@example.com]",
-                        bank_account:
-                            "🔹 Bank account: [Bank, Agency, Account]",
-                        contact_us:
-                            "Contact us to arrange item donations or offer help in other ways!",
-                    },
+                    }
                 },
                 share_our_work: {
                     title: "📣 Spread the Word About Our Work",
@@ -408,21 +400,13 @@ const resources = {
             want_help: {
                 make_donation: {
                     title: "Faça uma doação",
-                    alt: "Chave PIX em QR Code",
+                    alt: "",
                     content: {
                         _1: "Somos uma ONG independente, e cada doação é fundamental para manter nosso trabalho. Você pode contribuir de diferentes formas:",
                         _2: "💰 Doação financeira: Ajuda nos custos diários com ração, medicamentos, castrações e atendimentos veterinários. Qualquer valor faz a diferença!",
                         _3: "📦 Doação de itens: Aceitamos ração, areia higiênica, medicamentos, cobertores, brinquedos e outros itens essenciais para nossos resgatados.",
                         _4: "🏥 Parcerias com clínicas veterinárias: Se você é veterinário ou tem uma clínica, pode oferecer consultas ou descontos para nossos resgatados!",
-                    },
-                    donation_details: {
-                        title: "📌 Dados para doação:",
-                        pix: "🔹 PIX: [chave@example.com]",
-                        bank_account:
-                            "🔹 Conta bancária: [Banco, Agência, Conta]",
-                        contact_us:
-                            "Entre em contato para combinar doações de itens ou oferecer ajuda de outras formas!",
-                    },
+                    }
                 },
                 share_our_work: {
                     title: "📣 Divulgue Nosso Trabalho",

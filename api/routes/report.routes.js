@@ -4,8 +4,10 @@ const router  = express.Router();
 const reportController = require('../controllers/reportController');
 
 router.get('/', reportController.getReport);
-router.post('/', reportController.updateReport);
 router.ws('/', reportController.handleWebSocket);
+
+router.get('/donations', reportController.getDonations);
+router.post('/donations', reportController.createDonation);
 
 // Export the router with both endpoints
 module.exports = router;
