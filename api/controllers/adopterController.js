@@ -7,6 +7,10 @@ const Adopter = require('../models/adopterModel');
 
 function validateAdopterData(data) {
   const errors = {};
+  const cpfLimpo = data.cpf.replace(/[^\d]/g, '');
+
+  console.log("CPF original:", data.cpf);
+  console.log("CPF limpo:", cpfLimpo);
 
   if (!data.name || typeof data.name !== 'string') {
     errors.name = 'Nome é obrigatório e deve ser uma string.';
@@ -16,7 +20,7 @@ function validateAdopterData(data) {
     errors.surname = 'Sobrenome é obrigatório e deve ser uma string.';
   }
 
-  if (!data.cpf || !/^\d{11}$/.test(data.cpf)) {
+  if (!cpfLimpo || !/^\d{11}$/.test(cpfLimpo)) {
     errors.cpf = 'CPF deve conter 11 dígitos numéricos.';
   }
 
@@ -40,8 +44,11 @@ function validateAdopterData(data) {
 }
 
 exports.createAdopter = async (req, res) => {
+  console.log("Received body:", req.body);
+
   try {
     const adopterData = req.body;
+    adopterData.cpf = cpfLimpo; 
 
     // Step 1: Validation
     const validationErrors = validateAdopterData(adopterData); // returns an object now
@@ -49,7 +56,7 @@ exports.createAdopter = async (req, res) => {
     // Step 2: Duplicate checks
     const [emailSnap, cpfSnap, phoneSnap] = await Promise.all([
       db.collection('adopters').where('email', '==', adopterData.email).get(),
-      db.collection('adopters').where('cpf', '==', adopterData.cpf).get(),
+      db.collection('adopters').where('cpf', '==', cpfLimpo).get(),
       db.collection('adopters').where('phone', '==', adopterData.phone).get(),
     ]);
 
@@ -83,6 +90,7 @@ exports.createAdopter = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log({ error: error.message });
   }
 };
 
@@ -98,6 +106,7 @@ exports.getAdopter = async (req, res) => {
     res.status(200).json(doc.data());
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log({ error: error.message });
   }
 
 };

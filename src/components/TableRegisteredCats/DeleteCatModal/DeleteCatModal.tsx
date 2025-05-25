@@ -7,6 +7,9 @@ interface DeleteCatModalProps {
     onDelete: (gato: Gato) => void;
 }
 
+
+
+
 const DeleteCatModal: React.FC<DeleteCatModalProps> = ({
     gato,
     onClose,
@@ -19,7 +22,7 @@ const DeleteCatModal: React.FC<DeleteCatModalProps> = ({
                     Excluir Gato
                 </h2>
                 <p className="text-gray-700 mb-6">
-                    Tem certeza que deseja excluir <strong>{gato.nome}</strong>?
+                    Tem certeza que deseja excluir <strong>{gato.name}</strong>?
                 </p>
                 <div className="flex justify-around">
                     <button

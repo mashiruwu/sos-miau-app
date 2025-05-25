@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SignupImage from "../assets/signup_image2.png";
 import InputField from "../components/InputField/InputField";
-import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
-import { useNavigate } from "react-router-dom";
+import ErrorModal from "../components/ErrorModal/ErrorModal";
+import { auth } from "../../api/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         cnpj: "",
@@ -26,13 +26,13 @@ const Signup = () => {
         confirmPassword: "",
     });
 
-    const [error, setError] = useState({
-        weakpassword: "",
-        passwordmissmatch: "",
-        email: "",
-        cnpj: "",
-        phone: "",
-    });
+    const [error, setError] = useState<string | null>(null);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+
+    function isValidPhone(phone: string): boolean {
+        const cleaned = phone.replace(/\D/g, "");
+        return /^(\d{10}|\d{11})$/.test(cleaned);
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -42,86 +42,95 @@ const Signup = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setError({
-            weakpassword: "",
-            passwordmissmatch: "",
-            email: "",
-            cnpj: "",
-            phone: "",
-        })
-      
+        setError("");
+
         if (formData.password !== formData.confirmPassword) {
-          //alert(t("signup.password_mismatch"));
-            setError((prev) => ({
-            ...prev,
-            passwordmissmatch: "senhas não são iguais"
-            }));
-          return;
+            setError(t("signup.password_mismatch"));
+            setShowErrorModal(true);
+            return;
         }
-      
+
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formData.password)) {
-            //alert(t("signup.weak_password"));
-            setError((prev) => ({
-                ...prev,
-                weakpassword: "senha fraca"
-            }));
+            setError(t("signup.weak_password"));
+            setShowErrorModal(true);
             return;
         }
-        
+
+        if (!isValidPhone(formData.phone)) {
+            setError(t("signup.invalid_phone"));
+            setShowErrorModal(true);
+            return;
+        }
+
+        const cnpjRegex = /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2})$/;
+        if (!cnpjRegex.test(formData.cnpj)) {
+            setError(t("signup.invalid_cnpj"));
+            setShowErrorModal(true);
+            return;
+        }
+
         try {
-          const signupRes = await fetch("http://localhost:3000/donorOng/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          });
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
+            const firebaseUid = userCredential.user.uid;
 
-          const result = await signupRes.json();
+            const backendResponse = await fetch(
+                "http://localhost:3000/donorOng/",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ ...formData, firebaseUid }), // adiciona o uid do Firebase
+                }
+            );
 
-          if (!signupRes.ok) {
-            console.error("Signup failed:", signupRes.status);
-            setError((prev) => ({
-                ...prev,
-                ...result.errors
-            }));
-            console.log(result.errors)
-            return;
-          }
-      
-          console.log("Signup successful:", result);
-      
-          const loginRes = await fetch("http://localhost:3000/donorOng/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: formData.email,
-              password: formData.password,
-            }),
-          });
-      
-          if (!loginRes.ok) {
-            console.error("Login failed:", loginRes.status);
-            return;
-          }
-      
-          const loginData = await loginRes.json();
-          console.log("Login response:", loginData);
-          
-          if (!loginData.token || !loginData.user?.id) {
-            console.error("Resposta de login inválida", loginData);
-            return;
-          }
-      
-          localStorage.setItem("token", loginData.token);
-          sessionStorage.setItem("userId", loginData.user.id);
-          
-          window.location.href = "/";
-        } catch (error) {
-          console.error("Erro no handleSubmit:", error);
+            const result = await backendResponse.json();
+
+            if (!backendResponse.ok) {
+                setError(result.errors || "Erro no cadastro backend");
+                setShowErrorModal(true);
+                return;
+            }
+
+            console.log("Signup successful:", result);
+
+            const loginRes = await fetch(
+                "http://localhost:3000/donorOng/login",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        email: formData.email,
+                        password: formData.password,
+                    }),
+                }
+            );
+
+            if (!loginRes.ok) {
+                console.error("Login failed:", loginRes.status);
+                return;
+            }
+
+            const loginData = await loginRes.json();
+            console.log("Login response:", loginData);
+
+            if (!loginData.token || !loginData.user?.id) {
+                console.error("Resposta de login inválida", loginData);
+                return;
+            }
+
+            localStorage.setItem("token", loginData.token);
+            sessionStorage.setItem("userId", loginData.user.id);
+
+            window.location.href = "/";
+        } catch (error: any) {
+            setError(error.message || "Erro desconhecido no Firebase");
+            setShowErrorModal(true);
         }
-      };
-      
-      
+    };
 
     return (
         <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
@@ -155,9 +164,8 @@ const Signup = () => {
                                 value={formData.cnpj}
                                 onChange={handleChange}
                                 placeholder="___.___.___-__"
-                                // required
+                                required
                             />
-                        <p className={"text-red-400 " + (error.cnpj ? "" : "hidden")}>❗{error.cnpj} </p>
                         </div>
 
                         <div className="col-span-2">
@@ -168,7 +176,7 @@ const Signup = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                                 placeholder="Digite o endereço"
-                                // required
+                                required
                             />
                         </div>
 
@@ -180,9 +188,8 @@ const Signup = () => {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="(XX) XXXXX-XXXX"
-                                // required
+                                required
                             />
-                            <p className={"text-red-400 " + (error.phone ? "" : "hidden")}>❗{error.phone}</p>
                         </div>
 
                         <div className="col-span-2">
@@ -195,11 +202,10 @@ const Signup = () => {
                                 placeholder="Digite o email"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.email ? "" : "hidden")}>❗{error.email}</p>
                         </div>
 
                         <div className="col-span-2">
-                            <Label>{t("Foundation Date")}</Label>
+                            <Label>{t("signup.foundation_date")}</Label>
                             <InputField
                                 type="text"
                                 name="foundation_date"
@@ -208,19 +214,19 @@ const Signup = () => {
                                 onFocus={(e) => (e.target.type = "date")}
                                 onBlur={(e) => (e.target.type = "text")}
                                 placeholder="__/__/____"
-                                // required
+                                required
                             />
                         </div>
 
                         <div className="col-span-2">
-                            <Label>Descriçao</Label>
+                            <Label>{t("signup.descriptionOng")}</Label>
                             <InputField
                                 type="text"
                                 name="description"
                                 value={formData.description}
                                 onChange={handleChange}
                                 placeholder="Fale sobre a ONG"
-                                // required
+                                required
                             />
                         </div>
                         <div>
@@ -233,7 +239,6 @@ const Signup = () => {
                                 placeholder="Digite sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.weakpassword ? "" : "hidden")}>❗{error.weakpassword}</p>
                         </div>
                         <div>
                             <Label>{t("signup.confirm_password")}</Label>
@@ -245,12 +250,11 @@ const Signup = () => {
                                 placeholder="Confirme sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.passwordmissmatch ? "" : "hidden")}>❗{error.passwordmissmatch}</p>
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
                 </form>
-            </div> 
+            </div>
 
             {/* Image Section */}
             <div className="w-full lg:w-1/3">
@@ -260,9 +264,14 @@ const Signup = () => {
                     className="w-full h-auto"
                 />
             </div>
+
+            <ErrorModal
+                isOpen={showErrorModal}
+                onClose={() => setShowErrorModal(false)}
+                message={error || ""}
+            />
         </div>
     );
 };
-
 
 export default Signup;

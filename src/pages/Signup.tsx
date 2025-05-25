@@ -7,6 +7,8 @@ import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../api/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -25,7 +27,7 @@ const Signup = () => {
         complement: "",
     });
 
-  const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
     const [showErrorModal, setShowErrorModal] = useState(false);
 
     function isValidCPF(cpf: string): boolean {
@@ -99,14 +101,7 @@ const Signup = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setError({
-            weakpassword: "",
-            passwordmissmatch: "",
-            email: "",
-            cpf: "",
-            phone: "",
-            birthday: "",
-        })
+        setError(""); 
       
         if (formData.password !== formData.confirmPassword) {
             setError(t("signup.password_mismatch"));
@@ -133,27 +128,44 @@ const Signup = () => {
             return;
         }
 
-        if (!isValidBirthdate(formData.birthdate)) {
+        if (!isValidBirthdate(formData.birthday)) {
             setError(t("signup.age_error"));
             setShowErrorModal(true);
             return;
         }
         
         try {
-          const signupRes = await fetch("http://localhost:3000/adopter/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          });
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+            );
+
+            const user = userCredential.user;
+            console.log("Usuário criado no Firebase:", user.uid);
+
+            const signupRes = await fetch("http://localhost:3000/adopter/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formData,
+                    cpf: formData.cpf.replace(/[^\d]/g, ""),
+                    firebaseUid: user.uid, 
+                }),
+            });
+    
 
           const result = await signupRes.json();
 
           if (!signupRes.ok) {
             console.error("Signup failed:", signupRes.status);
-            setError((prev) => ({
-                ...prev,
-                ...result.errors
-            }));
+            if (result.errors && typeof result.errors === "object") {
+                const messages = Object.values(result.errors).join(" ");
+                setError(messages);
+            } else {
+                setError(result.message || "Erro inesperado.");
+            }
+            setShowErrorModal(true);
             console.log(result.errors)
             return;
           }
@@ -240,10 +252,9 @@ const Signup = () => {
                                 placeholder="___.___.___-__"
                                 required
                             />
-                        <p className={"text-red-400 " + (error.cpf ? "" : "hidden")}>❗{error.cpf} </p>
                         </div>
                         <div className="col-span-2">
-                            <Label>{t("Birthday")}</Label>
+                            <Label>{t("signup.birthdate")}</Label>
                             <InputField
                                 type="text"
                                 name="birthday"
@@ -251,18 +262,17 @@ const Signup = () => {
                                 onChange={handleChange}
                                 onFocus={(e) => {
                                     e.target.type = "date";
-                                    const iso = formatToISO(formData.birthdate);
-                                    setFormData({ ...formData, birthdate: iso });
+                                    const iso = formatToISO(formData.birthday);
+                                    setFormData({ ...formData, birthday: iso });
                                 }}
                                 onBlur={(e) => {
                                     e.target.type = "text";
-                                    const br = formatToBR(formData.birthdate);
-                                    setFormData({ ...formData, birthdate: br });
+                                    const br = formatToBR(formData.birthday);
+                                    setFormData({ ...formData, birthday: br });
                                 }}
                                 placeholder="__/__/____"
                                 required
                             />
-                        <p className={"text-red-400 " + (error.birthday ? "" : "hidden")}>❗{error.birthday} </p>
                         </div>
 
                         <div className="col-span-2">
@@ -298,7 +308,6 @@ const Signup = () => {
                                 placeholder="(XX) XXXXX-XXXX"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.phone ? "" : "hidden")}>❗{error.phone}</p>
                         </div>
                         <div className="col-span-2">
                             <Label>{t("signup.email")}</Label>
@@ -310,7 +319,6 @@ const Signup = () => {
                                 placeholder="Digite seu email"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.email ? "" : "hidden")}>❗{error.email}</p>
                         </div>
 
                         <div className="mt-4 col-span-2">
@@ -354,7 +362,6 @@ const Signup = () => {
                                 placeholder="Digite sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.weakpassword ? "" : "hidden")}>❗{error.weakpassword}</p>
                         </div>
                         <div>
                             <Label>{t("signup.confirm_password")}</Label>
@@ -366,7 +373,6 @@ const Signup = () => {
                                 placeholder="Confirme sua senha"
                                 required
                             />
-                            <p className={"text-red-400 " + (error.passwordmissmatch ? "" : "hidden")}>❗{error.passwordmissmatch}</p>
                         </div>
                         <SubmitButton>{t("signup.submit")}</SubmitButton>
                     </div>
