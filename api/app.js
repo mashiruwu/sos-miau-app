@@ -26,7 +26,7 @@ app.use('/match',      require('./routes/match.routes'));
 app.use('/report', require('./routes/report.routes'));
 
 
-const port = 3000;
+const port = 8080;
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
