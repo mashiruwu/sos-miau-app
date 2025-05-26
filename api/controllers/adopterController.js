@@ -48,7 +48,7 @@ exports.createAdopter = async (req, res) => {
 
   try {
     const adopterData = req.body;
-    adopterData.cpf = cpfLimpo; 
+    cpfLimpo = adopterData.cpf;
 
     // Step 1: Validation
     const validationErrors = validateAdopterData(adopterData); // returns an object now
