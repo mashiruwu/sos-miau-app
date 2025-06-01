@@ -11,9 +11,5 @@ export default defineConfig({
     environment: "jsdom", 
     include: ["src/**/*.test.{ts,tsx}"], 
     exclude: [...configDefaults.exclude], 
-  },
-    server: {
-    host: true,
-    port: 8080
   }
 });

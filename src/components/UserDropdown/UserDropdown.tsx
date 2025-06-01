@@ -1,6 +1,7 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 interface UserDropdownProps {
   userName: string;
