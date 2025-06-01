@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom"; 
-import { getAuth, updatePassword  } from "firebase/auth";
+import { getAuth, confirmPasswordReset  } from "firebase/auth";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import { initializeApp } from "firebase/app";
 
