@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom"; 
+import { getAuth, confirmPasswordReset  } from "firebase/auth";
+
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 
 const ResetPassword = () => {
