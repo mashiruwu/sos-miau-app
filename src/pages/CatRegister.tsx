@@ -84,7 +84,7 @@ const CatRegister = () => {
         const newCat = await response.json();
         console.log("Form data submitted:", newCat);
 
-        window.location.href = `/registeredcats`;
+        // window.location.href = `/registeredcats`;
 
 
         } catch (err) {

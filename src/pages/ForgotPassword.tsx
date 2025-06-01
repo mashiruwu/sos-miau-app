@@ -1,52 +1,73 @@
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Label from "../components/Label/Label";
+import InputField from "../components/InputField/InputField";
+import SubmitButton from "../components/SubmitButton/SubmitButton";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCA6sFk_9q-z9NhsrlsE5D1o_FfFweDtrY",
+  authDomain: "sos-miau-app.firebaseapp.com",
+  projectId: "sos-miau-app",
+  storageBucket: "sos-miau-app.firebasestorage.app",
+  messagingSenderId: "795745556836",
+  appId: "1:795745556836:web:815a58e15c1b61c52ec271",
+  measurementId: "G-BS622408ZC"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
+  const { t } = useTranslation();
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+  const handlePasswordReset = async () => {
+    setLoading(true);
+    console.log("Enviando link para:", email);
+    try {
+        await sendPasswordResetEmail(auth, email);
+        setMessage("Link de recuperação enviado para seu e-mail.");
+    } catch (error: any) {
+        setMessage("Erro ao enviar link: " + error.message);
+        console.log("Erro ao enviar link: " + error.message);
+    } finally {
+        setLoading(false);
+    }
+  };
 
-        try {
-            const response = await fetch("http://localhost:3000/adopter/forgot-password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email }),
-            });
+  return (
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <form className="w-full max-w-md">
+        <h1 className="text-2xl text-[#153151] mb-4 text-center">
+          {t("loginPage.forgot_password")}
+        </h1>
+        <p className="mb-6 text-[#153151] text-center">
+          {t("loginPage.description_forgotpassword")}
+        </p>
 
-            if (response.ok) {
-                setMessage("Um link de recuperação foi enviado para o seu e-mail.");
-            } else {
-                setMessage("Erro ao enviar o e-mail. Tente novamente.");
-            }
-        } catch (error) {
-            console.error("Erro:", error);
-            setMessage("Erro ao processar a solicitação.");
-        }
-    };
+        <Label>{t("loginPage.email")}</Label>
+        <InputField
+          type="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={t("loginPage.email_forgotpassword")}
+          required
+        />
 
-    return (
-        <div className="w-full max-w-md mx-auto mt-10">
-            <h1 className="text-2xl mb-4">Recuperar Senha</h1>
-            <form onSubmit={handleSubmit}>
-                <label className="block mb-2">E-mail</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded mb-4"
-                    placeholder="Digite seu e-mail"
-                    required
-                />
-                <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
-                    Enviar link de recuperação
-                </button>
-            </form>
-            {message && <p className="mt-4 text-center">{message}</p>}
-        </div>
-    );
+        <SubmitButton type="button" onClick={handlePasswordReset} disabled={loading}>
+          {loading ? "Enviando..." : "Enviar link de recuperação"}
+        </SubmitButton>
+
+        {message && (
+          <p className="mt-4 text-sm text-center text-green-600">{message}</p>
+        )}
+      </form>
+    </div>
+  );
 };
 
 export default ForgotPassword;

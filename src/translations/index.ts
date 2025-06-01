@@ -10,6 +10,7 @@ const resources = {
             login: "Login",
             sign_up: "Sign Up",
             about_us: "About us",
+            ong_login: "Ong Login",
             footer: {
                 description:
                     "We are SOS MIAU, an NGO dedicated to rescuing, caring for, and responsibly adopting abandoned cats. Our work includes rescuing felines in danger, providing veterinary care, and finding loving homes for each of them. We believe that every kitten deserves love, security, and a second chance.",
@@ -65,6 +66,14 @@ const resources = {
                     "If you want to meet our cats available for adoption, contact us!",
                 see_our_available_cats: "AVAILABLE CATS",
             },
+            error: {
+                close: "Close",
+                error: "Error",
+            },
+            login_ong: {
+                not_signed: "You don't have an account?",
+                create: "Create an Account",
+            },
             signup: {
                 title: "Sign Up",
                 description: "Sign up now to adopt the miaus!",
@@ -84,18 +93,32 @@ const resources = {
                 confirm_password: "Confirm Password",
                 submit: "Register",
                 password_mismatch: "Passwords do not match!",
-                weak_password: "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
+                weak_password:
+                    "Your password is too weak (use at least 8 letters and mix capital & small letters & a number!)",
                 invalid_cpf: "Invalid document",
+                invalid_cnpj: "Invalid document",
                 invalid_phone: "Invalid phone",
                 age_error: "You need to be over 18 to access this website",
                 image_alt: "Sign up image",
+                foundation_date: "Foundation Date",
+                descriptionOng: "Description",
             },
             loginPage: {
                 title: "Login",
                 description: "Access your account to adopt the miaus!",
+                loginOngDescription:
+                    "Log in to find your miaus a beautiful home!",
                 email: "Email",
                 password: "Password",
                 forgot_password: "Forgot Password",
+                forgot_password_desc: "Can't remember your password?",
+                description_forgotpassword: "Type your email below",
+                email_forgotpassword: "Type your email",
+                code: "Type the code",
+                new_password: "New Password",
+                set_new_password: "Update Password",
+                error_set: "Error in updating password",
+                send_code: "Send code to email",
                 submit: "Login",
                 image_alt: "Login image",
             },
@@ -111,21 +134,13 @@ const resources = {
             want_help: {
                 make_donation: {
                     title: "Make a donation",
-                    alt: "PIX key in QR Code",
+                    alt: "",
                     content: {
                         _1: "We are an independent NGO, and every donation is essential to keep our work going. You can contribute in different ways:",
                         _2: "💰 Financial donation: Helps cover daily costs such as food, medication, neutering, and veterinary care. Any amount makes a difference!",
                         _3: "📦 Item donation: We accept food, hygienic sand, medication, blankets, toys, and other essential items for our rescued animals.",
                         _4: "🏥 Partnerships with veterinary clinics: If you are a veterinarian or own a clinic, you can offer consultations or discounts for our rescues!",
-                    },
-                    donation_details: {
-                        title: "📌 Donation details:",
-                        pix: "🔹 PIX: [key@example.com]",
-                        bank_account:
-                            "🔹 Bank account: [Bank, Agency, Account]",
-                        contact_us:
-                            "Contact us to arrange item donations or offer help in other ways!",
-                    },
+                    }
                 },
                 share_our_work: {
                     title: "📣 Spread the Word About Our Work",
@@ -232,7 +247,7 @@ const resources = {
                 title: "Matches",
                 name: "Name",
                 adopter_name: "Adopter",
-                match_date: "Match Date"
+                match_date: "Match Date",
             },
             cats_interest: {
                 title: "Adoption Candidates",
@@ -243,14 +258,50 @@ const resources = {
                 number: "Interested",
                 analysis: "Analysis",
                 yes: "Yes",
-                no: "No"
+                no: "No",
             },
             likes: {
-                like: "Likes"
+                like: "Likes",
+            },
+            table_registeredcats: {
+                name: "Name",
+                gender: "Gender",
+                neutered: "Neutered",
+                birthdate: "Birthdate",
+                breed: "Breed",
+                adopted: "Adopted",
+                title: "Registered Cats",
+                nocats: "No cats found",
+                add_cat: "Add New Cat",
+                search: "Search by name, breed, adoption...",
+                registered_users: "Registered Users",
+                analysis: "Pending Analysis",
+            },
+            cat_profile: {
+                title: "Pepople Interested",
+                name: "Name",
+                protectionNet: "Protection Net",
+                email: "Email",
+                age: "Age",
+                hasSon: "Children",
+                otherPet: "Other pets",
+                approval: "Approval",
+                yes: "Yes",
+                no: "No",
+            },
+            registered_users: {
+                title: "Registered Users",
+                name: "Name",
+                protectionNet: "Protection Net",
+                email: "Email",
+                birthdate: "Birthdate",
+                likes: "Likes",
+                status: "See Likes",
             },
             user_settings: {
                 title: "User Settings",
                 description: "Update your personal information below.",
+                description_ong: "Description",
                 name: "Name",
                 surname: "Surname",
                 phone: "Phone",
@@ -262,6 +313,9 @@ const resources = {
                 yes: "Yes",
                 no: "No",
                 submit: "Save Changes",
+                cnpj: "CNPJ",
+                website: "Website",
+                foundation_date: "Foundation Date",
                 placeholders: {
                     name: "Enter your name",
                     surname: "Enter your surname",
@@ -269,6 +323,9 @@ const resources = {
                     email: "Enter your email",
                     address: "Enter your address",
                     complement: "Enter the complement",
+                    description: "Enter the description",
+                    website: "Enter the website",
+                    cnpj: "Enter the CNPJ",
                 },
             },
         },
@@ -283,6 +340,7 @@ const resources = {
             },
             login: "Entrar",
             sign_up: "Cadastrar-se",
+            ong_login: "É UMA ONG?",
             footer: {
                 description:
                     "Somos a SOS MIAU, uma ONG dedicada ao resgate, cuidado e adoção responsável de gatos em situação de abandono. Nosso trabalho inclui resgatar felinos em risco, oferecer cuidados veterinários e encontrar lares amorosos para cada um deles. Acreditamos que todo gatinho merece carinho, segurança e uma segunda chance.",
@@ -338,6 +396,14 @@ const resources = {
                     "Se você deseja conhecer nossos gatinhos disponíveis para adoção, entre em contato conosco!",
                 see_our_available_cats: "VER GATINHOS DISPONÍVEIS",
             },
+            error: {
+                close: "Fechar",
+                error: "Erro",
+            },
+            login_ong: {
+                not_signed: "Não está cadastrado?",
+                create: "Crie uma conta",
+            },
             signup: {
                 title: "Cadastro",
                 description: "Cadastre-se agora para poder adotar os miaus!",
@@ -357,18 +423,33 @@ const resources = {
                 confirm_password: "Confirme a senha",
                 submit: "Cadastrar-se",
                 password_mismatch: "As senhas não coincidem!",
-                weak_password: "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
+                weak_password:
+                    "Sua senha é muito fraca (use pelo menos 8 letras e misture letras maiúsculas e minúsculas e um número!)",
                 invalid_cpf: "CPF inválido",
+                invalid_cnpj: "CNPJ inválido",
                 invalid_phone: "Telefone inválido",
-                age_error: "Você precisa ser maior de 18 anos para realizar cadastro neste site",
+                age_error:
+                    "Você precisa ser maior de 18 anos para realizar cadastro neste site",
                 image_alt: "Imagem de cadastro",
+                foundation_date: "Data de Fundação",
+                descriptionOng: "Descrição",
             },
             loginPage: {
                 title: "Entrar",
                 description: "Acesse sua conta para adotar os miaus!",
+                loginOngDescription:
+                    "Acesse sua conta para achar um lar para os miaus!",
                 email: "Email",
                 password: "Senha",
                 forgot_password: "Esqueci minha senha",
+                forgot_password_desc: "Não lembra sua senha?",
+                description_forgotpassword: "Digite seu email abaixo",
+                email_forgotpassword: "Digite seu email",
+                code: "Digite o código",
+                new_password: "Senha Nova",
+                set_new_password: "Redefinir senha",
+                error_set: "Erro ao redefinir senha.",
+                send_code: "Enviar código para o email",
                 submit: "Entrar",
                 image_alt: "Imagem de login",
             },
@@ -401,21 +482,13 @@ const resources = {
             want_help: {
                 make_donation: {
                     title: "Faça uma doação",
-                    alt: "Chave PIX em QR Code",
+                    alt: "",
                     content: {
                         _1: "Somos uma ONG independente, e cada doação é fundamental para manter nosso trabalho. Você pode contribuir de diferentes formas:",
                         _2: "💰 Doação financeira: Ajuda nos custos diários com ração, medicamentos, castrações e atendimentos veterinários. Qualquer valor faz a diferença!",
                         _3: "📦 Doação de itens: Aceitamos ração, areia higiênica, medicamentos, cobertores, brinquedos e outros itens essenciais para nossos resgatados.",
                         _4: "🏥 Parcerias com clínicas veterinárias: Se você é veterinário ou tem uma clínica, pode oferecer consultas ou descontos para nossos resgatados!",
-                    },
-                    donation_details: {
-                        title: "📌 Dados para doação:",
-                        pix: "🔹 PIX: [chave@example.com]",
-                        bank_account:
-                            "🔹 Conta bancária: [Banco, Agência, Conta]",
-                        contact_us:
-                            "Entre em contato para combinar doações de itens ou oferecer ajuda de outras formas!",
-                    },
+                    }
                 },
                 share_our_work: {
                     title: "📣 Divulgue Nosso Trabalho",
@@ -499,7 +572,7 @@ const resources = {
                 title: "Matches",
                 name: "Nome",
                 adopter_name: "Adotante",
-                match_date: "Data do Match"
+                match_date: "Data do Match",
             },
             cats_interest: {
                 title: "Gatos com Interessados",
@@ -510,14 +583,50 @@ const resources = {
                 number: "Interessados",
                 analysis: "Análise",
                 yes: "Sim",
-                no: "Não"
+                no: "Não",
             },
             likes: {
-                like: "Curtidas"
+                like: "Curtidas",
+            },
+            table_registeredcats: {
+                name: "Nome",
+                gender: "Gênero",
+                neutered: "Castrado",
+                birthdate: "D. de Nascimento",
+                breed: "Raça",
+                adopted: "Adotado",
+                title: "Gatinhos Cadastrados",
+                nocats: "Nenhum gatinho encontrado",
+                add_cat: "Adicionar Gatinho",
+                search: "Buscar por nome, raça ou adoção...",
+                registered_users: "Usuários Cadastrados",
+                analysis: "Análise Pendente",
+            },
+            cat_profile: {
+                title: "Interessados",
+                name: "Nome",
+                protectionNet: "Rede de Proteção",
+                email: "Email",
+                age: "Idade",
+                hasSon: "Filho(s)",
+                otherPet: "Outro(s) Pet(s)",
+                approval: "Aprovação",
+                yes: "Sim",
+                no: "Não",
+            },
+            registered_users: {
+                title: "Usuários Cadastrados",
+                name: "Nome",
+                protectionNet: "Rede de Proteção",
+                email: "Email",
+                birthdate: "Aniversário",
+                likes: "Curtidas",
+                status: "Visualizar Likes",
             },
             user_settings: {
                 title: "Configurações do Usuário",
                 description: "Atualize suas informações pessoais abaixo.",
+                description_ong: "Descrição",
                 name: "Nome",
                 surname: "Sobrenome",
                 phone: "Celular",
@@ -529,6 +638,9 @@ const resources = {
                 yes: "Sim",
                 no: "Não",
                 submit: "Salvar Alterações",
+                cnpj: "CNPJ",
+                website: "Site",
+                foundation_date: "Data de Fundação",
                 placeholders: {
                     name: "Digite seu nome",
                     surname: "Digite seu sobrenome",
@@ -536,6 +648,9 @@ const resources = {
                     email: "Digite seu email",
                     address: "Digite seu endereço",
                     complement: "Digite o complemento",
+                    description: "Digite a descrição",
+                    website: "Digite o site",
+                    cnpj: "Digite o CNPJ",
                 },
             },
         },

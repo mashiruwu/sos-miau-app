@@ -3,17 +3,14 @@ export interface Gato {
     owner_id?: string;
     name?: string;
     gender?: string;
-    breed?: string;
-    color?: string;
+    race?: string;
+    coat?: string;
     birthday?: string;
     photo_url?: string;
-    weight?: number;
-    height?: number;
     description?: string;
-    behavior?: string;
+    behaviour?: string;
     neutered?: boolean;
-    fiv?: boolean;
-    felv?: boolean;
+    fivfelv?: boolean;
     adopted?: boolean;
     adoption_date?: string | null;
-  }
+}

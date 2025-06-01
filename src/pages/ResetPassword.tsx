@@ -1,70 +1,76 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom"; 
+import { getAuth, confirmPasswordReset  } from "firebase/auth";
+import SubmitButton from "../components/SubmitButton/SubmitButton";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCA6sFk_9q-z9NhsrlsE5D1o_FfFweDtrY",
+  authDomain: "sos-miau-app.firebaseapp.com",
+  projectId: "sos-miau-app",
+  storageBucket: "sos-miau-app.firebasestorage.app",
+  messagingSenderId: "795745556836",
+  appId: "1:795745556836:web:815a58e15c1b61c52ec271",
+  measurementId: "G-BS622408ZC"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 const ResetPassword = () => {
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [message, setMessage] = useState("");
-    const [searchParams] = useSearchParams();
-    const token = searchParams.get("token");
+  const [searchParams] = useSearchParams();
+  const oobCode = searchParams.get("oobCode") || "";
+  const [newPassword, setNewPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+  const handleResetPassword = async () => {
+    setLoading(true);
+    setMessage("");
+    try {
+    console.log('Nova senha:', newPassword);
+      await confirmPasswordReset(auth, oobCode, newPassword);
+      setMessage("Senha atualizada com sucesso!");
+    } catch (error: any) {
+      setMessage("Erro ao atualizar senha: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (password !== confirmPassword) {
-            setMessage("As senhas não coincidem.");
-            return;
-        }
+  if (!oobCode) {
+    return <p>Link inválido ou expirado.</p>;
+  }
 
-        try {
-            const response = await fetch("http://localhost:3000/adopter/reset-password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ token, password }),
-            });
+  return (
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <form className="w-full max-w-md" onSubmit={(e) => { e.preventDefault(); handleResetPassword(); }}>
+        <h1 className="text-2xl text-[#153151] mb-4 text-center">Redefinir senha</h1>
 
-            if (response.ok) {
-                setMessage("Senha redefinida com sucesso!");
-            } else {
-                setMessage("Erro ao redefinir a senha.");
-            }
-        } catch (error) {
-            console.error("Erro:", error);
-            setMessage("Erro ao processar a solicitação.");
-        }
-    };
+        <label htmlFor="new-password" className="block mb-2 text-[#153151]">Nova senha:</label>
+        <input
+          type="password"
+          id="new-password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          placeholder="Digite sua nova senha"
+          required
+          minLength={6}
+          className="w-full p-2 border border-gray-300 rounded mb-4"
+        />
 
-    return (
-        <div className="w-full max-w-md mx-auto mt-10">
-            <h1 className="text-2xl mb-4">Redefinir Senha</h1>
-            <form onSubmit={handleSubmit}>
-                <label className="block mb-2">Nova Senha</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 border rounded mb-4"
-                    placeholder="Digite sua nova senha"
-                    required
-                />
-                <label className="block mb-2">Confirmar Nova Senha</label>
-                <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full p-2 border rounded mb-4"
-                    placeholder="Confirme sua nova senha"
-                    required
-                />
-                <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
-                    Redefinir Senha
-                </button>
-            </form>
-            {message && <p className="mt-4 text-center">{message}</p>}
-        </div>
-    );
+        <SubmitButton
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white p-2 rounded"
+        >
+          {loading ? "Atualizando..." : "Atualizar senha"}
+        </SubmitButton>
+
+        {message && <p className="mt-4 text-center">{message}</p>}
+      </form>
+    </div>
+  );
 };
 
 export default ResetPassword;

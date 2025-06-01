@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type ErrorModalProps = {
   isOpen: boolean;
@@ -8,6 +9,8 @@ type ErrorModalProps = {
 };
 
 const ErrorModal = ({ isOpen, onClose, message }: ErrorModalProps) => {
+  const { t } = useTranslation();
+  
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -44,14 +47,14 @@ const ErrorModal = ({ isOpen, onClose, message }: ErrorModalProps) => {
       </button>
 
       <div className="max-w-lg w-full bg-white p-6 rounded-xl shadow-lg text-secondary">
-        <h2 className="text-2xl font-bold text-secondary mb-4 text-center">Erro</h2>
+        <h2 className="text-2xl font-bold text-secondary mb-4 text-center">{t('error.error')}</h2>
         <p className="text-center text-black mb-6">{message}</p>
         <div className="flex justify-center">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-secondary text-white rounded hover:bg-gray-800"
           >
-            Fechar
+            {t('error.close')}
           </button>
         </div>
       </div>

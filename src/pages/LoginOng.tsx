@@ -23,32 +23,34 @@ const Login = () => {
         console.log("Login data submitted:", formData);
 
         try {
-            const response = await fetch("http://localhost:3000/donorOng/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            });
-        
+            const response = await fetch(
+                "http://localhost:3000/donorOng/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+
             if (!response.ok) {
-              // Handle error
-              console.error("Failed to submit");
-              return;
+                // Handle error
+                console.error("Failed to submit");
+                return;
             }
-            
+
             const data = await response.json();
 
             localStorage.setItem("token", data.token);
-            sessionStorage.setItem('userId', data.user.id);
+            sessionStorage.setItem("userId", data.user.id);
+            sessionStorage.setItem("ongId", data.user.id);
 
             console.log("Form data submitted successfully:", data);
             window.location.href = `/registeredcats`;
-
-
-          } catch (error) {
+        } catch (error) {
             console.error("Error submitting form:", error);
-          }
+        }
     };
 
     return (
@@ -60,7 +62,7 @@ const Login = () => {
                         {t("loginPage.title")}
                     </h1>
                     <p className="mb-6 text-[#153151] text-center lg:text-left">
-                        {t("loginPage.description")}
+                        {t("loginPage.loginOngDescription")}
                     </p>
                     <div className="grid sm:grid-cols-1 gap-4">
                         <div className="col-span-2">
@@ -88,12 +90,21 @@ const Login = () => {
                         <SubmitButton>{t("loginPage.submit")}</SubmitButton>
                     </div>
                     <p className="mt-4 text-center text-sm text-gray-600">
-                        Não está cadastrado?
+                        {t('login_ong.not_signed')}
                         <Link
-                        to="/signup"
-                        className="text-[#153151] pl-2 font-medium hover:underline"
+                            to="/signupOng"
+                            className="text-[#153151] pl-2 font-medium hover:underline"
                         >
-                        Crie uma conta
+                        {t('login_ong.create')}
+                        </Link>
+                    </p>
+                    <p className="mt-4 text-center text-sm text-gray-600">
+                        {t('loginPage.forgot_password_desc')}
+                        <Link
+                            to="/forgot-password"
+                            className="text-[#153151] pl-2 font-medium hover:underline"
+                        >
+                        {t('loginPage.forgot_password')}
                         </Link>
                     </p>
                 </form>
