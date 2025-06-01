@@ -1,0 +1,6 @@
+runtime: nodejs20      # or "nodejs20" if you prefer
+env: standard
+manual_scaling:
+  instances: 1          # or more, depending on load
+network:
+  session_affinity: true  # keeps sticky sessions for websockets
