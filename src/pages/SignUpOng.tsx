@@ -77,9 +77,9 @@ const Signup = () => {
                 formData.password
             );
             const firebaseUid = userCredential.user.uid;
-
+            const API = import.meta.env.VITE_API_URL
             const backendResponse = await fetch(
-                "http://localhost:3000/donorOng/",
+                API + "/donorOng/",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -96,9 +96,8 @@ const Signup = () => {
             }
 
             console.log("Signup successful:", result);
-
             const loginRes = await fetch(
-                "http://localhost:3000/donorOng/login",
+                API + "/donorOng/login",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

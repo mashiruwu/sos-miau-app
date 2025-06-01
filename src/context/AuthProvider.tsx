@@ -28,8 +28,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const fetchUser = async () => {
         if (!userId) return;
         try {
+            const API = import.meta.env.VITE_API_URL
+
             const response = await fetch(
-                `http://localhost:3000/adopter/${userId}`
+                `${API}/adopter/${userId}`
             );
             if (response.ok) {
                 const data = await response.json();
@@ -43,8 +45,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const fetchOng = async () => {
         if (!ongId) return;
         try {
+            const API = import.meta.env.VITE_API_URL
+
             const response = await fetch(
-                `http://localhost:3000/donorOng/${ongId}`
+                `${API}/donorOng/${ongId}`
             );
             if (response.ok) {
                 const data = await response.json();

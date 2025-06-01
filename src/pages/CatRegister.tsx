@@ -70,7 +70,9 @@ const CatRegister = () => {
         };
       
         try {
-            const response = await fetch("http://localhost:3000/cat/", {
+            const API = import.meta.env.VITE_API_URL
+
+            const response = await fetch(API + "/cat/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),

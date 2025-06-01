@@ -32,8 +32,10 @@ const EditCatModal = ({ gato, onClose, onSave }: EditCatModalProps) => {
         };
 
         try {
+            const API = import.meta.env.VITE_API_URL
+
             const response = await fetch(
-                `http://localhost:3000/cat/${gato.id}`,
+                `${API}/cat/${gato.id}`,
                 {
                     method: "PUT",
                     headers,
