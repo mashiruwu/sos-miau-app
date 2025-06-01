@@ -6,13 +6,11 @@ import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
-import { useNavigate } from "react-router-dom";
 import { auth } from "../../api/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         surname: "",

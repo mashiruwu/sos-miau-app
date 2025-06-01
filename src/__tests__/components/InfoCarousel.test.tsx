@@ -1,4 +1,4 @@
-import { render, fireEvent, waitFor  } from '@testing-library/react';
+import { render, fireEvent  } from '@testing-library/react';
 import { InfoCarousel } from '../../components/InfoCarousel/InfoCarousel';
 import "@testing-library/jest-dom";
 import { describe, it, expect, vi } from 'vitest';

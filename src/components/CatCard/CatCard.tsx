@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cat1 from "../../assets/rescue_cat.png";
-import { useLocation } from "react-router-dom";
 
 const defaultCat = {
     id: 1,
@@ -23,7 +22,7 @@ const CatCard = ({ cat = defaultCat }) => {
     return (
         <>
             <div className="p-4 w-fit max-w-sm">
-                <div className="flex flex-col items-center p-4 w-[250px] rounded-2xl bg-secondary border-gray-200 shadow-md">
+                <div className="flex flex-col items-center p-4 w-[250px] rounded-2xl bg-primary dark:bg-secondary border-gray-200 shadow-md">
                     <div className="w-full h-64 flex justify-center items-center">
                         <img
                             src={cat.photo_url}
@@ -37,7 +36,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                 setIsOpen(true);
                                 setAdopted(false);
                             }}
-                            className="w-full px-4 py-2 text-lg font-medium text-white bg-[#9B7EBD] rounded-xl hover:bg- cursor-pointer focus:outline-none"
+                            className="w-full px-4 py-2 text-lg font-medium text-white bg-secondary dark:bg-primary rounded-xl hover:bg-[#4E6988] cursor-pointer focus:outline-none"
                         >
                             {t("cats_page.interest")}
                         </button>
@@ -70,7 +69,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                     className="w-full h-64 object-cover rounded-lg"
                                 />
                                 <div className="flex flex-col gap-4 w-full">
-                                    <h1 className="font-tiny text-[#9B7EBD] text-xl uppercase">
+                                    <h1 className="font-tiny text-black dark:text-white text-xl uppercase">
                                         {cat.name}
                                     </h1>
                                     <ul className="text-black dark:text-white font-afacad">
@@ -82,7 +81,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                     </ul>
                                     <button
                                         onClick={() => setAdopted(true)}
-                                        className="bg-white  px-6 py-2 rounded-md font-tiny text-[#9B7EBD] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
+                                        className="bg-secondary dark:bg-primary  px-6 py-2 rounded-md font-tiny text-white cursor-pointer hover:bg-[#4E6988] text-lg transition-all uppercase"
                                     >
                                         {t("cats_page.button_adopt")}
                                     </button>
@@ -90,17 +89,17 @@ const CatCard = ({ cat = defaultCat }) => {
                             </div>
                         ) : (
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold text-[#9B7EBD] font-tiny">
+                                <h2 className="text-2xl font-bold text-black dark:text-white font-tiny">
                                     {t("cats_page.thanks_for_adopting")}
                                 </h2>
-                                <p className="dark:text-[#CDC1FF] text-[#9B7EBD] mt-2 font-afacad text-xl">
+                                <p className="dark:text-white text-black mt-2 font-afacad text-xl">
                                     {t(
                                         "cats_page.thanks_for_adopting_description"
                                     )}
                                 </p>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="mt-4 px-6 py-2 bg-[#9B7EBD] text-white rounded-md hover:bg-[#9B7EBD] cursor-pointer font-tiny uppercase"
+                                    className="mt-4 px-6 py-2 bg-secondary dark:bg-primary text-white rounded-md hover:bg-[#4E6988] cursor-pointer font-tiny uppercase"
                                 >
                                     {t(
                                         "cats_page.thanks_for_adopting_close_button"

@@ -1,6 +1,6 @@
 import catIcon from "../../../assets/cat_icon_registered.png";
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, ExternalLink } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 
 export const CatProfile = () => {
     const {t} = useTranslation();
