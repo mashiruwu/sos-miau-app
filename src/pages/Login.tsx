@@ -22,8 +22,10 @@ const Login = () => {
         console.log("Login data submitted:", formData);
 
         try {
+            const API = import.meta.env.VITE_API_URL; 
             const response = await fetch(
-                "http://localhost:3000/adopter/login",
+
+                API + "/adopter/login",
                 {
                     method: "POST",
                     headers: {
