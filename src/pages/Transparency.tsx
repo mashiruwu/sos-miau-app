@@ -21,8 +21,8 @@ function normalizeTo100(data: ReportItem[]): ReportItem[] {
 
 
 export function TransparencyPage() {
-
-    const { lastMessage, readyState } = useWebSocket('ws://localhost:3000/report', {
+    const API = import.meta.env.VITE_API_URL
+    const { lastMessage, readyState } = useWebSocket('ws://' + API + '/report', {
         shouldReconnect: () => true,
         retryOnError: true,
     });
@@ -43,7 +43,8 @@ export function TransparencyPage() {
 
     useEffect(() => {
         if (readyState === WebSocket.CLOSED) {
-            fetch('http://localhost:3000/report')
+            const API = import.meta.env.VITE_API_URL
+            fetch(API + '/report')
                 .then(r => r.json())
                 .then(data => setData(normalizeTo100(data)))
                 .catch(console.error);

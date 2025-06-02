@@ -11,7 +11,9 @@ const Home = () => {
     useEffect(() => {
         const submitForm = async () => {
           try {
-            const response = await fetch("http://localhost:3000/adopter/avaliableCats/" + sessionStorage.getItem("userId"), {
+            const API = import.meta.env.VITE_API_URL
+
+            const response = await fetch(API + "/adopter/avaliableCats/" + sessionStorage.getItem("userId"), {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -50,7 +52,8 @@ const Home = () => {
                     data={avaliableCats.unratedCats}
                     handleLike={async (id: string)=> {
                         try {
-                            const response = await fetch("http://localhost:3000/adopter/EvaluateCat", {
+                            const API = import.meta.env.VITE_API_URL
+                            const response = await fetch(API + "/adopter/EvaluateCat", {
                               method: "POST",
                               headers: {
                                 "Content-Type": "application/json",
@@ -73,7 +76,8 @@ const Home = () => {
                     }}
                     handleDislike={async (id: string)=> {
                         try {
-                            const response = await fetch("http://localhost:3000/adopter/EvaluateCat", {
+                            const API = import.meta.env.VITE_API_URL
+                            const response = await fetch(API + "/adopter/EvaluateCat", {
                               method: "POST",
                               headers: {
                                 "Content-Type": "application/json",

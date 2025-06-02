@@ -137,8 +137,9 @@ const HelpPage = () => {
             amount,
             area
         };
+        const API = import.meta.env.VITE_API_URL
 
-        fetch('http://localhost:3000/report/donations', {
+        fetch(API + '/report/donations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
