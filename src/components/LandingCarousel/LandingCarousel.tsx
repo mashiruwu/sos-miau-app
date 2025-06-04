@@ -2,9 +2,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const images = [
   {

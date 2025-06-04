@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useWebSocket from 'react-use-websocket';
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 import { useTranslation } from "react-i18next";
 
 export interface ReportItem {
