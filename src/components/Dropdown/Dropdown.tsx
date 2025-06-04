@@ -1,7 +1,6 @@
 import { Menu, MenuButton, MenuItems } from "@headlessui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 export default function Dropdown() {
     const { t } = useTranslation();

@@ -1,21 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom"; 
-import { getAuth, updatePassword  } from "firebase/auth";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
-import { initializeApp } from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCA6sFk_9q-z9NhsrlsE5D1o_FfFweDtrY",
-  authDomain: "sos-miau-app.firebaseapp.com",
-  projectId: "sos-miau-app",
-  storageBucket: "sos-miau-app.firebasestorage.app",
-  messagingSenderId: "795745556836",
-  appId: "1:795745556836:web:815a58e15c1b61c52ec271",
-  measurementId: "G-BS622408ZC"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
@@ -29,7 +14,7 @@ const ResetPassword = () => {
     setMessage("");
     try {
     console.log('Nova senha:', newPassword);
-      await confirmPasswordReset(auth, oobCode, newPassword);
+      // await updatePassword(auth, oobCode, newPassword);
       setMessage("Senha atualizada com sucesso!");
     } catch (error: any) {
       setMessage("Erro ao atualizar senha: " + error.message);

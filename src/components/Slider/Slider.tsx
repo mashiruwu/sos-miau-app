@@ -3,7 +3,6 @@ import Heart from "../../assets/Hearth.png";
 import X from "../../assets/X.png";
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
-import catList from './mock/mock';
 
 export function Slider(props: {data: [], handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void>}) {
 

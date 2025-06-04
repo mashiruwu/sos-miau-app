@@ -16,8 +16,9 @@ const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
 
+    console.log(showDropdown)
+    
     const navigate = useNavigate();
-
     const handleSignOut = () => {
         signOut();
         setShowDropdown(false);
@@ -40,7 +41,7 @@ const Header = () => {
     };
 
     return (
-        <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-[#153151] dark:bg-secondary dark:hover:bg-[#0f2533] transition-colors duration-300 dark:text-white z-50">
+        <div className="header sticky h-26 top-0 w-full flex items-center lg:justify-between px-2 lg:px-10 bg-primary text-[#153151] dark:bg-secondary transition-colors duration-300 dark:text-white z-50">
             <Dropdown />
             <Link
                 to="/"

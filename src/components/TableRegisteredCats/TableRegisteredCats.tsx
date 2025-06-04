@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useTransition } from "react";
-import { CirclePlus, Pencil, Trash2 } from "lucide-react";
+import React, { useState, useEffect, useTransition } from "react";import { CirclePlus, Pencil, Trash2 } from "lucide-react";
 import catIcon from "../../assets/cat_icon_registered.png";
 import EditCatModal from "./EditCatModal/EditCatModal";
 import { Gato } from "../../types/types";

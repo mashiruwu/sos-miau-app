@@ -1,7 +1,6 @@
 import catIcon from "../../assets/cat_icon_registered.png";
 import { useTranslation } from "react-i18next";
-import { TbTableShortcut } from "react-icons/tb";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 
 const gatos = [
@@ -72,12 +71,6 @@ const gatos = [
 ];
 
 const TableCatsWithInterest = () => {
-    const navigate = useNavigate();
-
-    // const handleClick = () => {
-    //     navigate("/destino");
-    // };
-
     const { t } = useTranslation();
 
     return (
