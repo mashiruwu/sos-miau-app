@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "sos-miau-app",
+    "front-prod": "sos-miau-app"
+  },
+  "targets": {},
+  "etags": {}
+}

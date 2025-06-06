@@ -1,4 +1,6 @@
 import './Slider.css';
+import Heart from "../../assets/Hearth.png";
+import X from "../../assets/X.png";
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
 
@@ -242,7 +244,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                     
                 <div className="option">
                     <button id="dislike" onClick={() => dislike()} disabled={lista.length - index === 0}>
-                        <img src="./src/components/Slider/assets/X.png"></img>
+                        <img src={X}></img>
                     </button>
                 </div>
                 
@@ -291,7 +293,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                 
                 <div className="option">
                     <button id="like" onClick={() => like()} disabled={lista.length - index === 0}>
-                        <img src="./src/components/Slider/assets/Hearth.png"></img>
+                        <img src={Heart}></img>
                     </button>
                 </div>
                 

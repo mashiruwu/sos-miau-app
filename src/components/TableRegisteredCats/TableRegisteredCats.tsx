@@ -21,8 +21,10 @@ const TableRegisteredCats = () => {
         const getCats = async () => {
             setLoading(true);
             try {
+                const API = import.meta.env.VITE_API_URL
+
                 const response = await fetch(
-                    "http://localhost:3000/donorOng/" +
+                    API + "/donorOng/" +
                         sessionStorage.getItem("userId"),
                     {
                         method: "GET",
@@ -51,8 +53,9 @@ const TableRegisteredCats = () => {
 
     const handleConfirmDelete = async (gato: Gato) => {
         try {
+            const API = import.meta.env.VITE_API_URL
             const response = await fetch(
-                `http://localhost:3000/cat/${gato.id}`,
+                `${API}/cat/${gato.id}`,
                 {
                     method: "DELETE",
                     headers: {

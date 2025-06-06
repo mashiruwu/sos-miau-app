@@ -14,8 +14,9 @@ export const UserLikedCats = () => {
         const fetchLikedCats = async () => {
             try {
                 const userId = sessionStorage.getItem("userId");
+                const API = import.meta.env.VITE_API_URL
                 const res = await fetch(
-                    `http://localhost:3000/adopter/${userId}`
+                    `${API}/adopter/${userId}`
                 );
                 const data = await res.json();
                 setLikedCatIds(data.likes || []);
@@ -30,8 +31,10 @@ export const UserLikedCats = () => {
     useEffect(() => {
         const fetchCatDetails = async () => {
             try {
+                const API = import.meta.env.VITE_API_URL
+
                 const promises = likedCatIds.map((id) =>
-                    fetch(`http://localhost:3000/cat/${id}`).then((res) =>
+                    fetch(`${API}/cat/${id}`).then((res) =>
                         res.json()
                     )
                 );

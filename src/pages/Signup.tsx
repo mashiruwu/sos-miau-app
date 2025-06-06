@@ -141,8 +141,8 @@ const Signup = () => {
 
             const user = userCredential.user;
             console.log("Usuário criado no Firebase:", user.uid);
-
-            const signupRes = await fetch("http://localhost:3000/adopter/", {
+            const API = import.meta.env.VITE_API_URL
+            const signupRes = await fetch(API + "/adopter/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -169,8 +169,8 @@ const Signup = () => {
           }
       
           console.log("Signup successful:", result);
-      
-          const loginRes = await fetch("http://localhost:3000/adopter/login", {
+
+          const loginRes = await fetch(API + "/adopter/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

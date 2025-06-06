@@ -30,13 +30,15 @@ const UserSettings = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             setLoading(true);
+            const API = import.meta.env.VITE_API_URL
+
             const urls = [
                 {
-                    url: `http://localhost:3000/donorOng/${userId}`,
+                    url: `${API}/donorOng/${userId}`,
                     role: "donorOng",
                 },
                 {
-                    url: `http://localhost:3000/adopter/${userId}`,
+                    url: `${API}/adopter/${userId}`,
                     role: "adopter",
                 },
             ];
@@ -112,10 +114,11 @@ const UserSettings = () => {
         };
 
         const requests = [];
+        const API = import.meta.env.VITE_API_URL
 
         if (userRole === "adopter") {
             requests.push(
-                fetch(`http://localhost:3000/adopter/${userId}`, {
+                fetch(`${API}/adopter/${userId}`, {
                     method: "PUT",
                     headers,
                     body: JSON.stringify(formData),
@@ -123,7 +126,7 @@ const UserSettings = () => {
             );
         } else if (userRole === "donorOng") {
             requests.push(
-                fetch(`http://localhost:3000/donorOng/${userId}`, {
+                fetch(`{API}/donorOng/${userId}`, {
                     method: "PUT",
                     headers,
                     body: JSON.stringify(formData),
