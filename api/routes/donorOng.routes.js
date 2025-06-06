@@ -8,6 +8,7 @@ router.get('/:id', donorOngController.getDonorOng);
 router.put('/:id', donorOngController.updateDonorOng);
 router.delete('/:id', donorOngController.deleteDonorOng);
 
+router.post('/catsWithInterest', donorOngController.CatsWithInterest);
 router.post('/avaliableAdopters', donorOngController.AvaliableAdopters);
 router.post('/evaluateAdopter', donorOngController.evaluateAdopter);
 module.exports = router;
