@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/navigation"; 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
@@ -21,55 +21,60 @@ const images = [
 
 export default function AdoptedCarousel() {
   return (
-    <div className="relative w-full py-16 bg-white dark:bg-gray-900 overflow-hidden">
-      {/* Container central */}
-      <div className="max-w-5xl mx-auto px-4 relative">
-        {/* Swiper */}
-        <Swiper
-        modules={[Navigation]}
-        loop={true}
-        spaceBetween={30}
-        slidesPerView={1}
-        centeredSlides
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        className="rounded-2xl overflow-hidden"
-      >
-        {images.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative group">
-              <img
-                src={item.src}
-                alt={item.title}
-                className="w-full h-64 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              {/* Título com gradiente escuro no rodapé */}
-              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent px-6 py-4">
-                <h3 className="text-white text-2xl font-semibold drop-shadow-md">
-                  {item.title}
-                </h3>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="w-full py-16 bg-white dark:bg-gray-900">
+      {/* Container Flex para alinhar os botões e o carrossel lado a lado.
+        'items-center' garante o alinhamento vertical.
+      */}
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-4">
+        
+        {/* Botão Anterior*/}
+        <button
+          className="image-swiper-button-prev hidden md:flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full w-14 h-14 transition disabled:opacity-50"
+          aria-label="Anterior"
+        >
+          <ChevronLeft size={24} />
+        </button>
 
-      {/* Botão anterior */}
-      <button
-        className="swiper-button-prev absolute top-1/2 left-2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition"
-        aria-label="Anterior"
-      >
-        <ChevronLeft className="" />
-      </button>
-      {/* Botão próximo */}
-      <button
-        className="swiper-button-next absolute top-1/2 right-2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition"
-        aria-label="Próximo"
-      >
-        <ChevronRight className="" />
-      </button>
+        {/* Wrapper do Swiper */}
+        <div className="w-full max-w-5xl">
+          <Swiper
+            modules={[Navigation]}
+            loop={true}
+            spaceBetween={30}
+            slidesPerView={1}
+            centeredSlides
+            navigation={{
+              nextEl: ".image-swiper-button-next",
+              prevEl: ".image-swiper-button-prev",
+            }}
+            className="rounded-2xl"
+          >
+            {images.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative group">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-64 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent px-6 py-4">
+                    <h3 className="text-white text-2xl font-semibold drop-shadow-md">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Botão Próximo*/}
+        <button
+          className="image-swiper-button-next hidden md:flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full w-14 h-14 transition disabled:opacity-50"
+          aria-label="Próximo"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </div>
   );

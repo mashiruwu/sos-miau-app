@@ -11,6 +11,7 @@ const Login = () => {
         email: "",
         password: "",
     });
+    const [errorMessage, setErrorMessage] = useState(""); 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -19,12 +20,12 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setErrorMessage(""); 
         console.log("Login data submitted:", formData);
 
         try {
             const API = import.meta.env.VITE_API_URL; 
             const response = await fetch(
-
                 API + "/adopter/login",
                 {
                     method: "POST",
@@ -36,7 +37,11 @@ const Login = () => {
             );
 
             if (!response.ok) {
-                // Handle error
+                if (response.status === 404) {
+                    setErrorMessage(t("loginPage.invalid_credentials"));
+                } else {
+                    setErrorMessage(t("loginPage.generic_error"));
+                }
                 console.error("Failed to submit");
                 return;
             }
@@ -49,6 +54,7 @@ const Login = () => {
             console.log("Form data submitted successfully:", data);
             window.location.href = `/`;
         } catch (error) {
+            setErrorMessage("Erro ao tentar fazer login. Tente novamente.");
             console.error("Error submitting form:", error);
         }
     };
@@ -64,6 +70,10 @@ const Login = () => {
                     <p className="mb-6 text-[#153151] text-center lg:text-left">
                         {t("loginPage.description")}
                     </p>
+                    {/* Mensagem de erro */}
+                    {errorMessage && (
+                        <div className="text-red-600 text-sm mb-2">{errorMessage}</div>
+                    )}
                     <div className="grid sm:grid-cols-1 gap-4">
                         <div className="col-span-2">
                             <Label>{t("loginPage.email")}</Label>
@@ -72,7 +82,7 @@ const Login = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Digite seu e-mail"
+                                placeholder={t("loginPage.email_placeholder")}
                                 required
                             />
                         </div>
@@ -83,7 +93,7 @@ const Login = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                placeholder="Digite sua senha"
+                                placeholder={t("loginPage.password_placeholder")}
                                 required
                             />
                         </div>
