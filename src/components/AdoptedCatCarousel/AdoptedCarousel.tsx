@@ -1,10 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../../styles/swiper.css";
-
 
 const images = [
   {
@@ -18,53 +16,61 @@ const images = [
   {
     src: "https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg",
     title: "Filhote Fofo",
-  }
+  },
 ];
-
-const maxSlides = 5;
 
 export default function AdoptedCarousel() {
   return (
-    <div className="flex justify-center items-center py-20 relative">
-        <div className="absolute left-0 z-10">
-            <button className="relative z-10 p-17 bg-gray-300 rounded-full hover:bg-gray-400 transition-all swiper-button-prev text-white"
-            aria-label="Previous Slide"/>
-        </div>
-        <div className="flex justify-center items-center">
-            <Swiper
-                modules={[Navigation]}
-                loop={true}
-                spaceBetween={10}
-                slidesPerView={1}
-                centeredSlides={true}
-                navigation={{
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                }}
-                className="flex w-full max-w-md"
-            >
-                {images.slice(0, maxSlides).map((item, index) => (
-                <SwiperSlide key={index} className="flex justify-center items-center">
-                    <div
-                    className={`dark:bg-gray-800 p-6 rounded-3xl transition-transform relative`}
-                    >
-                    <img
-                        src={item.src}
-                        alt={item.title}
-                        className="flex max-w-full h-130 object-cover rounded-2xl justify-center items-center"
-                    />
+    <div className="relative w-full py-16 bg-white dark:bg-gray-900 overflow-hidden">
+      {/* Container central */}
+      <div className="max-w-5xl mx-auto px-4 relative">
+        {/* Swiper */}
+        <Swiper
+        modules={[Navigation]}
+        loop={true}
+        spaceBetween={30}
+        slidesPerView={1}
+        centeredSlides
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        className="rounded-2xl overflow-hidden"
+      >
+        {images.map((item, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative group">
+              <img
+                src={item.src}
+                alt={item.title}
+                className="w-full h-64 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {/* Título com gradiente escuro no rodapé */}
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent px-6 py-4">
+                <h3 className="text-white text-2xl font-semibold drop-shadow-md">
+                  {item.title}
+                </h3>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-                    </div>
-                </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
-        <div>
-            <button className="flex z-10 p-17 bg-emerald-300 rounded-full hover:bg-emerald-500 transition-all swiper-button-next"
-             aria-label="Next Slide"/>
-            
-        </div>
-
+      {/* Botão anterior */}
+      <button
+        className="swiper-button-prev absolute top-1/2 left-2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition"
+        aria-label="Anterior"
+      >
+        <ChevronLeft className="" />
+      </button>
+      {/* Botão próximo */}
+      <button
+        className="swiper-button-next absolute top-1/2 right-2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition"
+        aria-label="Próximo"
+      >
+        <ChevronRight className="" />
+      </button>
+      </div>
     </div>
   );
 }

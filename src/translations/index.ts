@@ -11,6 +11,8 @@ const resources = {
             sign_up: "Sign Up",
             about_us: "About us",
             ong_login: "Ong Login",
+            light_mode: "Light Mode",
+            dark_mode: "Dark Mode",
             footer: {
                 description:
                     "We are SOS MIAU, an NGO dedicated to rescuing, caring for, and responsibly adopting abandoned cats. Our work includes rescuing felines in danger, providing veterinary care, and finding loving homes for each of them. We believe that every kitten deserves love, security, and a second chance.",
@@ -176,6 +178,37 @@ const resources = {
                         link: "click here",
                     },
                 },
+                donation_modal: {
+                    title: "Do you want to make a donation?",
+                    subtitle: "Choose an area to donate",
+                    area_contribution: "By choosing {{area}}, you will be contributing to:",
+                    finish_payment: "Finish Payment",
+                    cancel: "Cancel",
+                    placeholder: "$0.00",
+                    areas: {
+                        vet: "Veterinary Care",
+                        food: "Food and Supplies",
+                        shelter: "Shelter Maintenance",
+                        campaigns: "Adoption and Awareness Campaigns"
+                    },
+                    contributions: {
+                        consultas: "consultations",
+                        vacinas: "vaccines",
+                        castracoes: "neutering",
+                        exames: "exams",
+                        emergencias: "emergencies",
+                        racao: "food",
+                        leite: "kitten milk",
+                        areia: "hygienic sand",
+                        medicamentos: "medications",
+                        limpeza: "cleaning",
+                        infraestrutura: "infrastructure",
+                        bem_estar: "rescued cats' well-being",
+                        eventos: "events",
+                        materiais: "informative materials",
+                        redes: "social media"
+                    }
+                },
             },
             cats_page: {
                 title: "AVAILABLE CATS",
@@ -186,6 +219,9 @@ const resources = {
                 thanks_for_adopting_description:
                     "We'll be in touch in the registered phone to procceed with next steps",
                 thanks_for_adopting_close_button: "Close",
+            },
+            slider:{
+                error_message: "No more recommendations",
             },
             adopted_cats: {
                 title: "ADOPTED CATS",
@@ -341,6 +377,8 @@ const resources = {
             login: "Entrar",
             sign_up: "Cadastrar-se",
             ong_login: "É UMA ONG?",
+            light_mode: "Modo Claro",
+            dark_mode: "Mode Escuro",
             footer: {
                 description:
                     "Somos a SOS MIAU, uma ONG dedicada ao resgate, cuidado e adoção responsável de gatos em situação de abandono. Nosso trabalho inclui resgatar felinos em risco, oferecer cuidados veterinários e encontrar lares amorosos para cada um deles. Acreditamos que todo gatinho merece carinho, segurança e uma segunda chance.",
@@ -472,6 +510,9 @@ const resources = {
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",
             },
+            slider:{
+                error_message: "Não há mais recomendações",
+            },
             adopted_cats: {
                 title: "GATINHOS ADOTADOS",
                 text1: "Na nossa jornada de resgate e cuidado, muitos gatinhos encontraram um lar cheio de amor e carinho. Cada adoção representa uma nova história de esperança e felicidade, tanto para os felinos quanto para suas novas famílias.",
@@ -523,6 +564,37 @@ const resources = {
                         _5: "Se você deseja conhecer nossos gatinhos disponíveis para adoção, ",
                         link: "clique aqui",
                     },
+                },
+                donation_modal: {
+                    title: "Deseja fazer uma doação?",
+                    subtitle: "Escolha uma área para doar",
+                    area_contribution: "Ao escolher {{area}}, você estará contribuindo com:",
+                    finish_payment: "Finalizar Pagamento",
+                    cancel: "Cancelar",
+                    placeholder: "R$ 0,00",
+                    "areas": {
+                        "vet": "Cuidados Veterinários",
+                        "food": "Alimentação e Insumos",
+                        "shelter": "Manutenção do Abrigo",
+                        "campaigns": "Campanhas de Adoção e Conscientização"
+                    },
+                    "contributions": {
+                        "consultas": "consultas",
+                        "vacinas": "vacinas",
+                        "castracoes": "castrações",
+                        "exames": "exames",
+                        "emergencias": "emergências",
+                        "racao": "ração",
+                        "leite": "leite para filhotes",
+                        "areia": "areia higiênica",
+                        "medicamentos": "medicamentos",
+                        "limpeza": "limpeza",
+                        "infraestrutura": "infraestrutura",
+                        "bem_estar": "bem-estar dos resgatados",
+                        "eventos": "eventos",
+                        "materiais": "materiais informativos",
+                        "redes": "redes sociais"
+                    }
                 },
             },
             transparency: {
