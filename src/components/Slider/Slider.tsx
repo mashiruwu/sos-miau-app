@@ -6,14 +6,14 @@ import { Card } from './subComponents/card/Card'
 import { useTranslation } from 'react-i18next';
 
 export function Slider(props: { data: [], disabled: boolean, handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void> }) {
-    
+
     const { t } = useTranslation();
-    
+
     let lista: string | any[] = []
     if (props.data.length != 0) {
         lista = props.data
     }
-    
+
     const [index, setIndex] = useState(0);
 
     const slide = useRef<HTMLDivElement>(null); // Use useRef for DOM reference
@@ -89,9 +89,8 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
                 const deltaX = deltaXRef.current;
 
                 if (deltaX > slide.current.clientWidth / 4) {
-                        like();
+                    like();
                 } else if (deltaX < -slide.current.clientWidth / 4) {
-                        dislike();
                     dislike();
                 } else {
                     resetSlide();
@@ -126,7 +125,7 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
                 console.error("Something went wrong when liking:", error);
             }
         };
-        
+
         if (!props.disabled) {
             onLikeClick()
         }
@@ -258,29 +257,29 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
                 </div>
 
                 {
-                    lista.length - index != 0 ? 
-                    <div
-                        className="slide"
-                        id="slide"
-                        ref={slide}
-                        style={{
-                            transition: `${transition}s ease`,
-                            opacity: `${opacity}`,
-                            transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
-                        }}
-                        onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
-                    >
-                        <Card cat={lista[index]}></Card>
-                    </div>
-                    :
-                    <>
-                        <div 
-                            className='NoRecomendations'  
-                            style={{opacity: opacity}}                             
+                    lista.length - index != 0 ?
+                        <div
+                            className="slide"
+                            id="slide"
+                            ref={slide}
+                            style={{
+                                transition: `${transition}s ease`,
+                                opacity: `${opacity}`,
+                                transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
+                            }}
+                            onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
                         >
-                            <p>{t("slider.error_message")}</p>
+                            <Card cat={lista[index]}></Card>
                         </div>
-                    </>
+                        :
+                        <>
+                            <div
+                                className='NoRecomendations'
+                                style={{ opacity: opacity }}
+                            >
+                                <p>{t("slider.error_message")}</p>
+                            </div>
+                        </>
                 }
                 {
                     lista.length - index > 1 ?
