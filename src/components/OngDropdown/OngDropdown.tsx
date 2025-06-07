@@ -39,12 +39,12 @@ export default function OngDropdown({ ongName, onSignOut }: OngDropdownProps) {
                         {t("table_registeredcats.registered_users")}
                     </MenuItem>
                     <MenuItem to="/matches">Matches</MenuItem>
-                    <MenuItem to="/usersettings">Configurações</MenuItem>
+                    <MenuItem to="/usersettings">{t("likes.config")}</MenuItem>
                     <button
                         onClick={onSignOut}
                         className="block w-full text-left px-4 py-2 text-sm font-afacad uppercase text-secondary dark:text-primary hover:bg-gray-100"
                     >
-                        {t("Sign Out")}
+                        {t("sign_out")}
                     </button>
                 </div>
             </MenuItems>

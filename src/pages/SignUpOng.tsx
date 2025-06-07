@@ -150,7 +150,7 @@ const Signup = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Digite o nome da ONG"
+                                placeholder={t("signup_ong.placeholders.name")}
                                 required
                             />
                         </div>
@@ -174,7 +174,7 @@ const Signup = () => {
                                 name="address"
                                 value={formData.address}
                                 onChange={handleChange}
-                                placeholder="Digite o endereço"
+                                placeholder={t("signup_ong.placeholders.address")}
                                 required
                             />
                         </div>
@@ -198,7 +198,7 @@ const Signup = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Digite o email"
+                                placeholder={t("signup_ong.placeholders.email")}
                                 required
                             />
                         </div>
@@ -224,7 +224,7 @@ const Signup = () => {
                                 name="description"
                                 value={formData.description}
                                 onChange={handleChange}
-                                placeholder="Fale sobre a ONG"
+                                placeholder={t("signup_ong.placeholders.describe")}
                                 required
                             />
                         </div>
@@ -235,7 +235,7 @@ const Signup = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                placeholder="Digite sua senha"
+                                placeholder={t("signup_ong.placeholders.password")}
                                 required
                             />
                         </div>
@@ -246,7 +246,7 @@ const Signup = () => {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                placeholder="Confirme sua senha"
+                                placeholder={t("signup_ong.placeholders.confirm_password")}
                                 required
                             />
                         </div>

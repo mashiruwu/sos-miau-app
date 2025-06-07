@@ -65,7 +65,7 @@ const Footer = () => {
                                 {t("footer.adopted_cats")}
                             </Link>
                             <Link
-                                to={"#"}
+                                to={"/transparency"}
                                 className="hover:underline cursor-pointer"
                             >
                                 {t("footer.transparency")}
@@ -88,7 +88,7 @@ const Footer = () => {
             {isMobile && (
                 <footer className="mt-auto h-fit bg-primary py-5 lg:px-20 px-10 flex justify-between gap-5 font-afacad text-white items-center dark:bg-secondary">
                     <h1 className="font-tiny">
-                        <span className="font-afacad">©</span> SOS Miau
+                        <span className="font-afacad text-sm">©</span> SOS Miau
                     </h1>
                     <div className="flex justify-evenly gap-4">
                         <FaFacebook data-testid="facebook-icon" size={20} />
