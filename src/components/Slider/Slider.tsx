@@ -3,6 +3,8 @@ import Heart from "../../assets/Hearth.png";
 import X from "../../assets/X.png";
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
+import catList from './mock/mock';
+import { useTranslation } from "react-i18next";
 
 export function Slider(props: {data: [], handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void>}) {
 
@@ -11,6 +13,8 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
         lista = props.data
     }
     
+    const { t } = useTranslation();
+
     const [index, setIndex] = useState(0);
 
     const slide =  useRef<HTMLDivElement>(null); // Use useRef for DOM reference
@@ -269,7 +273,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                             className='NoRecomendations'  
                             style={{opacity: opacity}}                             
                         >
-                            <p>No more recommendations</p>
+                            <p>{t("slider.error_message")}</p>
                         </div>
                     </>
                 }

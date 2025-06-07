@@ -29,10 +29,10 @@ const ForgotPassword = () => {
     setLoading(true);
     console.log("Enviando link para:", email);
     try {
-        await sendPasswordResetEmail(auth, email);
-        setMessage("Link de recuperação enviado para seu e-mail.");
+    await sendPasswordResetEmail(auth, email);
+    setMessage(t("forgot_password.forgot_password_success"));
     } catch (error: any) {
-        setMessage("Erro ao enviar link: " + error.message);
+        setMessage(t("forgot_password.forgot_password_error", { error: error.message }));
         console.log("Erro ao enviar link: " + error.message);
     } finally {
         setLoading(false);
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
         />
 
         <SubmitButton type="button" onClick={handlePasswordReset} disabled={loading}>
-          {loading ? "Enviando..." : "Enviar link de recuperação"}
+          {loading ? t("forgot_password.message") : t("forgot_password.button")}
         </SubmitButton>
 
         {message && (

@@ -7,27 +7,24 @@ const AdoptedCats = () => {
     const { t } = useTranslation();
     
     return (
-        <div>
-            <LandingCarousel/>
-            <div>       
-                <h1 className="font-tiny text-secondary text-3xl md:text-5xl text-center pt-20">
-                    {t("adopted_cats.title")}
-                </h1>                   
-                <div className="flex flex-wrap pr-15 pl-15 pt-15 justify-center text-center font-afacad text-xl">
-                    <p className = "pb-5">{t("adopted_cats.text1")}</p>
-                    <p>{t("adopted_cats.text2")}</p>
-                </div>
-                <AdoptedCarousel/>
-                <div className="flex flex-wrap pb-20 justify-center text-center font-afacad text-xl">
-                    <p>{t("adopted_cats.text3")}</p>
-                    <p>{t("adopted_cats.text4")}</p>
-                </div>
-
+    <div>
+        <LandingCarousel/>
+        <div>       
+            <h1 className="font-tiny text-secondary text-3xl md:text-5xl text-center pt-10 md:pt-20">
+                {t("adopted_cats.title")}
+            </h1>                   
+            <div className="flex flex-wrap justify-center text-center font-afacad text-lg md:text-xl px-4 md:px-0 pt-6 md:pt-10">
+                <p className="pb-3 md:pb-5">{t("adopted_cats.text1")}</p>
+                <p>{t("adopted_cats.text2")}</p>
+            </div>
+            <AdoptedCarousel/>
+            <div className="flex flex-wrap justify-center text-center font-afacad text-lg md:text-xl px-4 md:px-0 pb-10 md:pb-20">
+                <p>{t("adopted_cats.text3")}</p>
+                <p>{t("adopted_cats.text4")}</p>
             </div>
         </div>
-    )
-
-    
+    </div>
+)
 }
 
 export default AdoptedCats
