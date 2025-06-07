@@ -6,34 +6,41 @@ import { useEffect, useState } from "react";
 const Home = () => {
     const { t } = useTranslation();
 
-    const [avaliableCats, setAvaliableCats] = useState({unratedCats: []});
+    const [avaliableCats, setAvaliableCats] = useState({ unratedCats: [] });
+    const [disabled, setDisabled] = useState(false)
 
     useEffect(() => {
         const submitForm = async () => {
-          try {
-            const API = import.meta.env.VITE_API_URL
+            try {
+                const API = import.meta.env.VITE_API_URL
 
-            const response = await fetch(API + "/adopter/avaliableCats/" + sessionStorage.getItem("userId"), {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
-      
-            if (!response.ok) {
-              console.error("Failed to find Cats");
-              return;
+                let id = sessionStorage.getItem("userId");
+                if (!id) {
+                    id = "ListarTodos"
+                    setDisabled(true)
+                }
+
+                const response = await fetch(API + "/adopter/avaliableCats/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    console.error("Failed to find Cats");
+                    return;
+                }
+                const data = await response.json();
+
+                console.log(data)
+                setAvaliableCats(data)
+
+            } catch (error) {
+                console.error("Error submitting form:", error);
             }
-            const data = await response.json();
-                
-            console.log(data)
-            setAvaliableCats(data)
-
-          } catch (error) {
-            console.error("Error submitting form:", error);
-          }
         };
-      
+
         submitForm();
     }, []);
 
@@ -46,57 +53,63 @@ const Home = () => {
                     {t("homepage.match")}
                 </h1>
                 <p className="font-afacad text-xl text-secondary text-center">
-                    {t("homepage.match_description")}
+                    {
+                        disabled ?
+                            t("homepage.login_match_description")
+                            :
+                            t("homepage.match_description")
+                    }
                 </p>
-                <Slider 
+                <Slider
                     data={avaliableCats.unratedCats}
-                    handleLike={async (id: string)=> {
+                    disabled={disabled}
+                    handleLike={async (id: string) => {
                         try {
                             const API = import.meta.env.VITE_API_URL
                             const response = await fetch(API + "/adopter/EvaluateCat", {
-                              method: "POST",
-                              headers: {
-                                "Content-Type": "application/json",
-                              },
-                              body: JSON.stringify({
-                                idAdopter: sessionStorage.getItem("userId"),
-                                idCat: id,
-                                like: "true"
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    idAdopter: sessionStorage.getItem("userId"),
+                                    idCat: id,
+                                    like: "true"
                                 })
                             });
-                      
+
                             if (!response.ok) {
-                              console.error("Failed to find Cats");
-                              return;
+                                console.error("Failed to find Cats");
+                                return;
                             }
-                
-                          } catch (error) {
+
+                        } catch (error) {
                             console.error("Error submitting form:", error);
-                          }
+                        }
                     }}
-                    handleDislike={async (id: string)=> {
+                    handleDislike={async (id: string) => {
                         try {
                             const API = import.meta.env.VITE_API_URL
                             const response = await fetch(API + "/adopter/EvaluateCat", {
-                              method: "POST",
-                              headers: {
-                                "Content-Type": "application/json",
-                              },
-                              body: JSON.stringify({
-                                idAdopter: sessionStorage.getItem("userId"),
-                                idCat: id,
-                                like: "false"
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    idAdopter: sessionStorage.getItem("userId"),
+                                    idCat: id,
+                                    like: "false"
                                 })
                             });
-                      
+
                             if (!response.ok) {
-                              console.error("Failed to find Cats");
-                              return;
+                                console.error("Failed to find Cats");
+                                return;
                             }
-                
-                          } catch (error) {
+
+                        } catch (error) {
                             console.error("Error submitting form:", error);
-                          }
+                        }
                     }}
                 ></Slider>
             </div>

@@ -3,17 +3,20 @@ import Heart from "../../assets/Hearth.png";
 import X from "../../assets/X.png";
 import { useState, useRef } from 'react';
 import { Card } from './subComponents/card/Card'
+import { useTranslation } from 'react-i18next';
 
-export function Slider(props: {data: [], handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void>}) {
-
+export function Slider(props: { data: [], disabled: boolean, handleLike: (id: string) => Promise<void>, handleDislike: (id: string) => Promise<void> }) {
+    
+    const { t } = useTranslation();
+    
     let lista: string | any[] = []
-    if(props.data.length != 0){
+    if (props.data.length != 0) {
         lista = props.data
     }
-    
+
     const [index, setIndex] = useState(0);
 
-    const slide =  useRef<HTMLDivElement>(null); // Use useRef for DOM reference
+    const slide = useRef<HTMLDivElement>(null); // Use useRef for DOM reference
 
     const [aditionalStyle, setAditionalStyle] = useState({
         backgroundColor: '#132945',
@@ -42,7 +45,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
     const [startX, setStartX] = useState(0);
     const deltaXRef = useRef(0); // Use useRef for immediate access to deltaX
 
-    function mouseDown(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function mouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         e.preventDefault();
 
         if (!inTransform) {
@@ -51,7 +54,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
             setIsDragging(true);
         }
     }
-    function touchStart(e: React.TouchEvent<HTMLDivElement>){
+    function touchStart(e: React.TouchEvent<HTMLDivElement>) {
         //e.preventDefault();
 
         if (!inTransform) {
@@ -61,7 +64,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
         }
     }
 
-    function mouseMove(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function mouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         if (!isDragging || inTransform) return;
 
         const deltaX = e.clientX - startX;
@@ -69,7 +72,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
         setTransformTranslate([deltaX, "px"]); // Update translate state
         setTransformRotate(0.02 * deltaX); // Update rotate state
     }
-    function touchMove(e: React.TouchEvent<HTMLDivElement>){
+    function touchMove(e: React.TouchEvent<HTMLDivElement>) {
         if (!isDragging || inTransform) return;
 
         const deltaX = e.touches[0].clientX - startX;
@@ -86,8 +89,9 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                 const deltaX = deltaXRef.current;
 
                 if (deltaX > slide.current.clientWidth / 4) {
-                    like();
+                        like();
                 } else if (deltaX < -slide.current.clientWidth / 4) {
+                        dislike();
                     dislike();
                 } else {
                     resetSlide();
@@ -106,23 +110,26 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
             setInTransform(false);
         }, 500);
     }
-    
+
     function like() {
         setTransition(0.5);
         setTransformTranslate([200, "%"]);
         setTransformRotate(-20);
 
         console.log('Like');
-        
+
         const onLikeClick = async () => {
             try {
-              await props.handleLike(lista[index].id);
-              
+                await props.handleLike(lista[index].id);
+
             } catch (error) {
-              console.error("Something went wrong when liking:", error);
+                console.error("Something went wrong when liking:", error);
             }
         };
-        onLikeClick()
+        
+        if (!props.disabled) {
+            onLikeClick()
+        }
 
         setTimeout(() => {
             resetAfterAction();
@@ -137,13 +144,16 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
         console.log('Dislike');
         const onLikeClick = async () => {
             try {
-              await props.handleDislike(lista[index].id);
-              
+                await props.handleDislike(lista[index].id);
+
             } catch (error) {
-              console.error("Something went wrong when liking:", error);
+                console.error("Something went wrong when liking:", error);
             }
         };
-        onLikeClick()
+
+        if (!props.disabled) {
+            onLikeClick()
+        }
 
         setTimeout(() => {
             resetAfterAction();
@@ -175,15 +185,15 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                 transform: 'translate(-50%, -50%)',
             }));
             setAditional2Style((prevStyle) => ({
-                
+
                 ...prevStyle,
                 transition: time + 's ease',
                 backgroundColor: "#132945",
                 transform: 'translate(-48%, -48.5%)',
             }));
-            
-            
-            if(lista.length - index > 3){
+
+
+            if (lista.length - index > 3) {
                 setAditional3Style((prevStyle) => ({
                     ...prevStyle,
                     opacity: 1,
@@ -208,7 +218,7 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
                         backgroundColor: "#10243c",
                         transform: 'translate(-46%, -47%)',
                     }));
-                    if(lista.length - index > 3){
+                    if (lista.length - index > 3) {
                         setAditional3Style((prevStyle) => ({
                             ...prevStyle,
                             opacity: 0,
@@ -234,69 +244,68 @@ export function Slider(props: {data: [], handleLike: (id: string) => Promise<voi
 
     return (
         <>
-            <div className="chose" 
+            <div className="chose"
                 onMouseMove={(e) => mouseMove(e)}
                 onMouseUp={() => mouseUp()}
                 onTouchMove={(e) => touchMove(e)}
                 onTouchEnd={mouseUp}
-                >
-                
-                    
+            >
+
                 <div className="option">
                     <button id="dislike" onClick={() => dislike()} disabled={lista.length - index === 0}>
                         <img src={X}></img>
                     </button>
                 </div>
-                
+
                 {
-                    lista.length - index != 0 ? 
-                    <div
-                        className="slide"
-                        id="slide"
-                        ref={slide}
-                        style={{
-                            transition: `${transition}s ease`,
-                            opacity: `${opacity}`,
-                            transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
-                        }}
-                        onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
-                    >
-                        <Card cat={lista[index]}></Card>
-                    </div>
-                    :
-                    <>
-                        <div 
-                            className='NoRecomendations'  
-                            style={{opacity: opacity}}                             
+                    lista.length - index != 0 ?
+                        <div
+                            className="slide"
+                            id="slide"
+                            ref={slide}
+                            style={{
+                                transition: `${transition}s ease`,
+                                opacity: `${opacity}`,
+                                transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
+                            }}
+                            onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
                         >
-                            <p>No more recommendations</p>
+                            <Card cat={lista[index]}></Card>
                         </div>
-                    </>
+                        :
+                        <>
+                            <div
+                                className='NoRecomendations'
+                                style={{ opacity: opacity }}
+                            >
+                                <p>{ t("homepage.match_no_recomendations") }</p>
+                            </div>
+                        </>
                 }
                 {
-                    lista.length - index > 1 ? 
-                    <div className="additional-div" style={aditionalStyle}>
-                        <Card cat={lista[index+1]}></Card>
-                    </div>:
-                    <></>
+                    lista.length - index > 1 ?
+                        <div className="additional-div" style={aditionalStyle}>
+                            <Card cat={lista[index + 1]}></Card>
+                        </div> :
+                        <></>
                 }
                 {
-                    lista.length - index > 2 ? 
-                    <div className="additional-div2" style={aditional2Style}></div>:
-                    <></>
+                    lista.length - index > 2 ?
+                        <div className="additional-div2" style={aditional2Style}></div> :
+                        <></>
                 }
-                
+
                 <div className="additional-div2" style={aditional3Style}>
-                
+
                 </div>
 
-                
+
                 <div className="option">
                     <button id="like" onClick={() => like()} disabled={lista.length - index === 0}>
                         <img src={Heart}></img>
                     </button>
                 </div>
-                
+
             </div>
         </>
     );
