@@ -92,7 +92,6 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
                         like();
                 } else if (deltaX < -slide.current.clientWidth / 4) {
                         dislike();
-                    dislike();
                 } else {
                     resetSlide();
                 }
