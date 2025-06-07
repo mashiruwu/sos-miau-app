@@ -8,6 +8,8 @@ const resources = {
                 match: "MATCH WITH MEOW",
                 match_description:
                     "By liking “Match with Meow”, you create an adoption request.",
+                login_match_description:
+                    "Login or Create an account to give likes, this way, you create an adoption request.",
             },
             login: "Login",
             sign_up: "Sign Up",
@@ -405,6 +407,8 @@ const resources = {
                 match: "MATCH COM MIAU",
                 match_description:
                     "Ao dar um like no “Match com Miau”, você cria uma solicitação de adoção.",
+                login_match_description:
+                    "Realize Login ou Crie uma conta para dar likes, assim você cria uma solicitação de adoção.",
             },
             login: "Entrar",
             sign_up: "Cadastrar-se",

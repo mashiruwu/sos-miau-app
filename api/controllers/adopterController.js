@@ -140,11 +140,11 @@ exports.loginAdopter = async (req, res) => {
   try {
     const userEmail = req.body.email;
     const userPassword = req.body.password;
-  
+
     const adoptersRef = db.collection("adopters")
 
-    const querySnapshot =  await adoptersRef.where("email", "==", userEmail).where("password", "==", userPassword).get()
-    
+    const querySnapshot = await adoptersRef.where("email", "==", userEmail).where("password", "==", userPassword).get()
+
     if (querySnapshot.empty) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -158,9 +158,9 @@ exports.loginAdopter = async (req, res) => {
 
 
     const token = jwt.sign(
-      { id: userId, email: userEmail },   
-      process.env.JWT_SECRET,           
-      { expiresIn: process.env.JWT_EXPIRES_IN || '1d' } 
+      { id: userId, email: userEmail },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || '1d' }
     );
 
 
@@ -175,7 +175,7 @@ exports.loginAdopter = async (req, res) => {
       token,
       user: doc.data()
     });
-    
+
   } catch (error) {
     res.status(500).json({ error: error.message, stack: error.stack });
   }
@@ -183,30 +183,40 @@ exports.loginAdopter = async (req, res) => {
 
 exports.avaliableCats = async (req, res) => {
   try {
+    const unratedCats = [];
+    // Get all cats excluding those in likes and dislikes
+    const catsRef = db.collection("cats");
+    const catsSnapshot = await catsRef.get();
+
     const adopterId = req.params.id;
+    if (adopterId == 'ListarTodos') {
+      
+      console.log(adopterId)
+      catsSnapshot.forEach((doc) => {
+        const catData = doc.data();
+        unratedCats.push({ id: doc.id, ...catData });
+      })
+      
+      return res.json({ unratedCats });
+    }
 
     // Get adopter's likes and dislikes
     const adopterRef = db.collection("adopters").doc(adopterId);
     const adopterDoc = await adopterRef.get();
 
     if (!adopterDoc.exists) {
-        return res.status(404).json({ message: "Adopter not found" });
+      return res.status(404).json({ message: "Adopter not found" });
     }
 
     const adopterData = adopterDoc.data();
     const likedCats = adopterData.likes || [];
     const dislikedCats = adopterData.dislikes || [];
 
-    // Get all cats excluding those in likes and dislikes
-    const catsRef = db.collection("cats");
-    const catsSnapshot = await catsRef.get();
-
-    const unratedCats = [];
     catsSnapshot.forEach((doc) => {
-        const catData = doc.data();
-        if (!likedCats.includes(catData.id) && !dislikedCats.includes(catData.id)) {
-            unratedCats.push({ id: doc.id, ...catData });
-        }
+      const catData = doc.data();
+      if (!likedCats.includes(catData.id) && !dislikedCats.includes(catData.id)) {
+        unratedCats.push({ id: doc.id, ...catData });
+      }
     });
 
     return res.json({ unratedCats });
@@ -228,15 +238,15 @@ exports.evaluateCat = async (req, res) => {
     const adopterDoc = await adopterRef.get();
 
     if (!adopterDoc.exists) {
-        return res.status(404).json({ message: "Adopter not found" });
+      return res.status(404).json({ message: "Adopter not found" });
     }
-    
-    if (like){
+
+    if (like) {
       await adopterRef.update({
         likes: [...adopterDoc.data().likes, catId],
       });
     }
-    else{
+    else {
       await adopterRef.update({
         dislikes: [...adopterDoc.data().dislikes, catId],
       });
@@ -244,7 +254,7 @@ exports.evaluateCat = async (req, res) => {
 
 
 
-    return  res.json({success: true})
+    return res.json({ success: true })
   }
   catch (error) {
     res.status(500).json({ error: error.message });

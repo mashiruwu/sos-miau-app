@@ -15,7 +15,9 @@ const allowedOrigins = [
   "https://sos-miau-app.uc.r.appspot.com",  // your deployed front-end
   "http://localhost:3000",                 // local development
   "https://sos-miau-app.firebaseapp.com",
-  "http://localhost:8080"                  // local development
+  "http://localhost:8080",
+  "http://localhost:5173",
+  "http://localhost:4173",
 ];
 
 const corsOptions = {
