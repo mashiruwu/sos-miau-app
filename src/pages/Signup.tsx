@@ -201,7 +201,7 @@ const Signup = () => {
             if (error.code === "auth/email-already-in-use") {
                 setError(t("signup.email_already_in_use") || "E-mail já está em uso.");
             } else {
-                setError("Erro ao enviar o formulário. Tente novamente.");
+                setError(t("signup.form_error") || "Erro ao enviar o formulário.Tente novamente.");
             }
             setShowErrorModal(true);
             console.error("Error submitting form:", error);
@@ -228,7 +228,7 @@ const Signup = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Digite seu nome"
+                                placeholder= {t("signup.placeholders.name")}
                                 required
                             />
                         </div>
@@ -239,7 +239,7 @@ const Signup = () => {
                                 name="surname"
                                 value={formData.surname}
                                 onChange={handleChange}
-                                placeholder="Digite seu sobrenome"
+                                placeholder={t("signup.placeholders.surname")}
                                 required
                             />
                         </div>
@@ -284,7 +284,7 @@ const Signup = () => {
                                 name="address"
                                 value={formData.address}
                                 onChange={handleChange}
-                                placeholder="Digite seu endereço"
+                                placeholder={t("signup.placeholders.address")}
                                 required
                             />
                         </div>
@@ -295,7 +295,7 @@ const Signup = () => {
                                 name="complement"
                                 value={formData.complement}
                                 onChange={handleChange}
-                                placeholder="Digite o complemento"
+                                placeholder={t("signup.placeholders.complement")}
                                 required
                             />
                         </div>
@@ -318,7 +318,7 @@ const Signup = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Digite seu email"
+                                placeholder={t("signup.placeholders.email")}
                                 required
                             />
                         </div>
@@ -361,7 +361,7 @@ const Signup = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                placeholder="Digite sua senha"
+                                placeholder={t("signup.placeholders.password")}
                                 required
                             />
                         </div>
@@ -372,7 +372,7 @@ const Signup = () => {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                placeholder="Confirme sua senha"
+                                placeholder={t("signup.placeholders.confirm_password")}
                                 required
                             />
                         </div>

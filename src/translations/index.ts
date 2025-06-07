@@ -84,6 +84,7 @@ const resources = {
             signup: {
                 title: "Sign Up",
                 email_already_in_use: "Email is already in use.",
+                form_error: "There was an error in the form submission.",
                 description: "Sign up now to adopt the miaus!",
                 name: "Name",
                 surname: "Surname",
@@ -110,6 +111,19 @@ const resources = {
                 image_alt: "Sign up image",
                 foundation_date: "Foundation Date",
                 descriptionOng: "Description",
+                placeholders: {
+                    name: "Enter your name",
+                    surname: "Enter your surname",
+                    phone: "Enter your phone number",
+                    email: "Enter your email",
+                    address: "Enter your address",
+                    complement: "Enter the complement",
+                    description: "Enter the description",
+                    website: "Enter the website",
+                    cnpj: "Enter the CNPJ",
+                    confirm_password: "Confirm your password",
+                    password: "Enter your password",
+                },
             },
             loginPage: {
                 title: "Login",
@@ -326,6 +340,7 @@ const resources = {
             },
             likes: {
                 like: "Likes",
+                config: "settings",
             },
             table_registeredcats: {
                 name: "Name",
@@ -397,7 +412,17 @@ const resources = {
                 message: "Sending...",
                 forgot_password_success: "Recovery link sent to your email.",
                 forgot_password_error: "Error sending link: {{error}}",
-            }
+            },
+            signup_ong: {
+                placeholders: {
+                    name: "Enter the NGO's name",
+                    address: "Enter the NGO's address",
+                    email: "Enter the NGO's email",
+                    password: "Enter the NGO's password",
+                    confirm_password: "Confirm the NGO's password",
+                    describe: "Describe the NGO"
+                }
+            }, 
         },
     },
     br: {
@@ -509,6 +534,19 @@ const resources = {
                 image_alt: "Imagem de cadastro",
                 foundation_date: "Data de Fundação",
                 descriptionOng: "Descrição",
+                placeholders: {
+                    "name": "Digite seu nome",
+                    "surname": "Digite seu sobrenome",
+                    "phone": "Digite seu telefone",
+                    "email": "Digite seu e-mail",
+                    "address": "Digite seu endereço",
+                    "complement": "Digite o complemento",
+                    "description": "Digite a descrição",
+                    "website": "Digite o site",
+                    "cnpj": "Digite o CNPJ",
+                    "confirm_password": "Confirme sua senha",
+                    "password": "Digite sua senha",
+                },
             },
             loginPage: {
                 title: "Entrar",
@@ -719,6 +757,7 @@ const resources = {
             },
             likes: {
                 like: "Curtidas",
+                config: "configurações",
             },
             table_registeredcats: {
                 name: "Nome",
@@ -790,7 +829,17 @@ const resources = {
                 message: "Enviando...",
                 forgot_password_success: "Link de recuperação enviado para o seu e-mail.",
                 forgot_password_error: "Erro ao enviar o link: {{error}}",
-            }
+            },
+            signup_ong: {
+                placeholders: {
+                    name: "Digite o nome da ONG",
+                    address: "Digite o endereço da ONG",
+                    email: "Digite o e-mail da ONG",
+                    password: "Digite a senha da ONG",
+                    confirm_password: "Confirme a senha da ONG",
+                    describe: "Descreva a ONG",       
+                },
+            },     
         },
     },
 };

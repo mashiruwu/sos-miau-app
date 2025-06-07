@@ -75,6 +75,34 @@ export default function Dropdown() {
                             <span className="px-4 font-bold">
                                 {user?.name || ong?.name}
                             </span>
+                            {user && (
+                                <>
+                                    <MenuItem to="/usersettings">
+                                        {t("likes.config")}
+                                    </MenuItem>
+                                    <MenuItem to="/likes">
+                                        {t("likes.like")}
+                                    </MenuItem>
+                                </>
+                            )}
+                            {ong && (
+                                <>
+                                    <MenuItem to="/interest">
+                                        {t("table_registeredcats.analysis")}
+                                    </MenuItem>
+                                    <MenuItem to="/registeredcats">
+                                        {t("table_registeredcats.title")}
+                                    </MenuItem>
+                                    <MenuItem to="/catregister">
+                                        {t("table_registeredcats.add_cat")}
+                                    </MenuItem>
+                                    <MenuItem to="/registeredusers">
+                                        {t("table_registeredcats.registered_users")}
+                                    </MenuItem>
+                                    <MenuItem to="/matches">Matches</MenuItem>
+                                    <MenuItem to="/usersettings">{t("likes.config")}</MenuItem>
+                                </>
+                            )}
                             <button
                                 onClick={signOut}
                                 className="text-left px-4 py-1 hover:bg-primary/10 dark:hover:bg-white/10"

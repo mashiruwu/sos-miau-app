@@ -24,7 +24,7 @@ export default function UserDropdown({ userName, onSignOut }: UserDropdownProps)
       >
         <div className="py-1">
           <MenuItem to="/usersettings">
-            {t("Configurações")}
+            {t("likes.config")}
           </MenuItem>
           <MenuItem to="/likes">
             {t("likes.like")}
@@ -33,7 +33,7 @@ export default function UserDropdown({ userName, onSignOut }: UserDropdownProps)
             onClick={onSignOut}
             className="block w-full text-left px-4 py-2 text-sm font-afacad uppercase text-secondary dark:text-primary hover:bg-gray-100"
           >
-            {t("Sign Out")}
+            {t("sign_out")}
           </button>
         </div>
       </MenuItems>
