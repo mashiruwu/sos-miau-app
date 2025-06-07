@@ -1,3 +1,5 @@
+import ForgotPassword from "../pages/ForgotPassword";
+
 const resources = {
     en: {
         translation: {
@@ -13,8 +15,11 @@ const resources = {
             },
             login: "Login",
             sign_up: "Sign Up",
+            sign_out: "Sign Out",
             about_us: "About us",
             ong_login: "Ong Login",
+            light_mode: "Light Mode",
+            dark_mode: "Dark Mode",
             footer: {
                 description:
                     "We are SOS MIAU, an NGO dedicated to rescuing, caring for, and responsibly adopting abandoned cats. Our work includes rescuing felines in danger, providing veterinary care, and finding loving homes for each of them. We believe that every kitten deserves love, security, and a second chance.",
@@ -80,6 +85,7 @@ const resources = {
             },
             signup: {
                 title: "Sign Up",
+                email_already_in_use: "Email is already in use.",
                 description: "Sign up now to adopt the miaus!",
                 name: "Name",
                 surname: "Surname",
@@ -113,6 +119,8 @@ const resources = {
                 loginOngDescription:
                     "Log in to find your miaus a beautiful home!",
                 email: "Email",
+                email_placeholder: "Type your email",
+                password_placeholder: "Type your password",
                 password: "Password",
                 forgot_password: "Forgot Password",
                 forgot_password_desc: "Can't remember your password?",
@@ -125,6 +133,8 @@ const resources = {
                 send_code: "Send code to email",
                 submit: "Login",
                 image_alt: "Login image",
+                invalid_credentials: "Incorrect email or password.",
+                generic_error: "Error trying to log in. Please try again.",
             },
             landing_carousel: {
                 slide01_title: "About the NGO",
@@ -180,6 +190,37 @@ const resources = {
                         link: "click here",
                     },
                 },
+                donation_modal: {
+                    title: "Do you want to make a donation?",
+                    subtitle: "Choose an area to donate",
+                    area_contribution: "By choosing {{area}}, you will be contributing to:",
+                    finish_payment: "Finish Payment",
+                    cancel: "Cancel",
+                    placeholder: "$0.00",
+                    areas: {
+                        vet: "Veterinary Care",
+                        food: "Food and Supplies",
+                        shelter: "Shelter Maintenance",
+                        campaigns: "Adoption and Awareness Campaigns"
+                    },
+                    contributions: {
+                        consultas: "consultations",
+                        vacinas: "vaccines",
+                        castracoes: "neutering",
+                        exames: "exams",
+                        emergencias: "emergencies",
+                        racao: "food",
+                        leite: "kitten milk",
+                        areia: "hygienic sand",
+                        medicamentos: "medications",
+                        limpeza: "cleaning",
+                        infraestrutura: "infrastructure",
+                        bem_estar: "rescued cats' well-being",
+                        eventos: "events",
+                        materiais: "informative materials",
+                        redes: "social media"
+                    }
+                },
             },
             cats_page: {
                 title: "AVAILABLE CATS",
@@ -190,6 +231,9 @@ const resources = {
                 thanks_for_adopting_description:
                     "We'll be in touch in the registered phone to procceed with next steps",
                 thanks_for_adopting_close_button: "Close",
+            },
+            slider:{
+                error_message: "No more recommendations",
             },
             adopted_cats: {
                 title: "ADOPTED CATS",
@@ -206,6 +250,8 @@ const resources = {
             },
             transparency: {
                 title: "Transparency",
+                collected_value: "AMOUNT COLLECTED IN {{month}}: {{value}}",
+                resources_distribution: "Resource Distribution",
                 partnerships: {
                     title: "Partnerships",
                     description:
@@ -213,6 +259,22 @@ const resources = {
                 },
                 reports: {
                     title: "Reports",
+                    buttons: {
+                        financial_jan: "FINANCIAL JAN/25",
+                        activities_jan: "ACTIVITIES JAN/25",
+                        impact: "NGO IMPACT",
+                        financial_feb: "FINANCIAL FEB/25",
+                        activities_feb: "ACTIVITIES FEB/25",
+                        campaigns: "CAMPAIGNS",
+                        financial_mar: "FINANCIAL MAR/25",
+                        activities_mar: "ACTIVITIES MAR/25"
+                    }
+                },
+                categories: {
+                    "Veterinary Care": "Veterinary Care (consultations, vaccines, neutering, exams, and emergencies)",
+                    "Adoption and Awareness Campaigns": "Adoption and Awareness Campaigns (events, informational materials, and social media)",
+                    "Shelter Maintenance": "Shelter Maintenance (cleaning, infrastructure, and rescued cats' well-being)",
+                    "Food and Supplies": "Food and Supplies (food, kitten milk, hygienic sand, and medications)"
                 },
             },
             cat_register: {
@@ -332,6 +394,12 @@ const resources = {
                     cnpj: "Enter the CNPJ",
                 },
             },
+            forgot_password: {
+                button: "Recovery link sent to your email",
+                message: "Sending...",
+                forgot_password_success: "Recovery link sent to your email.",
+                forgot_password_error: "Error sending link: {{error}}",
+            }
         },
     },
     br: {
@@ -348,7 +416,10 @@ const resources = {
             },
             login: "Entrar",
             sign_up: "Cadastrar-se",
+            sign_out: "Sair",
             ong_login: "É UMA ONG?",
+            light_mode: "Modo Claro",
+            dark_mode: "Mode Escuro",
             footer: {
                 description:
                     "Somos a SOS MIAU, uma ONG dedicada ao resgate, cuidado e adoção responsável de gatos em situação de abandono. Nosso trabalho inclui resgatar felinos em risco, oferecer cuidados veterinários e encontrar lares amorosos para cada um deles. Acreditamos que todo gatinho merece carinho, segurança e uma segunda chance.",
@@ -415,6 +486,7 @@ const resources = {
             signup: {
                 title: "Cadastro",
                 description: "Cadastre-se agora para poder adotar os miaus!",
+                email_already_in_use: "E-mail já está em uso.",
                 name: "Nome",
                 surname: "Sobrenome",
                 cpf: "CPF",
@@ -445,6 +517,8 @@ const resources = {
             loginPage: {
                 title: "Entrar",
                 description: "Acesse sua conta para adotar os miaus!",
+                email_placeholder: "Digite seu email",
+                password_placeholder: "Digite sua senha",
                 loginOngDescription:
                     "Acesse sua conta para achar um lar para os miaus!",
                 email: "Email",
@@ -460,6 +534,8 @@ const resources = {
                 send_code: "Enviar código para o email",
                 submit: "Entrar",
                 image_alt: "Imagem de login",
+                invalid_credentials: "E-mail ou senha incorretos.",
+                generic_error: "Erro ao tentar fazer login. Tente novamente.",
             },
             landing_carousel: {
                 slide01_title: "Sobre a ONG",
@@ -479,6 +555,9 @@ const resources = {
                 thanks_for_adopting_description:
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",
+            },
+            slider:{
+                error_message: "Não há mais recomendações",
             },
             adopted_cats: {
                 title: "GATINHOS ADOTADOS",
@@ -532,9 +611,42 @@ const resources = {
                         link: "clique aqui",
                     },
                 },
+                donation_modal: {
+                    title: "Deseja fazer uma doação?",
+                    subtitle: "Escolha uma área para doar",
+                    area_contribution: "Ao escolher {{area}}, você estará contribuindo com:",
+                    finish_payment: "Finalizar Pagamento",
+                    cancel: "Cancelar",
+                    placeholder: "R$ 0,00",
+                    "areas": {
+                        "vet": "Cuidados Veterinários",
+                        "food": "Alimentação e Insumos",
+                        "shelter": "Manutenção do Abrigo",
+                        "campaigns": "Campanhas de Adoção e Conscientização"
+                    },
+                    "contributions": {
+                        "consultas": "consultas",
+                        "vacinas": "vacinas",
+                        "castracoes": "castrações",
+                        "exames": "exames",
+                        "emergencias": "emergências",
+                        "racao": "ração",
+                        "leite": "leite para filhotes",
+                        "areia": "areia higiênica",
+                        "medicamentos": "medicamentos",
+                        "limpeza": "limpeza",
+                        "infraestrutura": "infraestrutura",
+                        "bem_estar": "bem-estar dos resgatados",
+                        "eventos": "eventos",
+                        "materiais": "materiais informativos",
+                        "redes": "redes sociais"
+                    }
+                },
             },
             transparency: {
                 title: "Transparência",
+                collected_value: "VALOR ARRECADADO EM {{month}}: {{value}}",
+                resources_distribution: "Distribuição dos Recursos",
                 partnerships: {
                     title: "Parcerias",
                     description:
@@ -542,6 +654,22 @@ const resources = {
                 },
                 reports: {
                     title: "Relatórios",
+                    buttons: {
+                        financial_jan: "FINANCEIRO JAN/25",
+                        activities_jan: "ATIVIDADES JAN/25",
+                        impact: "IMPACTO DA ONG",
+                        financial_feb: "FINANCEIRO FEV/25",
+                        activities_feb: "ATIVIDADES FEV/25",
+                        campaigns: "CAMPANHAS",
+                        financial_mar: "FINANCEIRO MAR/25",
+                        activities_mar: "ATIVIDADES MAR/25"
+                    }
+                },
+                categories: {
+                    "Veterinary Care": "Cuidados Veterinários (consultas, vacinas, castrações, exames e emergências)",
+                    "Adoption and Awareness Campaigns": "Campanhas de Adoção e Conscientização (eventos, materiais informativos e redes sociais)",
+                    "Shelter Maintenance": "Manutenção do Abrigo (limpeza, infraestrutura e bem-estar dos resgatados)",
+                    "Food and Supplies": "Alimentação e Insumos (ração, leite para filhotes, areia higiênica e medicamentos)"
                 },
             },
             cat_register: {
@@ -661,6 +789,12 @@ const resources = {
                     cnpj: "Digite o CNPJ",
                 },
             },
+            forgot_password: {
+                button: "Link de recuperação enviado para o seu e-mail",
+                message: "Enviando...",
+                forgot_password_success: "Link de recuperação enviado para o seu e-mail.",
+                forgot_password_error: "Erro ao enviar o link: {{error}}",
+            }
         },
     },
 };

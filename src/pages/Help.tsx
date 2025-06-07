@@ -88,20 +88,39 @@ const HelpPage = () => {
 
     const infoDonation = [
         {
-            area: "Cuidados Veterinários",
-            contribuicoes: ["consultas", "vacinas", "castrações", "exames", "emergências"]
+            area: t("want_help.donation_modal.areas.vet"),
+            contribuicoes: [
+                t("want_help.donation_modal.contributions.consultas"),
+                t("want_help.donation_modal.contributions.vacinas"),
+                t("want_help.donation_modal.contributions.castracoes"),
+                t("want_help.donation_modal.contributions.exames"),
+                t("want_help.donation_modal.contributions.emergencias"),
+            ]
         },
         {
-            area: "Alimentação e Insumos",
-            contribuicoes: ["ração", "leite para filhotes", "areia higiênica", "medicamentos"]
+            area: t("want_help.donation_modal.areas.food"),
+            contribuicoes: [
+                t("want_help.donation_modal.contributions.racao"),
+                t("want_help.donation_modal.contributions.leite"),
+                t("want_help.donation_modal.contributions.areia"),
+                t("want_help.donation_modal.contributions.medicamentos"),
+            ]
         },
         {
-            area: "Manutenção do Abrigo",
-            contribuicoes: ["limpeza", "infraestrutura", "bem-estar dos resgatados"]
+            area: t("want_help.donation_modal.areas.shelter"),
+            contribuicoes: [
+                t("want_help.donation_modal.contributions.limpeza"),
+                t("want_help.donation_modal.contributions.infraestrutura"),
+                t("want_help.donation_modal.contributions.bem_estar"),
+            ]
         },
         {
-            area: "Campanhas de Adoção e Conscientização",
-            contribuicoes: ["eventos", "materiais informativos", "redes sociais"]
+            area: t("want_help.donation_modal.areas.campaigns"),
+            contribuicoes: [
+                t("want_help.donation_modal.contributions.eventos"),
+                t("want_help.donation_modal.contributions.materiais"),
+                t("want_help.donation_modal.contributions.redes"),
+            ]
         },
     ]
 
@@ -163,6 +182,7 @@ const HelpPage = () => {
     useEffect(() => {
         console.log(amount)
     }, [amount])
+
     return (
         <>
             <section className="flex flex-col gap-10">
@@ -174,34 +194,37 @@ const HelpPage = () => {
 
                 <div className="flex justify-center items-center mt-5 py-20 bg-gray-100 pb-30">
                     <div className="mx-auto max-w-md w-100 p-15 bg-gradient-to-br from-white to-sky-50 rounded-lg shadow-2xl text-center">
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-2">Deseja fazer uma doação?</h2>
-                        <p className="text-gray-600 mb-4">Escolha uma área para doar</p>
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-2">{t("want_help.donation_modal.title")}</h2>
+                        <p className="text-gray-600 mb-4">{t("want_help.donation_modal.subtitle")}</p>
 
                         <div className="flex flex-col gap-3">
                             {
                                 infoDonation.map((val, idx) => (
-                                    <button className="rounded-md py-2 px-4 mx-4 bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100 " onClick={() => { setOpenModal(true); setDonationIndex(idx); }}>
+                                    <button
+                                        key={idx}
+                                        className="rounded-md py-2 px-4 mx-4 bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100"
+                                        onClick={() => { setOpenModal(true); setDonationIndex(idx); }}
+                                    >
                                         {val.area}
                                     </button>
                                 ))
                             }
-
                         </div>
                     </div>
                 </div>
 
                 <div className={`fixed inset-0 flex justify-center items-center backdrop-contrast-35 backdrop-blur-xs z-50 ${openModal ? '' : 'hidden'}`}>
-                    <div className="relative text-center max-w-lg m-2 p-6 rounded-lg bg-white shadow-lg">
-                        <button className="absolute top-2 right-2 p-1 rounded-md bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100 " onClick={() => { setOpenModal(false) }}>
-                            Cancelar
+                    <div className="relative text-center max-w-lg m-2 p-6 rounded-lg bg-white shadow-lg w-full sm:w-[90%] md:w-[600px]">
+                        <button className="absolute top-2 right-2 p-1 rounded-md bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100" onClick={() => setOpenModal(false)}>
+                            {t("want_help.donation_modal.cancel")}
                         </button>
 
                         <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-6">
                             {infoDonation[donationIndex].area}
                         </h3>
 
-                        <div className="flex ">
-                            <div className="flex flex-col justify-around items-center gap-1">
+                        <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                            <div className="flex flex-col justify-around items-center gap-1 w-full md:w-auto">
                                 {[5, 10, 20, 50, 100].map((val) => (
                                     <button
                                         key={val}
@@ -209,7 +232,7 @@ const HelpPage = () => {
                                             setAmount(val);
                                             setInputValue(formatToCurrency((val * 100).toString()));
                                         }}
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded w-full"
+                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded w-full md:w-32"
                                     >
                                         {formatToCurrency((val * 100).toString())}
                                     </button>
@@ -218,33 +241,37 @@ const HelpPage = () => {
                                 <input
                                     type="text"
                                     inputMode="numeric"
-                                    placeholder="R$ 0,00"
+                                    placeholder={t("want_help.donation_modal.placeholder")}
                                     value={inputValue}
                                     onChange={handleChange}
-                                    className="mt-2 rounded-sm border border-gray-300 w-32 text-center py-3"
+                                    className="mt-2 rounded-sm border border-gray-300 w-full md:w-32 text-center py-3"
                                 />
                             </div>
 
-                            <div className="flex flex-col px-2 min-h-full justify-between">
+                            <div className="flex flex-col w-full md:w-auto px-2 justify-between">
                                 <div className="mt-3">
-                                    <p>Ao escolher {infoDonation[donationIndex].area}, voce estará contribuindo com:</p>
-                                    <ul className="text-start px-10 list-disc list-inside">
-                                        {
-                                            infoDonation[donationIndex].contribuicoes.map((val) => (
-                                                <li>{val}</li>
-                                            ))
-                                        }
+                                    <p>{t("want_help.donation_modal.area_contribution", {
+                                        area: infoDonation[donationIndex].area,
+                                    })}</p>
+                                    <ul className="text-start px-5 md:px-10 list-disc list-inside text-sm md:text-base">
+                                        {infoDonation[donationIndex].contribuicoes.map((val, idx) => (
+                                            <li key={idx}>{val}</li>
+                                        ))}
                                     </ul>
                                 </div>
-                                <button className="p-3 mt-4 rounded-md text-xl bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100" onClick={() => { setOpenModal(false); handlePay(); }}>
-                                    Finalizar Pagamento
+                                <button
+                                    className="p-3 mt-4 rounded-md text-base md:text-xl bg-primary dark:bg-secondary hover:brightness-110 active:brightness-90 text-secondary dark:text-gray-100 w-full"
+                                    onClick={() => {
+                                        setOpenModal(false);
+                                        handlePay();
+                                    }}
+                                >
+                                    {t("want_help.donation_modal.finish_payment")}
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </section>
         </>
     );

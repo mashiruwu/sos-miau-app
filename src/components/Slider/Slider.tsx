@@ -13,7 +13,7 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
     if (props.data.length != 0) {
         lista = props.data
     }
-
+    
     const [index, setIndex] = useState(0);
 
     const slide = useRef<HTMLDivElement>(null); // Use useRef for DOM reference
@@ -258,29 +258,29 @@ export function Slider(props: { data: [], disabled: boolean, handleLike: (id: st
                 </div>
 
                 {
-                    lista.length - index != 0 ?
-                        <div
-                            className="slide"
-                            id="slide"
-                            ref={slide}
-                            style={{
-                                transition: `${transition}s ease`,
-                                opacity: `${opacity}`,
-                                transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
-                            }}
-                            onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
+                    lista.length - index != 0 ? 
+                    <div
+                        className="slide"
+                        id="slide"
+                        ref={slide}
+                        style={{
+                            transition: `${transition}s ease`,
+                            opacity: `${opacity}`,
+                            transform: `translateX(${transformTranslate[0]}${transformTranslate[1]}) rotate(${transformRotate}deg)`,
+                        }}
+                        onMouseDown={(e) => mouseDown(e)} onTouchStart={(e) => touchStart(e)}
+                    >
+                        <Card cat={lista[index]}></Card>
+                    </div>
+                    :
+                    <>
+                        <div 
+                            className='NoRecomendations'  
+                            style={{opacity: opacity}}                             
                         >
-                            <Card cat={lista[index]}></Card>
+                            <p>{t("slider.error_message")}</p>
                         </div>
-                        :
-                        <>
-                            <div
-                                className='NoRecomendations'
-                                style={{ opacity: opacity }}
-                            >
-                                <p>{ t("homepage.match_no_recomendations") }</p>
-                            </div>
-                        </>
+                    </>
                 }
                 {
                     lista.length - index > 1 ?

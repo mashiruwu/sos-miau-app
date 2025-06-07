@@ -70,16 +70,16 @@ const Rescue = () => {
     ];
 
     return (
-        <section className="mb-30 flex flex-col gap-10">
-            <img
-                src="https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg"
-                className="w-full h-[500px] object-cover"
-            />
-            <h1 className="text-center text-5xl font-tiny uppercase text-secondary ">
-                Resgates
-            </h1>
-            <InfoCarousel slides={infoSlides} />
-        </section>
+    <section className="mb-30 flex flex-col gap-10 px-4 md:px-0">
+        <img
+            src="https://jpimg.com.br/uploads/2023/06/10-dicas-para-cuidar-de-um-gato-filhote.jpg"
+            className="w-full h-64 md:h-[500px] object-cover rounded-lg"
+        />
+        <h1 className="text-center text-2xl md:text-5xl font-tiny uppercase text-secondary">
+            {t("rescue.title")}
+        </h1>
+        <InfoCarousel slides={infoSlides} />
+    </section>
     );
 };
 

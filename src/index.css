@@ -36,3 +36,11 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary-hover);
 }
+
+/* Esconde os botões do Swiper no mobile */
+@media (max-width: 767px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+}

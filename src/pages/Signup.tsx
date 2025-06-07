@@ -104,7 +104,7 @@ const Signup = () => {
         if (formData.password !== formData.confirmPassword) {
             setError(t("signup.password_mismatch"));
             setShowErrorModal(true);
-          return;
+            return;
         }
       
         const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -153,57 +153,61 @@ const Signup = () => {
             });
     
 
-          const result = await signupRes.json();
+            const result = await signupRes.json();
 
-          if (!signupRes.ok) {
-            console.error("Signup failed:", signupRes.status);
-            if (result.errors && typeof result.errors === "object") {
-                const messages = Object.values(result.errors).join(" ");
-                setError(messages);
+            if (!signupRes.ok) {
+                console.error("Signup failed:", signupRes.status);
+                if (result.errors && typeof result.errors === "object") {
+                    const messages = Object.values(result.errors).join(" ");
+                    setError(messages);
+                } else {
+                    setError(result.message || "Erro inesperado.");
+                }
+                setShowErrorModal(true);
+                console.log(result.errors)
+                return;
+            }
+        
+            console.log("Signup successful:", result);
+
+            const loginRes = await fetch(API + "/adopter/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                email: formData.email,
+                password: formData.password,
+                }),
+            });
+        
+            if (!loginRes.ok) {
+                console.error("Login failed:", loginRes.status);
+                return;
+            }
+        
+            const loginData = await loginRes.json();
+            console.log("Login response:", loginData);
+            
+            if (!loginData.token || !loginData.user?.id) {
+                console.error("Resposta de login inválida", loginData);
+                return;
+            }
+        
+            localStorage.setItem("token", loginData.token);
+            sessionStorage.setItem("userId", loginData.user.id);
+            
+            window.location.href = "/";
+        } catch (error: any) {
+            // Tratamento para e-mail já cadastrado
+            if (error.code === "auth/email-already-in-use") {
+                setError(t("signup.email_already_in_use") || "E-mail já está em uso.");
             } else {
-                setError(result.message || "Erro inesperado.");
+                setError("Erro ao enviar o formulário. Tente novamente.");
             }
             setShowErrorModal(true);
-            console.log(result.errors)
-            return;
-          }
-      
-          console.log("Signup successful:", result);
-
-          const loginRes = await fetch(API + "/adopter/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: formData.email,
-              password: formData.password,
-            }),
-          });
-      
-          if (!loginRes.ok) {
-            console.error("Login failed:", loginRes.status);
-            return;
-          }
-      
-          const loginData = await loginRes.json();
-          console.log("Login response:", loginData);
-          
-          if (!loginData.token || !loginData.user?.id) {
-            console.error("Resposta de login inválida", loginData);
-            return;
-          }
-      
-          localStorage.setItem("token", loginData.token);
-          sessionStorage.setItem("userId", loginData.user.id);
-          
-          window.location.href = "/";
-        } catch (error) {
-          console.error("Error submitting form:", error);
-          setError("Erro ao enviar o formulário. Tente novamente.");
-          setShowErrorModal(true);
+            console.error("Error submitting form:", error);
         }
-      };
-      
-      
+    };
+    
 
     return (
         <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-center w-full h-full lg:pb-30">
@@ -265,7 +269,7 @@ const Signup = () => {
                                 }}
                                 onBlur={(e) => {
                                     e.target.type = "text";
-                                    const br = formatToBR(formData.birthday);
+                                    const br = formatToISO(formData.birthday);
                                     setFormData({ ...formData, birthday: br });
                                 }}
                                 placeholder="__/__/____"
@@ -394,6 +398,5 @@ const Signup = () => {
         </div>
     );
 };
-
 
 export default Signup;
