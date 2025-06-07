@@ -18,7 +18,6 @@ const Header = () => {
 
     console.log(showDropdown)
     
-    const navigate = useNavigate();
     const handleSignOut = () => {
         signOut();
         setShowDropdown(false);
@@ -38,11 +37,6 @@ const Header = () => {
         setDarkMode(newMode);
         document.documentElement.classList.toggle("dark", newMode);
         localStorage.setItem("theme", newMode ? "dark" : "light");
-    };
-
-    const handleSignOut = () => {
-        signOut();
-        navigate("/");
     };
 
     return (
