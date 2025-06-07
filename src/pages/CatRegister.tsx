@@ -7,7 +7,6 @@ import Label from "../components/Label/Label";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
-import { getAnalytics } from "firebase/analytics";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
@@ -21,7 +20,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 export const storage = getStorage(app);
 const CatRegister = () => {

@@ -14,6 +14,16 @@ const Header = () => {
     const navigate = useNavigate();
 
     const [darkMode, setDarkMode] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    console.log(showDropdown)
+    
+    const navigate = useNavigate();
+    const handleSignOut = () => {
+        signOut();
+        setShowDropdown(false);
+        navigate("/");
+    };
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");

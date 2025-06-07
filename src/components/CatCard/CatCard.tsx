@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cat1 from "../../assets/rescue_cat.png";
-import { useLocation } from "react-router-dom";
 
 const defaultCat = {
     id: 1,

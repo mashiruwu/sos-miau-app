@@ -8,7 +8,7 @@ const TableRegisteredUsers = () => {
     const {t} = useTranslation();
     const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const [usuarios, setUsuarios] = useState([
+    const [usuarios, _] = useState([
         {
             id: 1,
             nome: "João Silva",

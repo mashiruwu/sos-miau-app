@@ -1,7 +1,6 @@
 import { InfoCarousel } from "../components/InfoCarousel/InfoCarousel";
 import Divulgue from "../assets/divulgue.png";
 import Money from "../assets/Money.png";
-import QrCode from "../assets/qrcode.png";
 import PadrinhoMadrinhaImg from "../assets/padrinho_madrinha.png";
 import AdoteImg from "../assets/adoteImg.png";
 import { Link } from "react-router-dom";
