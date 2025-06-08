@@ -33,7 +33,7 @@ function normalizeTo100(data: ReportItem[]): ReportItem[] {
 
 export function TransparencyPage() {
     const API = import.meta.env.VITE_API_URL
-    const { lastMessage, readyState } = useWebSocket('ws://' + API + '/report', {
+    const { lastMessage, readyState } = useWebSocket(API + '/report', {
         shouldReconnect: () => true,
         retryOnError: true,
     });
