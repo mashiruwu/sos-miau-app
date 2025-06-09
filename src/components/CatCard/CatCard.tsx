@@ -36,7 +36,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                 setIsOpen(true);
                                 setAdopted(false);
                             }}
-                            className="w-full px-4 py-2 text-lg font-medium text-white bg-[#254D70] hover:bg-[#21415c]  rounded-xl hover:bg- cursor-pointer focus:outline-none"
+                            className="w-full px-4 py-2 text-lg font-medium text-white bg-[#9B7EBD] rounded-xl hover:bg- cursor-pointer focus:outline-none"
                         >
                             {t("cats_page.interest")}
                         </button>
@@ -69,7 +69,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                     className="w-full h-64 object-cover rounded-lg"
                                 />
                                 <div className="flex flex-col gap-4 w-full">
-                                    <h1 className="font-tiny text-[#EFE4D2] text-xl uppercase">
+                                    <h1 className="font-tiny text-[#9B7EBD] text-xl uppercase">
                                         {cat.name}
                                     </h1>
                                     <ul className="text-black dark:text-white font-afacad">
@@ -81,7 +81,7 @@ const CatCard = ({ cat = defaultCat }) => {
                                     </ul>
                                     <button
                                         onClick={() => setAdopted(true)}
-                                        className="bg-white  px-6 py-2 rounded-md font-tiny text-[#254D70] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
+                                        className="bg-white  px-6 py-2 rounded-md font-tiny text-[#9B7EBD] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
                                     >
                                         {t("cats_page.button_adopt")}
                                     </button>
@@ -89,17 +89,17 @@ const CatCard = ({ cat = defaultCat }) => {
                             </div>
                         ) : (
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold text-[#5694c7] font-tiny">
+                                <h2 className="text-2xl font-bold text-[#9B7EBD] font-tiny">
                                     {t("cats_page.thanks_for_adopting")}
                                 </h2>
-                                <p className="dark:text-[#788ea1] text-[#788ea1] mt-2 font-afacad text-xl">
+                                <p className="dark:text-[#CDC1FF] text-[#9B7EBD] mt-2 font-afacad text-xl">
                                     {t(
                                         "cats_page.thanks_for_adopting_description"
                                     )}
                                 </p>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="mt-4 px-6 py-2 bg-[#254D70] text-white rounded-md hover:bg-[#21415c] cursor-pointer font-tiny uppercase"
+                                    className="mt-4 px-6 py-2 bg-[#9B7EBD] text-white rounded-md hover:bg-[#9B7EBD] cursor-pointer font-tiny uppercase"
                                 >
                                     {t(
                                         "cats_page.thanks_for_adopting_close_button"

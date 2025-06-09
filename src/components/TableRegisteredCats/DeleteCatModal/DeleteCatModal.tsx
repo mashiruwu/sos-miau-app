@@ -7,6 +7,9 @@ interface DeleteCatModalProps {
     onDelete: (gato: Gato) => void;
 }
 
+
+
+
 const DeleteCatModal: React.FC<DeleteCatModalProps> = ({
     gato,
     onClose,
