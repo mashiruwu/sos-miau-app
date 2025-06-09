@@ -11,6 +11,6 @@ export interface Gato {
     behaviour?: string;
     neutered?: boolean;
     fivfelv?: boolean;
-    adopted?: boolean;
+    adopted?: string;
     adoption_date?: string | null;
 }
