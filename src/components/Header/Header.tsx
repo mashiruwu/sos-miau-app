@@ -16,8 +16,6 @@ const Header = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
 
-    console.log(showDropdown)
-    
     const handleSignOut = () => {
         signOut();
         setShowDropdown(false);
@@ -41,7 +39,6 @@ const Header = () => {
 
     return (
         <div className="header sticky top-0 w-full h-26 flex items-center justify-between px-4 lg:px-10 bg-primary text-[#153151] dark:bg-secondary dark:hover:bg-[#0f2533] transition-colors duration-300 dark:text-white z-50">
-            
             {/* Hamburguer Menu - SEMPRE visível */}
             <Dropdown
                 user={user}
@@ -63,9 +60,15 @@ const Header = () => {
             <div className="lg:flex items-center gap-6 text-md uppercase hidden">
                 {user || ong ? (
                     ong ? (
-                        <OngDropdown ongName={ong.name} onSignOut={handleSignOut} />
+                        <OngDropdown
+                            ongName={ong.name}
+                            onSignOut={handleSignOut}
+                        />
                     ) : (
-                        <UserDropdown userName={user?.name} onSignOut={handleSignOut} />
+                        <UserDropdown
+                            userName={user?.name}
+                            onSignOut={handleSignOut}
+                        />
                     )
                 ) : (
                     <>

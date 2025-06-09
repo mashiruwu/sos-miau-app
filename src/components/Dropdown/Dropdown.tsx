@@ -64,8 +64,12 @@ export default function Dropdown() {
                     <MenuItem to="/adoption">{t("footer.want_adopt")}</MenuItem>
                     <MenuItem to="/help">{t("footer.help")}</MenuItem>
                     <MenuItem to="/rescue">{t("footer.rescue")}</MenuItem>
-                    <MenuItem to="/adoptedcats">{t("footer.adopted_cats")}</MenuItem>
-                    <MenuItem to="/transparency">{t("footer.transparency")}</MenuItem>
+                    <MenuItem to="/adoptedcats">
+                        {t("footer.adopted_cats")}
+                    </MenuItem>
+                    <MenuItem to="/transparency">
+                        {t("footer.transparency")}
+                    </MenuItem>
 
                     <hr className="my-2 border-t border-gray-300 dark:border-gray-600" />
 
@@ -97,10 +101,14 @@ export default function Dropdown() {
                                         {t("table_registeredcats.add_cat")}
                                     </MenuItem>
                                     <MenuItem to="/registeredusers">
-                                        {t("table_registeredcats.registered_users")}
+                                        {t(
+                                            "table_registeredcats.registered_users"
+                                        )}
                                     </MenuItem>
                                     <MenuItem to="/matches">Matches</MenuItem>
-                                    <MenuItem to="/usersettings">{t("likes.config")}</MenuItem>
+                                    <MenuItem to="/usersettings">
+                                        {t("likes.config")}
+                                    </MenuItem>
                                 </>
                             )}
                             <button

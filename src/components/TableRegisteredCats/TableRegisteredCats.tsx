@@ -21,11 +21,10 @@ const TableRegisteredCats = () => {
         const getCats = async () => {
             setLoading(true);
             try {
-                const API = import.meta.env.VITE_API_URL
+                const API = import.meta.env.VITE_API_URL;
 
                 const response = await fetch(
-                    API + "/donorOng/" +
-                        sessionStorage.getItem("userId"),
+                    API + "/donorOng/" + sessionStorage.getItem("userId"),
                     {
                         method: "GET",
                         headers: {
@@ -40,9 +39,8 @@ const TableRegisteredCats = () => {
                 }
 
                 const data = await response.json();
-                console.log(data.cats_available);
 
-                setGatos(data.cats_available);
+                setGatos([...data.cats_available, ...data.cats_adopted]);
             } catch (error) {
                 console.error("Error submitting form:", error);
             }
@@ -53,16 +51,13 @@ const TableRegisteredCats = () => {
 
     const handleConfirmDelete = async (gato: Gato) => {
         try {
-            const API = import.meta.env.VITE_API_URL
-            const response = await fetch(
-                `${API}/cat/${gato.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+            const API = import.meta.env.VITE_API_URL;
+            const response = await fetch(`${API}/cat/${gato.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
             if (!response.ok) {
                 console.error("Erro ao excluir o gato");
@@ -190,19 +185,15 @@ const TableRegisteredCats = () => {
                                 <td className="p-3">{gato.birthday}</td>
                                 <td className="p-3">{gato.race}</td>
                                 <td className="p-3">
-                                    <select
-                                        value={gato.adopted}
-                                        onChange={(e) =>
-                                            handleAdocaoChange(
-                                                index,
-                                                e.target.value === "Sim"
-                                            )
-                                        }
-                                        className="bg-transparent border-none focus:outline-none"
-                                    >
-                                        <option value="Sim">Sim</option>
-                                        <option value="Não">Não</option>
-                                    </select>
+                                    {gato.adopted === "Sim" ? (
+                                        <p className="text-green-500 font-bold">
+                                            Sim
+                                        </p>
+                                    ) : (
+                                        <p className="text-red-500 font-bold">
+                                            Não
+                                        </p>
+                                    )}
                                 </td>
                                 <td className="p-3 flex gap-2">
                                     <button
