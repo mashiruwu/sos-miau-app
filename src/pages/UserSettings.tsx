@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "../components/InputField/InputField";
 import RadioButton from "../components/RadioButton/RadioButton";
 import Label from "../components/Label/Label";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 const UserSettings = () => {
     const { t } = useTranslation();
+
+    const { signOut } = useAuth();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -30,7 +34,7 @@ const UserSettings = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             setLoading(true);
-            const API = import.meta.env.VITE_API_URL
+            const API = import.meta.env.VITE_API_URL;
 
             const urls = [
                 {
@@ -96,6 +100,8 @@ const UserSettings = () => {
         fetchUserData();
     }, []);
 
+    const navigate = useNavigate();
+
     const userRole = sessionStorage.getItem("userRole");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -114,7 +120,7 @@ const UserSettings = () => {
         };
 
         const requests = [];
-        const API = import.meta.env.VITE_API_URL
+        const API = import.meta.env.VITE_API_URL;
 
         if (userRole === "adopter") {
             requests.push(
@@ -126,7 +132,7 @@ const UserSettings = () => {
             );
         } else if (userRole === "donorOng") {
             requests.push(
-                fetch(`{API}/donorOng/${userId}`, {
+                fetch(`${API}/donorOng/${userId}`, {
                     method: "PUT",
                     headers,
                     body: JSON.stringify(formData),
@@ -154,6 +160,45 @@ const UserSettings = () => {
         } catch (error) {
             console.error("Erro inesperado:", error);
             alert("Erro inesperado ao atualizar informações.");
+        }
+    };
+
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm(
+            "Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita."
+        );
+        if (!confirmDelete) return;
+
+        try {
+            const API = import.meta.env.VITE_API_URL;
+            if (userRole === "adopter") {
+                await fetch(`${API}/adopter/${userId}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                });
+            } else if (userRole === "donorOng") {
+                await fetch(`${API}/donorOng/${userId}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                });
+            }
+            signOut();
+            if (userRole === "adopter") {
+                navigate("/login");
+            } else {
+                navigate("/loginOng");
+            }
+        } catch (error) {
+            console.error("Erro ao deletar usuário:", error);
+            alert("Erro ao deletar usuário.");
         }
     };
 
@@ -313,6 +358,15 @@ const UserSettings = () => {
                                             {t("user_settings.submit")}
                                         </SubmitButton>
                                     </div>
+                                    <div className="col-span-2 mt-4 flex justify-center lg:justify-start">
+                                        <button
+                                            type="button"
+                                            onClick={handleDelete}
+                                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200 cursor-pointer"
+                                        >
+                                            {t("user_settings.delete_account")}
+                                        </button>
+                                    </div>
                                 </>
                             )}
 
@@ -432,6 +486,15 @@ const UserSettings = () => {
                                         <SubmitButton>
                                             {t("user_settings.submit")}
                                         </SubmitButton>
+                                    </div>
+                                    <div className="col-span-2 mt-4 flex justify-center lg:justify-start">
+                                        <button
+                                            type="button"
+                                            onClick={handleDelete}
+                                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200"
+                                        >
+                                            {t("user_settings.delete_account")}
+                                        </button>
                                     </div>
                                 </>
                             )}
