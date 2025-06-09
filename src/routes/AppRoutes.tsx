@@ -18,7 +18,6 @@ import UserSettings from "../pages/UserSettings";
 import RegisteredCats from "../pages/RegisteredCats";
 import Matches from "../pages/Matches";
 import CatsInterestList from "../pages/CatsInterestList";
-import TableRegisteredUsers from "../components/TableRegisteredUsers/TableRegisteredUsers";
 import { UserLikedCats } from "../pages/UserLikedCats";
 import { CatProfile } from "../components/TableCatsWithInterest/CatProfile/CatProfile";
 import ForgotPassword from "../pages/ForgotPassword";
@@ -46,7 +45,10 @@ export const AppRoutes = () => {
                     <Route path="/adoptedcats" element={<AdoptedCats />} />
                     <Route path="/catregister" element={<CatRegister />} />
                     <Route path="/usersettings" element={<UserSettings />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
+                    />
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/interest" element={<CatsInterestList />} />
@@ -54,10 +56,6 @@ export const AppRoutes = () => {
                     <Route
                         path="/registeredcats"
                         element={<RegisteredCats />}
-                    />
-                    <Route
-                        path="/registeredusers"
-                        element={<TableRegisteredUsers />}
                     />
                     <Route path="/likes" element={<UserLikedCats />} />
                 </Route>

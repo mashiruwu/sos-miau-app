@@ -104,6 +104,8 @@ const TableRegisteredCats = () => {
         return name.includes(term) || race.includes(term);
     });
 
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
     return (
         <div className="p-8 font-afacad">
             <div className="flex justify-between items-center mb-4">
@@ -170,13 +172,18 @@ const TableRegisteredCats = () => {
                         filteredGatos.map((gato, index) => (
                             <tr
                                 key={index}
-                                className="border-t hover:bg-gray-50 text-lg text-primary"
+                                className="border-t hover:bg-gray-50 text-lg text-secondary"
                             >
                                 <td className="p-3">
                                     <img
-                                        src={catIcon}
-                                        alt="avatar"
-                                        className="rounded-full w-10 h-10"
+                                        src={gato.photo_url || catIcon}
+                                        alt=""
+                                        className="rounded-full w-10 h-10 cursor-pointer hover:scale-105 transition-transform duration-200"
+                                        onClick={() =>
+                                            setSelectedImage(
+                                                gato.photo_url || catIcon
+                                            )
+                                        }
                                     />
                                 </td>
                                 <td className="p-3">{gato.name}</td>
@@ -236,6 +243,29 @@ const TableRegisteredCats = () => {
                     onClose={() => setCatToDelete(null)}
                     onDelete={handleConfirmDelete}
                 />
+            )}
+            {selectedImage && (
+                <div
+                    className="fixed inset-0 backdrop-blur-md flex items-center justify-center z-50"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <div
+                        className="relative"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            className="absolute top-2 right-2 text-white bg-primary-hover bg-opacity-50 rounded-full px-2 py-1 cursor-pointer hover:bg-opacity-80"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            ✖
+                        </button>
+                        <img
+                            src={selectedImage}
+                            alt="Foto ampliada"
+                            className="max-w-full max-h-[90vh] rounded-lg shadow-lg"
+                        />
+                    </div>
+                </div>
             )}
         </div>
     );
