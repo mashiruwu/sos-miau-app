@@ -166,7 +166,7 @@ const resources = {
                         _2: "💰 Financial donation: Helps cover daily costs such as food, medication, neutering, and veterinary care. Any amount makes a difference!",
                         _3: "📦 Item donation: We accept food, hygienic sand, medication, blankets, toys, and other essential items for our rescued animals.",
                         _4: "🏥 Partnerships with veterinary clinics: If you are a veterinarian or own a clinic, you can offer consultations or discounts for our rescues!",
-                    }
+                    },
                 },
                 share_our_work: {
                     title: "📣 Spread the Word About Our Work",
@@ -205,7 +205,8 @@ const resources = {
                 donation_modal: {
                     title: "Do you want to make a donation?",
                     subtitle: "Choose an area to donate",
-                    area_contribution: "By choosing {{area}}, you will be contributing to:",
+                    area_contribution:
+                        "By choosing {{area}}, you will be contributing to:",
                     finish_payment: "Finish Payment",
                     cancel: "Cancel",
                     placeholder: "$0.00",
@@ -213,7 +214,7 @@ const resources = {
                         vet: "Veterinary Care",
                         food: "Food and Supplies",
                         shelter: "Shelter Maintenance",
-                        campaigns: "Adoption and Awareness Campaigns"
+                        campaigns: "Adoption and Awareness Campaigns",
                     },
                     contributions: {
                         consultas: "consultations",
@@ -230,8 +231,8 @@ const resources = {
                         bem_estar: "rescued cats' well-being",
                         eventos: "events",
                         materiais: "informative materials",
-                        redes: "social media"
-                    }
+                        redes: "social media",
+                    },
                 },
             },
             cats_page: {
@@ -244,7 +245,7 @@ const resources = {
                     "We'll be in touch in the registered phone to procceed with next steps",
                 thanks_for_adopting_close_button: "Close",
             },
-            slider:{
+            slider: {
                 error_message: "No more recommendations",
             },
             adopted_cats: {
@@ -279,14 +280,18 @@ const resources = {
                         activities_feb: "ACTIVITIES FEB/25",
                         campaigns: "CAMPAIGNS",
                         financial_mar: "FINANCIAL MAR/25",
-                        activities_mar: "ACTIVITIES MAR/25"
-                    }
+                        activities_mar: "ACTIVITIES MAR/25",
+                    },
                 },
                 categories: {
-                    "Veterinary Care": "Veterinary Care (consultations, vaccines, neutering, exams, and emergencies)",
-                    "Adoption and Awareness Campaigns": "Adoption and Awareness Campaigns (events, informational materials, and social media)",
-                    "Shelter Maintenance": "Shelter Maintenance (cleaning, infrastructure, and rescued cats' well-being)",
-                    "Food and Supplies": "Food and Supplies (food, kitten milk, hygienic sand, and medications)"
+                    "Veterinary Care":
+                        "Veterinary Care (consultations, vaccines, neutering, exams, and emergencies)",
+                    "Adoption and Awareness Campaigns":
+                        "Adoption and Awareness Campaigns (events, informational materials, and social media)",
+                    "Shelter Maintenance":
+                        "Shelter Maintenance (cleaning, infrastructure, and rescued cats' well-being)",
+                    "Food and Supplies":
+                        "Food and Supplies (food, kitten milk, hygienic sand, and medications)",
                 },
             },
             cat_register: {
@@ -361,12 +366,15 @@ const resources = {
                 name: "Name",
                 protectionNet: "Protection Net",
                 email: "Email",
-                age: "Age",
-                hasSon: "Children",
-                otherPet: "Other pets",
+                birthdate: "Birthdate",
+                address: "Address",
                 approval: "Approval",
-                yes: "Yes",
-                no: "No",
+                neutered: "Neutered",
+                yesProtection: "Yes",
+                noProtection: "No",
+                non_neutered: "Non neutered",
+                yes: "Approve",
+                no: "Reject",
             },
             registered_users: {
                 title: "Registered Users",
@@ -392,6 +400,7 @@ const resources = {
                 yes: "Yes",
                 no: "No",
                 submit: "Save Changes",
+                delete_account: "Delete Account",
                 cnpj: "CNPJ",
                 website: "Website",
                 foundation_date: "Foundation Date",
@@ -420,9 +429,9 @@ const resources = {
                     email: "Enter the NGO's email",
                     password: "Enter the NGO's password",
                     confirm_password: "Confirm the NGO's password",
-                    describe: "Describe the NGO"
-                }
-            }, 
+                    describe: "Describe the NGO",
+                },
+            },
         },
     },
     br: {
@@ -535,17 +544,17 @@ const resources = {
                 foundation_date: "Data de Fundação",
                 descriptionOng: "Descrição",
                 placeholders: {
-                    "name": "Digite seu nome",
-                    "surname": "Digite seu sobrenome",
-                    "phone": "Digite seu telefone",
-                    "email": "Digite seu e-mail",
-                    "address": "Digite seu endereço",
-                    "complement": "Digite o complemento",
-                    "description": "Digite a descrição",
-                    "website": "Digite o site",
-                    "cnpj": "Digite o CNPJ",
-                    "confirm_password": "Confirme sua senha",
-                    "password": "Digite sua senha",
+                    name: "Digite seu nome",
+                    surname: "Digite seu sobrenome",
+                    phone: "Digite seu telefone",
+                    email: "Digite seu e-mail",
+                    address: "Digite seu endereço",
+                    complement: "Digite o complemento",
+                    description: "Digite a descrição",
+                    website: "Digite o site",
+                    cnpj: "Digite o CNPJ",
+                    confirm_password: "Confirme sua senha",
+                    password: "Digite sua senha",
                 },
             },
             loginPage: {
@@ -590,7 +599,7 @@ const resources = {
                     "Entraremos em contato com o telefone presente em seu cadastro para os próximos passos.",
                 thanks_for_adopting_close_button: "Fechar",
             },
-            slider:{
+            slider: {
                 error_message: "Não há mais recomendações",
             },
             adopted_cats: {
@@ -609,7 +618,7 @@ const resources = {
                         _2: "💰 Doação financeira: Ajuda nos custos diários com ração, medicamentos, castrações e atendimentos veterinários. Qualquer valor faz a diferença!",
                         _3: "📦 Doação de itens: Aceitamos ração, areia higiênica, medicamentos, cobertores, brinquedos e outros itens essenciais para nossos resgatados.",
                         _4: "🏥 Parcerias com clínicas veterinárias: Se você é veterinário ou tem uma clínica, pode oferecer consultas ou descontos para nossos resgatados!",
-                    }
+                    },
                 },
                 share_our_work: {
                     title: "📣 Divulgue Nosso Trabalho",
@@ -648,33 +657,34 @@ const resources = {
                 donation_modal: {
                     title: "Deseja fazer uma doação?",
                     subtitle: "Escolha uma área para doar",
-                    area_contribution: "Ao escolher {{area}}, você estará contribuindo com:",
+                    area_contribution:
+                        "Ao escolher {{area}}, você estará contribuindo com:",
                     finish_payment: "Finalizar Pagamento",
                     cancel: "Cancelar",
                     placeholder: "R$ 0,00",
-                    "areas": {
-                        "vet": "Cuidados Veterinários",
-                        "food": "Alimentação e Insumos",
-                        "shelter": "Manutenção do Abrigo",
-                        "campaigns": "Campanhas de Adoção e Conscientização"
+                    areas: {
+                        vet: "Cuidados Veterinários",
+                        food: "Alimentação e Insumos",
+                        shelter: "Manutenção do Abrigo",
+                        campaigns: "Campanhas de Adoção e Conscientização",
                     },
-                    "contributions": {
-                        "consultas": "consultas",
-                        "vacinas": "vacinas",
-                        "castracoes": "castrações",
-                        "exames": "exames",
-                        "emergencias": "emergências",
-                        "racao": "ração",
-                        "leite": "leite para filhotes",
-                        "areia": "areia higiênica",
-                        "medicamentos": "medicamentos",
-                        "limpeza": "limpeza",
-                        "infraestrutura": "infraestrutura",
-                        "bem_estar": "bem-estar dos resgatados",
-                        "eventos": "eventos",
-                        "materiais": "materiais informativos",
-                        "redes": "redes sociais"
-                    }
+                    contributions: {
+                        consultas: "consultas",
+                        vacinas: "vacinas",
+                        castracoes: "castrações",
+                        exames: "exames",
+                        emergencias: "emergências",
+                        racao: "ração",
+                        leite: "leite para filhotes",
+                        areia: "areia higiênica",
+                        medicamentos: "medicamentos",
+                        limpeza: "limpeza",
+                        infraestrutura: "infraestrutura",
+                        bem_estar: "bem-estar dos resgatados",
+                        eventos: "eventos",
+                        materiais: "materiais informativos",
+                        redes: "redes sociais",
+                    },
                 },
             },
             transparency: {
@@ -696,14 +706,18 @@ const resources = {
                         activities_feb: "ATIVIDADES FEV/25",
                         campaigns: "CAMPANHAS",
                         financial_mar: "FINANCEIRO MAR/25",
-                        activities_mar: "ATIVIDADES MAR/25"
-                    }
+                        activities_mar: "ATIVIDADES MAR/25",
+                    },
                 },
                 categories: {
-                    "Veterinary Care": "Cuidados Veterinários (consultas, vacinas, castrações, exames e emergências)",
-                    "Adoption and Awareness Campaigns": "Campanhas de Adoção e Conscientização (eventos, materiais informativos e redes sociais)",
-                    "Shelter Maintenance": "Manutenção do Abrigo (limpeza, infraestrutura e bem-estar dos resgatados)",
-                    "Food and Supplies": "Alimentação e Insumos (ração, leite para filhotes, areia higiênica e medicamentos)"
+                    "Veterinary Care":
+                        "Cuidados Veterinários (consultas, vacinas, castrações, exames e emergências)",
+                    "Adoption and Awareness Campaigns":
+                        "Campanhas de Adoção e Conscientização (eventos, materiais informativos e redes sociais)",
+                    "Shelter Maintenance":
+                        "Manutenção do Abrigo (limpeza, infraestrutura e bem-estar dos resgatados)",
+                    "Food and Supplies":
+                        "Alimentação e Insumos (ração, leite para filhotes, areia higiênica e medicamentos)",
                 },
             },
             cat_register: {
@@ -778,12 +792,15 @@ const resources = {
                 name: "Nome",
                 protectionNet: "Rede de Proteção",
                 email: "Email",
-                age: "Idade",
-                hasSon: "Filho(s)",
-                otherPet: "Outro(s) Pet(s)",
+                birthdate: "Data de nascimento",
+                address: "Endereço",
                 approval: "Aprovação",
-                yes: "Sim",
-                no: "Não",
+                neutered: "Castrado",
+                non_neutered: "Não castrado",
+                yesProtection: "Sim",
+                noProtection: "Não",
+                yes: "Aprovar",
+                no: "Reprovar",
             },
             registered_users: {
                 title: "Usuários Cadastrados",
@@ -809,6 +826,7 @@ const resources = {
                 yes: "Sim",
                 no: "Não",
                 submit: "Salvar Alterações",
+                delete_account: "Excluir Conta",
                 cnpj: "CNPJ",
                 website: "Site",
                 foundation_date: "Data de Fundação",
@@ -827,7 +845,8 @@ const resources = {
             forgot_password: {
                 button: "Link de recuperação enviado para o seu e-mail",
                 message: "Enviando...",
-                forgot_password_success: "Link de recuperação enviado para o seu e-mail.",
+                forgot_password_success:
+                    "Link de recuperação enviado para o seu e-mail.",
                 forgot_password_error: "Erro ao enviar o link: {{error}}",
             },
             signup_ong: {
@@ -837,9 +856,9 @@ const resources = {
                     email: "Digite o e-mail da ONG",
                     password: "Digite a senha da ONG",
                     confirm_password: "Confirme a senha da ONG",
-                    describe: "Descreva a ONG",       
+                    describe: "Descreva a ONG",
                 },
-            },     
+            },
         },
     },
 };
