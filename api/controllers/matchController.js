@@ -7,7 +7,7 @@ exports.createMatch = async (req, res) => {
     const matchRef = db.collection('matches').doc();
 
     matchData.id = matchRef.id;
-
+    matchData.date = new Date().toUTCString();
 
     await matchRef.set(matchData);
     res.status(201).json(matchData);
@@ -112,9 +112,10 @@ exports.checkMatchesByOng = async (req, res) => {
 
     let matchSnapshot = await db.collection("matches").get();
     let matches = []
+
     for (let doc of matchSnapshot.docs) {
       for (let cat of OngDoc.data().cats_available){
-        if(doc.data().matchData.cat_id == cat){
+        if(doc.data().cat_id == cat){
           matches.push({id: doc.id, data: doc.data()})
         }
       }
@@ -124,7 +125,7 @@ exports.checkMatchesByOng = async (req, res) => {
       return  res.json(matches)
     }
 
-    return  res.json({aceito: false})
+    return  res.json([])
   }
   catch (error) {
     res.status(500).json({ error: error.message });
@@ -150,6 +151,49 @@ exports.checkMatchesByAdopter = async (req, res) => {
     }
 
     return  res.json({aceito: false})
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.checkMatchesScreen = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const OngReg = db.collection("donor_ong").doc(id);
+    const OngDoc = await OngReg.get();
+
+    let matchSnapshot = await db.collection("matches").get();
+    let matches = []
+    
+    for (let doc of matchSnapshot.docs) {
+      for (let cat of OngDoc.data().cats_available){
+        if(doc.data().cat_id == cat){
+          console.log(doc.data().cat_id)
+          console.log(doc.data().adopter_id)
+
+          const AdopterReg = db.collection("adopters").doc(doc.data().adopter_id);
+          const AdopterDoc = await AdopterReg.get();
+          const AdopterData = AdopterDoc.data();
+          
+          if (!AdopterData) {
+            continue
+          }
+          const CatReg = db.collection("cats").doc(doc.data().cat_id);
+          const CatDoc = await CatReg.get();
+          const CatData = CatDoc.data();
+          
+          if (!CatData) {
+            continue
+          }
+
+          matches.push({id: doc.id, ...doc.data(), cat_name: CatData.name, cat_photo_url: CatData.photo_url, adopter_name: AdopterData.name })
+        }
+      }
+    }
+
+    return  res.json(matches)
   }
   catch (error) {
     res.status(500).json({ error: error.message });

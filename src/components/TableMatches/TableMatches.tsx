@@ -1,36 +1,26 @@
+import { useEffect, useState } from "react";
 import catIcon from "../../assets/cat_icon_registered.png";
 import { useTranslation } from "react-i18next";
 
-const gatos = [
-    {
-        nome: "Gato 1",
-        adopter_name: "Adotante 1",
-        match: "21/03/2025"
-    },
-    {
-        nome: "Gato 2",
-        adopter_name: "Adotante 1",
-        match: "21/03/2025"
-    },
-    {
-        nome: "Gato 3",
-        adopter_name: "Adotante 1",
-        match: "21/03/2025"
-    },
-    {
-        nome: "Gato 4",
-        adopter_name: "Adotante 1",
-        match: "21/03/2025"
-    },
-    {
-        nome: "Gato 5",
-        adopter_name: "Adotante 1",
-        match: "21/03/2025"
-    },
-];
+const TableMatches = (props: { data: [{ cat_name: string, adopter_name: string, date: string }] }) => {
 
-const TableMatches = () => {
     const { t } = useTranslation();
+
+    const formatDate = (utcString: string) => {
+        const date = new Date(utcString);
+        
+        // Format to local date and time
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        
+        const formatted = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        return formatted;
+    }
 
     return (
         <div className="p-8 font-afacad">
@@ -61,7 +51,7 @@ const TableMatches = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {gatos.map((gato, index) => (
+                    {props.data.map((gato, index) => (
                         <tr
                             key={index}
                             className="border-t hover:bg-gray-50 text-lg dark:text-secondary"
@@ -73,9 +63,9 @@ const TableMatches = () => {
                                     className="rounded-full w-10 h-10"
                                 />
                             </td>
-                            <td className="p-3">{gato.nome}</td>
+                            <td className="p-3">{gato.cat_name}</td>
                             <td className="p-3">{gato.adopter_name}</td>
-                            <td className="p-3">{gato.match}</td>
+                            <td className="p-3">{formatDate(gato.date)}</td>
                         </tr>
                     ))}
                 </tbody>
