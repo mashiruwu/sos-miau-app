@@ -55,3 +55,16 @@ exports.deleteCat = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getAllCats = async (req, res) => {
+  try {
+    const catsSnapshot = await db.collection('cats').get();
+    const cats = [];
+    catsSnapshot.forEach(doc => {
+      cats.push(doc.data());
+    });
+    res.status(200).json(cats);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

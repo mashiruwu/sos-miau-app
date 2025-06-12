@@ -21,9 +21,9 @@ const CatCard = ({ cat = defaultCat }) => {
 
     return (
         <>
-            <div className="p-4 w-fit max-w-sm">
-                <div className="flex flex-col items-center p-4 w-[250px] rounded-2xl bg-secondary border-gray-200 shadow-md">
-                    <div className="w-full h-64 flex justify-center items-center">
+            <div className="p-4 w-full max-w-xs sm:max-w-sm">
+                <div className="flex flex-col items-center p-4 w-full rounded-2xl bg-secondary border-gray-200 shadow-md">
+                    <div className="w-full h-48 sm:h-64 flex justify-center items-center">
                         <img
                             src={cat.photo_url}
                             alt={`Foto de ${cat.name}`}
@@ -51,9 +51,9 @@ const CatCard = ({ cat = defaultCat }) => {
                     role="dialog"
                 >
                     <div
-                        className="relative bg-white p-6 rounded-2xl shadow-lg max-w-lg w-full dark:bg-primary-hover transition-transform transform scale-100"
-                        onClick={(e) => e.stopPropagation()}
-                    >
+                            className="relative bg-white p-4 sm:p-6 rounded-2xl shadow-lg max-w-[95vw] sm:max-w-lg w-full dark:bg-primary-hover transition-transform transform scale-100"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                         <button
                             onClick={() => setIsOpen(false)}
                             className="absolute top-1 cursor-pointer right-2 text-gray-600 hover:text-gray-900"
@@ -80,7 +80,20 @@ const CatCard = ({ cat = defaultCat }) => {
                                         <li>• {cat.behaviour}</li>
                                     </ul>
                                     <button
-                                        onClick={() => setAdopted(true)}
+                                        onClick={async () => {
+                                            setAdopted(true);
+                                            try {
+                                                // @ts-ignore
+                                                const API = import.meta.env.VITE_API_URL;
+                                                await fetch(`${API}/cat/${cat.id}`, {
+                                                    method: "PUT",
+                                                    headers: { "Content-Type": "application/json" },
+                                                    body: JSON.stringify({ adopted: true }), //"Sim" ??
+                                                });
+                                            } catch (error) {
+                                                console.error("Erro ao atualizar status de adoção:", error);
+                                            }
+                                        }}
                                         className="bg-white  px-6 py-2 rounded-md font-tiny text-[#254D70] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
                                     >
                                         {t("cats_page.button_adopt")}
