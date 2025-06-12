@@ -13,9 +13,8 @@ const AvailableCats = () => {
         const fetchCats = async () => {
             setLoading(true);
             try {
-                const API = import.meta.env.VITE_API_URL;
-                const ongId = sessionStorage.getItem("userId");
-                const response = await fetch(`${API}/donorOng/${ongId}`);
+                const API = (import.meta as any).env.VITE_API_URL; 
+                const response = await fetch(`${API}/cat`);
                 if (response.status === 404) {
                     setShowNoCatsModal(true);
                     setCats([]);
@@ -23,7 +22,7 @@ const AvailableCats = () => {
                 }
                 if (!response.ok) throw new Error("Erro ao buscar gatos");
                 const data = await response.json();
-                setCats(data.cats_available || []);
+                setCats(data.cats || data || []);
             } catch (error) {
                 console.error("Erro ao buscar gatos:", error);
             } finally {
@@ -42,9 +41,25 @@ const AvailableCats = () => {
                 <div className="text-center py-10">Carregando...</div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-items-center">
-                    {cats.map((cat) => (
-                        <CatCard key={cat.id} cat={cat} />
-                    ))}
+                    {cats
+                        .filter(
+                            (cat) => cat.adopted !== "Sim"
+                        )
+                        .map((cat, idx) => (
+                            <CatCard
+                                key={cat.id ?? idx}
+                                cat={{
+                                    id: idx, // Garante um número para o id
+                                    name: cat.name ?? "",
+                                    gender: cat.gender ?? "",
+                                    race: cat.race ?? "",
+                                    birthday: cat.birthday ?? "",
+                                    description: cat.description ?? "",
+                                    behaviour: cat.behaviour ?? "",
+                                    photo_url: cat.photo_url ?? "",
+                                }}
+                            />
+                        ))}
                 </div>
             )}
 
@@ -55,7 +70,7 @@ const AvailableCats = () => {
                             Nenhum gatinho disponível
                         </h2>
                         <p className="text-gray-700 mb-4">
-                            No momento, não há gatinhos disponíveis para adoção nesta ONG.
+                            No momento, não há gatinhos disponíveis para adoção.
                         </p>
                         <button
                             onClick={() => setShowNoCatsModal(false)}
