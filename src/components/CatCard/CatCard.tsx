@@ -80,7 +80,20 @@ const CatCard = ({ cat = defaultCat }) => {
                                         <li>• {cat.behaviour}</li>
                                     </ul>
                                     <button
-                                        onClick={() => setAdopted(true)}
+                                        onClick={async () => {
+                                            setAdopted(true);
+                                            try {
+                                                // @ts-ignore
+                                                const API = import.meta.env.VITE_API_URL;
+                                                await fetch(`${API}/cat/${cat.id}`, {
+                                                    method: "PUT",
+                                                    headers: { "Content-Type": "application/json" },
+                                                    body: JSON.stringify({ adopted: true }), //"Sim" ??
+                                                });
+                                            } catch (error) {
+                                                console.error("Erro ao atualizar status de adoção:", error);
+                                            }
+                                        }}
                                         className="bg-white  px-6 py-2 rounded-md font-tiny text-[#254D70] cursor-pointer hover:bg-zinc-200 text-lg transition-all uppercase"
                                     >
                                         {t("cats_page.button_adopt")}
