@@ -6,5 +6,6 @@ router.post('/', catController.createCat);
 router.get('/:id', catController.getCat);
 router.put('/:id', catController.updateCat);
 router.delete('/:id', catController.deleteCat);
+router.get('/', catController.getAllCats);
 
 module.exports = router;
