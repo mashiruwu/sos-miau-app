@@ -12,5 +12,6 @@ router.post('/checkMatch', matchController.checkMatch);
 router.post('/checkMatch/ByCat/:id', matchController.checkMatchesByCat);
 router.post('/checkMatch/ByOng/:id', matchController.checkMatchesByOng);
 router.post('/checkMatch/ByAdopter/:id', matchController.checkMatchesByAdopter);
+router.post('/checkMatchesScreen/:id', matchController.checkMatchesScreen);
 
 module.exports = router;
