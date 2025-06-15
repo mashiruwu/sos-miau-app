@@ -100,11 +100,7 @@ export default function Dropdown() {
                                     <MenuItem to="/catregister">
                                         {t("table_registeredcats.add_cat")}
                                     </MenuItem>
-                                    <MenuItem to="/registeredusers">
-                                        {t(
-                                            "table_registeredcats.registered_users"
-                                        )}
-                                    </MenuItem>
+
                                     <MenuItem to="/matches">Matches</MenuItem>
                                     <MenuItem to="/usersettings">
                                         {t("likes.config")}
