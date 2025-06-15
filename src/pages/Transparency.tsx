@@ -38,27 +38,33 @@ export function TransparencyPage() {
         retryOnError: true,
     });
     const [data, setData] = useState<ReportItem[]>([]);
+    const [filterKey, setFilterKey] = useState("allTime")
+
+    const formatToCurrency = (value: string) => {
+        const number = parseFloat(value.replace(/[^\d]/g, '')) / 100 || 0.00;
+        return number.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
 
     useEffect(() => {
         if (lastMessage) {
             try {
                 const parsed = JSON.parse(lastMessage.data);
-                setData(normalizeTo100(parsed));
+                setData(parsed[filterKey]);
             } catch (err) {
                 console.error('Invalid WS payload', err);
             }
         }
-    }, [lastMessage]);
+    }, [lastMessage, filterKey]);
 
     useEffect(() => {
         if (readyState === WebSocket.CLOSED) {
             const API = import.meta.env.VITE_API_URL
             fetch(API + '/report')
                 .then(r => r.json())
-                .then(data => setData(normalizeTo100(data)))
+                .then(data => setData(data[filterKey]))
                 .catch(console.error);
         }
-    }, [readyState]);
+    }, [readyState, filterKey]);
 
     const { t } = useTranslation();
 
@@ -90,11 +96,11 @@ export function TransparencyPage() {
 
                 <div className="w-full md:w-2/3">
                     <h2 className="text-base sm:text-2xl ">
-                        {t("transparency.collected_value", { month: "FEV/25", value: "R$ 22.579,43" })}
+                        {t("transparency.collected_value", { month: "FEV/25", value: formatToCurrency( (data.reduce((prev, cur) => {return prev + cur.value}, 0) * 100).toString() ) })}
                     </h2>
                     <br />
                     <h3>💰 {t("transparency.resources_distribution")}</h3>
-                    {data.map((item, index) => (
+                    {normalizeTo100(data).map((item, index) => (
                         <p key={index} className="flex items-center mt-2">
                             <span
                                 className="inline-block w-4 h-4 rounded-full mr-3 shrink-0"
@@ -112,31 +118,16 @@ export function TransparencyPage() {
                 {t("transparency.reports.title")}
             </h1>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-15 font-afacad text-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-15 font-afacad text-2xl">
                 {/* Botões não precisam de alteração individual, apenas o contêiner pai */}
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.financial_jan")}
+                <button className="rounded-md h-20 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer" onClick={() => {setFilterKey("allTime")}}>
+                    {t("transparency.reports.buttons.financial")}
                 </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.activities_jan")}
+                <button className="rounded-md h-20 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer" onClick={() => {setFilterKey("lastMonth")}}>
+                    {t("transparency.reports.buttons.financial_month")}
                 </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.impact")}
-                </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.financial_feb")}
-                </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.activities_feb")}
-                </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.campaigns")}
-                </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.financial_mar")}
-                </button>
-                <button className="rounded-md h-13 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer">
-                    {t("transparency.reports.buttons.activities_mar")}
+                <button className="rounded-md h-20 text-white bg-[#153151] hover:bg-[#1a4964] active:bg-[#102d3d] cursor-pointer" onClick={() => {setFilterKey("lastSixMonths")}}>
+                    {t("transparency.reports.buttons.financial_semester")}
                 </button>
             </div>
 

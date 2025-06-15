@@ -273,14 +273,9 @@ const resources = {
                 reports: {
                     title: "Reports",
                     buttons: {
-                        financial_jan: "FINANCIAL JAN/25",
-                        activities_jan: "ACTIVITIES JAN/25",
-                        impact: "NGO IMPACT",
-                        financial_feb: "FINANCIAL FEB/25",
-                        activities_feb: "ACTIVITIES FEB/25",
-                        campaigns: "CAMPAIGNS",
-                        financial_mar: "FINANCIAL MAR/25",
-                        activities_mar: "ACTIVITIES MAR/25",
+                        financial: "FINANCIAL",
+                        financial_month: "FINANCIAL LAST MONTH",
+                        financial_semester: "FINANCIAL LAST 6 MONTHS",
                     },
                 },
                 categories: {
@@ -699,14 +694,9 @@ const resources = {
                 reports: {
                     title: "Relatórios",
                     buttons: {
-                        financial_jan: "FINANCEIRO JAN/25",
-                        activities_jan: "ATIVIDADES JAN/25",
-                        impact: "IMPACTO DA ONG",
-                        financial_feb: "FINANCEIRO FEV/25",
-                        activities_feb: "ATIVIDADES FEV/25",
-                        campaigns: "CAMPANHAS",
-                        financial_mar: "FINANCEIRO MAR/25",
-                        activities_mar: "ATIVIDADES MAR/25",
+                        financial: "FINANCEIRO",
+                        financial_month: "FINANCEIRO ULTIMO MÊS",
+                        financial_semester: "FINANCEIRO ULTIMOS 6 MÊSES",
                     },
                 },
                 categories: {
