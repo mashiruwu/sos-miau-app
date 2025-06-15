@@ -13,8 +13,11 @@ const app = express();
 const allowedOrigins = [
   "https://sos-miau-app.web.app",
   "https://sos-miau-app.uc.r.appspot.com",  // your deployed front-end
-  "http://localhost:3000",                 // local development
   "https://sos-miau-app.firebaseapp.com",
+  "wss://sos-miau-app.firebaseapp.com",
+  "wss://sos-miau-app.uc.r.appspot.com",
+  "wss://sos-miau-app.web.app",
+  "http://localhost:3000",   // local development
   "http://localhost:8080",
   "http://localhost:5173",
   "http://localhost:4173",
