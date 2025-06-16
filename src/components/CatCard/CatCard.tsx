@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cat1 from "../../assets/rescue_cat.png";
+import { useAuth } from "../../context/AuthProvider"; 
+import { useNavigate } from "react-router-dom"; 
 
 const defaultCat = {
     id: 1,
@@ -18,6 +20,8 @@ const CatCard = ({ cat = defaultCat }) => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [adopted, setAdopted] = useState(false);
+    const { user } = useAuth(); 
+    const navigate = useNavigate();
 
     return (
         <>
@@ -33,8 +37,12 @@ const CatCard = ({ cat = defaultCat }) => {
                     <div className="w-full p-2 flex flex-col items-center gap-2">
                         <button
                             onClick={() => {
-                                setIsOpen(true);
-                                setAdopted(false);
+                                if (!user) {
+                                    navigate("/login");
+                                } else {
+                                    setIsOpen(true);
+                                    setAdopted(false);
+                                }
                             }}
                             className="w-full px-4 py-2 text-lg font-medium text-white bg-[#254D70] hover:bg-[#21415c]  rounded-xl hover:bg- cursor-pointer focus:outline-none"
                         >
