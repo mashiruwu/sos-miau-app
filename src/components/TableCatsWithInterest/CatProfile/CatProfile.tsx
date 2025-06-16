@@ -18,6 +18,36 @@ export const CatProfile = () => {
     const { id: IdCat } = useParams();
     const IdOng = sessionStorage.getItem("ongId");
 
+
+    const API = import.meta.env.VITE_API_URL
+
+    const handleEvaluate = async (value: boolean, adopterId: string) => {
+        try {
+            const response = await fetch(API + "/donorOng/evaluateAdopter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idAdopter: adopterId,
+                    idCat: IdCat,
+                    like: value
+                })
+            });
+    
+            if (!response.ok) {
+                console.error("Erro ao avaliar adotante.");
+                return;
+            }
+            console.log(adotantes)
+            // ✅ Remove o adotante avaliado da lista local
+            setAdotantes(prev => prev.filter(adotante => adotante.id !== adopterId));
+        } catch (err) {
+            console.error("Erro na requisição:", err);
+        }
+    };
+    
+
     const navigate = useNavigate();
 
     const calcularIdade = (dataNascimento: string): string => {
@@ -211,10 +241,10 @@ export const CatProfile = () => {
                                                 {adotante.address}
                                             </td>
                                             <td className="flex gap-2 ">
-                                                <button className="bg-green-800 p-2 mt-1 rounded-md text-white font-bold hover:bg-green-900 cursor-pointer">
+                                                <button className="bg-green-800 p-2 mt-1 rounded-md text-white font-bold hover:bg-green-900 cursor-pointer" onClick={() => {handleEvaluate(true, adotante.id)}}>
                                                     {t("cat_profile.yes")}
                                                 </button>
-                                                <button className="bg-red-800 p-2 mt-1 rounded-md text-white font-bold hover:bg-red-900 cursor-pointer">
+                                                <button className="bg-red-800 p-2 mt-1 rounded-md text-white font-bold hover:bg-red-900 cursor-pointer" onClick={() => {handleEvaluate(false, adotante.id)}}>
                                                     {t("cat_profile.no")}
                                                 </button>
                                             </td>

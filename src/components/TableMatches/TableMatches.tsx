@@ -65,7 +65,7 @@ const TableMatches = (props: { data: [{ cat_name: string, adopter_name: string, 
                             </td>
                             <td className="p-3">{gato.cat_name}</td>
                             <td className="p-3">{gato.adopter_name}</td>
-                            <td className="p-3">{formatDate(gato.date)}</td>
+                            <td className="p-3">{formatDate(gato.matchData.date)}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -271,16 +271,19 @@ exports.evaluateAdopter = async (req, res) => {
 
     const adopterId = bodyData.idAdopter
     const catId = bodyData.idCat
-    const like = matchData.like === true || matchData.like === "true"
+    const like = bodyData.like === true || bodyData.like === "true"
 
     const adopterRef = db.collection("adopters").doc(adopterId);
     const adopterDoc = await adopterRef.get();
-
+    
     if (!adopterDoc.exists) {
       return res.status(404).json({ message: "Adopter not found" });
     }
+
+    let adopterData = adopterDoc.data()
+    
     if (like) {
-      if (adopterDoc.data().likes.includes(catId)) {
+      if (adopterData.likes.includes(catId)) {
 
         const matchRef = db.collection('matches').doc();
         let matchData = {
@@ -290,12 +293,16 @@ exports.evaluateAdopter = async (req, res) => {
           date: new Date().toISOString()
         }
         await matchRef.set({ matchData });
-
-        return res.json({ match: matchData })
       }
     }
-    return res.json({ aceito: false })
 
+    const updatedLikes = (adopterData.likes || []).filter(id => id !== catId);
+    const updatedDislikes = (adopterData.dislikes || []).filter(id => id !== catId);
+
+    await adopterRef.update({
+      likes: updatedLikes,
+      dislikes: updatedDislikes
+    });
 
   }
   catch (error) {
