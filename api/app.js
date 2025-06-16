@@ -21,6 +21,9 @@ const allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:5173",
   "http://localhost:4173",
+  "https://sosmiau.com.br",
+  "https://sosmiau.mashiruwu.com",
+  "https://sosmiau.diegohenrick.com"
 ];
 
 const corsOptions = {
