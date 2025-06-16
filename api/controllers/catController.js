@@ -6,10 +6,31 @@ exports.createCat = async (req, res) => {
     const catData = req.body;
     const catRef = db.collection('cats').doc();
 
-    catData.id = catRef.id;
+    const catId = catRef.id;
 
+    const OngId = req.body.owner_id;
+    
+    const donorOngRef = db.collection('donor_ong').doc(OngId);
+    const OngdocSnapshot = await donorOngRef.get();
+
+    if (!OngdocSnapshot.exists) {
+      return res.status(404).json({ error: 'ONG not found' });
+    }
+
+    const ongData = OngdocSnapshot.data();
+    
+    // Garante que o array cats_available exista
+    const catsAvailable = ongData.cats_available || [];
+    catsAvailable.push(catId);
+
+    
+        // Atualiza o documento da ONG com o novo array
+    await donorOngRef.update({ cats_available: catsAvailable });
+    
+    catData.id = catId;
 
     await catRef.set(catData);
+    
     res.status(201).json(catData);
   } catch (error) {
     res.status(500).json({ error: error.message });
