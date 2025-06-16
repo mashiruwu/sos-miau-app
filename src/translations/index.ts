@@ -3,6 +3,32 @@ import ForgotPassword from "../pages/ForgotPassword";
 const resources = {
     en: {
         translation: {
+            card_cat: {
+                description: "Description",
+                age: "Age",
+                birthday: "Birthday",
+                gender: "Gender",
+                neutered: "Neutered",
+                coat: "Coat",
+                behaviour: "Behaviour",
+                race: "Race",
+                fivfelvStatus: "FIV/FeLV Status",
+                rescued: "Rescued",
+                month: "month",
+                year: "year"
+            },
+            common: {
+                gender: {
+                    male: "Male",
+                    female: "Female",
+                    unknown: "Unknown"
+                },
+                neutered: {
+                    yes: "Yes",
+                    no: "No",
+                    unknown: "Unknown"
+                }
+            },
             homepage: {
                 home: "Home",
                 match: "MATCH WITH MEOW",
@@ -431,6 +457,32 @@ const resources = {
     },
     br: {
         translation: {
+            card_cat: {
+                description: "Descrição",
+                age: "Idade",
+                birthday: "Data de Nascimento",
+                gender: "Gênero",
+                neutered: "Castrado",
+                coat: "Pelagem",
+                behaviour: "Comportamento",
+                race: "Raça",
+                fivfelvStatus: "Status FIV/FeLV",
+                rescued: "Resgatado",
+                month: "mês",
+                year: "ano"
+            },
+            common: {
+                gender: {
+                    Macho: "Macho",
+                    Fêmea: "Fêmea",
+                    unknown: "Desconhecido"
+                },
+                neutered: {
+                    Sim: "Sim",
+                    Não: "Não",
+                    unknown: "Desconhecido"
+                }
+            },
             homepage: {
                 home: "Início",
                 match: "MATCH COM MIAU",
