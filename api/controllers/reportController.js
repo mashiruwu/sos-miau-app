@@ -77,7 +77,7 @@ exports.createDonation = async (req, res) => {
             userName,
             amount,
             area,
-            date: new Date(),
+            date: new Date().toISOString(),
         };
 
         const docRef = await donationsRef.add(newDonation);
@@ -113,28 +113,54 @@ async function getSumByArea() {
         const snapshot = await donationsRef.get();
 
         const sums = {};
+        const sums_month = {};
+        const sums_semester = {};
+
+        const now = new Date();
+
+        const oneMonthAgo = new Date(now);
+        oneMonthAgo.setMonth(now.getMonth() - 1);
+
+        const sixMonthsAgo = new Date(now);
+        sixMonthsAgo.setMonth(now.getMonth() - 6);
 
         snapshot.forEach(doc => {
             const data = doc.data();
             const area = data.area || 'unknown';
             const amount = Number(data.amount) || 0;
 
-            if (!sums[area]) {
-                sums[area] = 0;
+            const donationDate = new Date(data.date);
+
+            // Soma geral (all time)
+            sums[area] = (sums[area] || 0) + amount;
+
+            // Soma últimos 6 meses
+            if (donationDate >= sixMonthsAgo) {
+                sums_semester[area] = (sums_semester[area] || 0) + amount;
             }
-            sums[area] += amount;
+
+            // Soma últimos 1 mês
+            if (donationDate >= oneMonthAgo) {
+                sums_month[area] = (sums_month[area] || 0) + amount;
+            }
         });
 
-        // Convert to pie chart format with descriptions
-        const reportData = Object.entries(sums).map(([area, value]) => {
-            const description = areaDescriptions[area];
-            return {
-                name: description ? `${area} (${description})` : area,
-                value
-            };
-        });
-        
-        return reportData
+        // Função para formatar o resultado com descrição
+        function formatReport(sumsObj) {
+            return Object.entries(sumsObj).map(([area, value]) => {
+                const description = areaDescriptions[area];
+                return {
+                    name: description ? `${area} (${description})` : area,
+                    value
+                };
+            });
+        }
+
+        return {
+            allTime: formatReport(sums),
+            lastMonth: formatReport(sums_month),
+            lastSixMonths: formatReport(sums_semester)
+        };
     } catch (err) {
         console.error('Error calculating sum by area:', err);
     }
