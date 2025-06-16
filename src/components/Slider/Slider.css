@@ -81,6 +81,9 @@
     justify-content: center;
     align-items: center;
 }
+.bottom{
+    display: none;
+}
 
 .option button{
     width: 120px;
@@ -120,8 +123,12 @@
 }
 
 @media (aspect-ratio: 1/1) {
-    .option{
+    .side{
         display: none;
+    }
+    .option button {
+        width: 90px;
+        height: 90px;
     }
     .chose{
         width: 70vw;
@@ -143,15 +150,44 @@
         width: 75vh;
         height: 60vh;
     }
+    
+    .option button {
+        width: 90px;
+        height: 90px;
+    }
+
+    .option button img{
+        width: 65%;
+        height: 65%;
+    }
+
 }
 
 @media (min-aspect-ratio: 1/20) and (max-aspect-ratio: 4/5) {
     
-    .option{
+    .side{
         display: none;
         width: 0;
         height: 0;
     }
+    .bottom{
+        display: flex;
+    }
+    .buttons_bot {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .option button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .option button img{
+        width: 65%;
+        height: 65%;
+    }
+
 
     .chose{
         width: 85vw;
@@ -159,6 +195,7 @@
         justify-content: center;
         align-items: unset;
         padding: 0;
+        margin-bottom: 20px;
     }
     .slide{
         width: 100%;
@@ -173,35 +210,4 @@
     .NoRecomendations{
         width: 100%;
     }
-
-    /* Dark mode styles */
-    .dark .slide,
-    .dark .additional-div,
-    .dark .additional-div2,
-    .dark .NoRecomendations {
-        background-color: #132945;
-        color: white;
-    }
-
-    /* Buttons in dark mode */
-    .dark .option #dislike {
-        background-color: #35765d;
-    }
-    .dark .option #dislike:hover {
-        background-color: #4a9b7b;
-    }
-    .dark .option #dislike:active {
-        background-color: #285342;
-    }
-
-    .dark .option #like {
-        background-color: #a0153f;
-    }
-    .dark .option #like:hover {
-        background-color: #c82759;
-    }
-    .dark .option #like:active {
-        background-color: #6f0e2d;
-    }
-
 }
